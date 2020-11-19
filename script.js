@@ -1,7 +1,33 @@
 tinymce.init({
     selector: '#mytextarea',
-    plugins: 'save',
-    toolbar: 'save |undo redo | styleselect | bold italic | link image'
+    toolbar: 'SaveButton| save |mybutton |undo redo | styleselect | bold italic|PrintDoc | link image',
+
+
+    
+
+//////////////////Added custom save button and Print btn
+    setup: function(mytextarea) {
+    
+        mytextarea.ui.registry.addButton('SaveButton', {
+            icon: 'save',
+            text: 'Save',
+            onAction: function () {
+                saveNote();
+            }
+          });
+
+        mytextarea.ui.registry.addButton('PrintDoc', {
+            icon: 'print',
+            onAction: function () {
+              alert('Wait..Print function is not implemented yet!');
+            }
+          });
+      }
+          
+
+        
+////////////////////
+
   });
 
 let mytextArea = document.getElementById("mytextarea");
@@ -82,3 +108,9 @@ function clearLocalStorage(){
     localStorage.clear();
 }
 
+function logSubmit(event) {
+    /* log.textContent = `Form Submitted! Time stamp: ${event.timeStamp}`; */
+    event.preventDefault();
+    alert("TeSt")
+  }
+  
