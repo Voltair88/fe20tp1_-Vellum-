@@ -1,6 +1,6 @@
 tinymce.init({
     selector: '#mytextarea',
-    toolbar: 'SaveButton| save |mybutton |undo redo | styleselect | bold italic|PrintDoc | link image',
+    toolbar: 'SaveButton|undo redo | styleselect | bold italic|PrintDoc | DeleteButton | link image',
 
 
     
@@ -22,6 +22,16 @@ tinymce.init({
               alert('Wait..Print function is not implemented yet!');
             }
           });
+
+        //Clear local storage
+        mytextarea.ui.registry.addButton('DeleteButton', {
+            icon: 'remove',
+            text: 'Delete all',
+            onAction: function () {
+                clearLocalStorage();
+            }
+          });
+
       }
           
 
@@ -34,8 +44,6 @@ let mytextArea = document.getElementById("mytextarea");
 let myForm = document.getElementById("myForm");
 let currentKey;
 
-document.getElementById("saveBtn").addEventListener("click", saveNote);
-document.getElementById("clearLocalStorage").addEventListener("click", clearLocalStorage);
 
 document.addEventListener("DOMContentLoaded", function() {
     pageOnLoad();
@@ -46,7 +54,6 @@ function fetchLocalStorageLastKey(){
     //check browser support
     if(typeof(Storage) !== "undefined"){
         currentKey = localStorage.length + 1;
-        console.log("Current key: "+currentKey);
         return true;
     }
 
@@ -54,12 +61,15 @@ function fetchLocalStorageLastKey(){
 
 function saveNote(){
 
-    console.log(mytextArea);
-    if(fetchLocalStorageLastKey()){
-        var myContent = tinymce.get("mytextarea").getContent();
-        console.log(myContent)
-        localStorage.setItem(currentKey, myContent);
+    let myContent = tinymce.get("mytextarea").getContent();
+    if(myContent!=''){
+        if(fetchLocalStorageLastKey()){
+            localStorage.setItem(currentKey, myContent);
+        }
+    }else{
+        alert("Text area is empty, fill the text area before save!")
     }
+    
     
 }
 
@@ -74,8 +84,7 @@ function pageOnLoad(){
     let h1;
 
     for(let i=1; i <= localStorage.length;i++){
-        console.log("Item: "+i+"is"+ localStorage[i]);
-
+        
         div = document.createElement('div');
         div.id = i;
         //div.innerText = JSON.parse(localStorage.getItem(i)).time;
@@ -108,9 +117,4 @@ function clearLocalStorage(){
     localStorage.clear();
 }
 
-function logSubmit(event) {
-    /* log.textContent = `Form Submitted! Time stamp: ${event.timeStamp}`; */
-    event.preventDefault();
-    alert("TeSt")
-  }
   
