@@ -65,6 +65,7 @@ function saveNote(){
     if(myContent!=''){
         if(fetchLocalStorageLastKey()){
             localStorage.setItem(currentKey, myContent);
+            displaySavedNoteElement(myContent);  //Display saved note in left panel
         }
     }else{
         alert("Text area is empty, fill the text area before save!")
@@ -84,7 +85,7 @@ function pageOnLoad(){
     let h1;
 
     for(let i=1; i <= localStorage.length;i++){
-        
+
         div = document.createElement('div');
         div.id = i;
         //div.innerText = JSON.parse(localStorage.getItem(i)).time;
@@ -117,4 +118,14 @@ function clearLocalStorage(){
     localStorage.clear();
 }
 
-  
+//Display saved note element direct after saving wihtout loading it from the localStorage
+function displaySavedNoteElement(myContent){
+    div = document.createElement('div');
+    div.className = 'divTag';
+    p = document.createElement('p');
+    p.innerHTML = myContent; 
+    div.appendChild(p);
+    div.addEventListener("click", function(){onClickDiv(event,this)},true);
+
+    leftCanvas.appendChild(div);
+}  
