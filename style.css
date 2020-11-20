@@ -2,10 +2,10 @@
     margin: 0;
     padding: 0;
 }
-body {
-    /* background-color: beige; */
-    /* min-height: 100vh; */
-}
+/*body {
+background-color: beige; 
+min-height: 100vh; 
+}*/
 
 .container{
     display: flex;
@@ -41,7 +41,6 @@ section .rightSide{
     min-height: 80vh;
 }
 
-
 /* //Dynamic div tags */
 .divTag{
     /* width: 90%; */
@@ -62,4 +61,111 @@ section .rightSide{
 
 #saveBtn, #clearLocalStorage{
     height: 40px;
+}
+
+
+/*** HÄR BÖRJAR CSS FÖR POPUP RUTAN ***/
+
+.button-bg /*popupen lägger sig över hela sidan*/
+{
+  position: fixed;
+  width: 100%;
+  height: 100vh; 
+  top: 0; 
+  left: 0;
+  background-color:rgb(0,0,0,0.5);
+  display: flex;
+  justify-content:center;
+  align-items:center;  
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s; 
+  transition-duration: 4s;
+  z-index: 2;
+}
+
+.bg-active /*popup rutan blir synlig*/
+{
+  visibility: visible; 
+  opacity: 1;
+}
+
+.popup /*Själva popup rutan*/
+{
+  position: relative;
+  background-color: white; 
+  min-width: 40%;
+  min-height: 50%;
+  display: flex;
+  align-items:center; 
+  flex-direction: column; 
+  border-radius: 4px;
+  flex-wrap: wrap;
+  box-shadow:  0 4px 8px 0 rgba(15, 15, 15, 0.342); 
+}
+
+h2 {
+    padding: 10px;
+    margin-top: 30px;
+}
+
+.informationText {
+    padding: 10px;
+    margin: 10px;
+}
+
+ul {
+list-style: square inside none;
+margin: 10px;
+padding: 10px;  
+}
+
+li {
+    margin: 15px;
+}
+
+/*** "GOT IT, THANKS" KNAPPEN I POPUPEN ***/
+.x-close {
+color: black;
+transition: all 0.5s;
+position: relative;
+line-height: 50px;
+height: 50px;
+text-align: center;
+width: 200px;
+cursor: pointer;
+border: none;
+margin-bottom: 20px;
+}
+.x-close::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 1;
+background-color: rgba(86, 160, 76, 0.616);
+transition: all 0.3s;
+}
+.x-close:hover::before {
+opacity: 0 ;
+transform: scale(0.5,0.5);
+}
+.x-close::after {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 1;
+opacity: 0;
+transition: all 0.3s;
+border: 1px solid rgba(86, 160, 76, 0.795);
+transform: scale(1.2,1.2);
+}
+.x-close:hover::after {
+opacity: 1;
+transform: scale(1,1);
 }
