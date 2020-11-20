@@ -1,7 +1,8 @@
 tinymce.init({
     selector: '#mytextarea',
-<<<<<<< HEAD
-    toolbar: 'SaveButton|undo redo | styleselect | bold italic|PrintDoc | DeleteButton | link image',
+    plugins: 'lists',
+    toolbar: 'SaveButton|undo redo | styleselect | bold italic|PrintDoc | DeleteButton | numlist bullist | alignleft aligncenter alignright alignjustify | outdent indent',
+    
 
 
     
@@ -39,10 +40,7 @@ tinymce.init({
         
 ////////////////////
 
-=======
-    plugins: 'lists',
-    toolbar: 'undo redo | styleselect | bold italic | numlist bullist | alignleft aligncenter alignright alignjustify | outdent indent',
->>>>>>> e15bd999c2acdf79c5ee4a3305912f29cd98a260
+    
   });
 
 let mytextArea = document.getElementById("mytextarea");
