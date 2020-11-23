@@ -9,7 +9,7 @@ function pageOnLoad(){
     if (localStorage.length === 0){
     
         popUp.classList.add('bg-active');
-        localStorage.setItem('key',"varit");
+        localStorage.setItem(0,"varit");
     }
     else {
         popUp.classList.add('button-bg');
