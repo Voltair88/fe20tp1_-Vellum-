@@ -46,6 +46,7 @@ let myForm = document.getElementById("myForm");
 let currentKey;
 let leftCanvas = document.getElementById("leftCanvas");
 let subjectEl = document.getElementById("subjectTextfieldId");
+let edit = false; // to check whether it is an edit or new note when saving 
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -69,39 +70,20 @@ function saveNote(){
     let myContent = tinymce.get("mytextarea").getContent();
     let obj = {};
     if(myContent!=''){
-        if(fetchLocalStorageLastKey()){
-            /* localStorage.setItem(currentKey, myContent); */
+            if(fetchLocalStorageLastKey()){
+                obj['id'] = localStorage.length;
+                obj['note'] = myContent;
+                obj['date'] = today;
+                obj['favorite'] = true;
+                obj['subject'] = subjectEl.value;
+    
+                localStorage.setItem(currentKey, JSON.stringify(obj));
+                displaySavedNoteElement(obj);  //Display saved note in left panel
+                tinymce.get("mytextarea").setContent("");
+                subjectEl.value = "";
+            }
+        
 
-
-
-            obj['id'] = localStorage.length;
-            obj['note'] = myContent;
-            obj['date'] = today;
-            obj['favorite'] = true;
-            obj['subject'] = subjectEl.value;
-
-            /////////////////////////////////////////////
-            localStorage.setItem(currentKey, JSON.stringify(obj));
-
-
-
-            /* localStorage.setItem(currentKey, JSON.stringify({
-                note: myContent,
-                date: today,
-                favorite: true,
-                subject: 'subject'+today
-            })); */
-            
-            /* var user = JSON.parse(localStorage.getItem('user')); */
-
-
-//////////////////////////////////////////////////
-            displaySavedNoteElement(obj);  //Display saved note in left panel
-            tinymce.get("mytextarea").setContent("");
-            subjectEl.value = "";
-
-
-        }
     }else{
         alert("Text area is empty, fill the text area before save!")
     }
@@ -143,6 +125,8 @@ function pageOnLoadFunction(){
 }
 
 function onClickDiv(event){
+
+    let edit = true;
 
     let clickedDiv = event.target.closest('div');
     if (!clickedDiv) {
