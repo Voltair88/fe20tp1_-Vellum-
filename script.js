@@ -12,7 +12,7 @@ tinymce.init({
             icon: 'save',
             text: 'Save',
             onAction: function () {
-                saveNote();
+                saveNote(edit);
             }
           });
 
@@ -47,6 +47,7 @@ let currentKey;
 let leftCanvas = document.getElementById("leftCanvas");
 let subjectEl = document.getElementById("subjectTextfieldId");
 let edit = false; // to check whether it is an edit or new note when saving 
+let clickedDiv;
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -65,12 +66,14 @@ function fetchLocalStorageLastKey(){
 
 }
 
-function saveNote(){
+function saveNote(edit){
     let today = new Date();
     let myContent = tinymce.get("mytextarea").getContent();
     let obj = {};
     if(myContent!=''){
+        if(!edit){   //This block for new entries
             if(fetchLocalStorageLastKey()){
+                console.log("SAVE");
                 obj['id'] = localStorage.length;
                 obj['note'] = myContent;
                 obj['date'] = today;
@@ -81,9 +84,25 @@ function saveNote(){
                 displaySavedNoteElement(obj);  //Display saved note in left panel
                 tinymce.get("mytextarea").setContent("");
                 subjectEl.value = "";
+            }else{ //This block is for edit 
+                
             }
-        
+        }else{
 
+            if(myContent.localeCompare(JSON.parse(localStorage.getItem(clickedDiv.id)).note) === 0){
+                console.log("NOT CHANGED TEST");
+                tinymce.get("mytextarea").setContent("");
+                subjectEl.value = "";
+            }else{
+                console.log("TEXT CHNAGED");
+                //Create a new note
+                saveNote(false);
+                tinymce.get("mytextarea").setContent("");
+                subjectEl.value = "";
+            }
+
+            edit = false;
+        }
     }else{
         alert("Text area is empty, fill the text area before save!")
     }
@@ -126,9 +145,9 @@ function pageOnLoadFunction(){
 
 function onClickDiv(event){
 
-    let edit = true;
+    edit = true;
 
-    let clickedDiv = event.target.closest('div');
+    clickedDiv = event.target.closest('div');
     if (!clickedDiv) {
         return;
     }
