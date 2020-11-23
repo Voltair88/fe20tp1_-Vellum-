@@ -1,9 +1,6 @@
 tinymce.init({
     selector: '#mytextarea',
     plugins: 'lists',
-<<<<<<< HEAD
-    toolbar: 'undo redo | styleselect | bold italic | numlist bullist | alignleft aligncenter alignright alignjustify | outdent indent',
-=======
     toolbar: 'SaveButton|undo redo | styleselect | bold italic|PrintDoc | DeleteButton | numlist bullist | alignleft aligncenter alignright alignjustify | outdent indent',
 
     height: 800,
@@ -42,7 +39,6 @@ tinymce.init({
 ////////////////////
 
     
->>>>>>> Pathum_branch
   });
 
 let mytextArea = document.getElementById("mytextarea");
@@ -65,26 +61,13 @@ document.addEventListener("DOMContentLoaded", function() {
 function fetchLocalStorageLastKey(){
     //check browser support
     if(typeof(Storage) !== "undefined"){
-<<<<<<< HEAD
-        currentKey = localStorage.length + 1;
-        console.log("Current key: "+currentKey);
-=======
         currentKey = localStorage.length;
->>>>>>> Pathum_branch
         return true;
     }
 
 }
 
 function saveNote(){
-<<<<<<< HEAD
-
-    console.log(mytextArea);
-    if(fetchLocalStorageLastKey()){
-        var myContent = tinymce.get("mytextarea").getContent();
-        console.log(myContent)
-        localStorage.setItem(currentKey, myContent);
-=======
     let today = new Date();
     let myContent = tinymce.get("mytextarea").getContent();
     let obj = {};
@@ -105,7 +88,6 @@ function saveNote(){
 
     }else{
         alert("Text area is empty, fill the text area before save!")
->>>>>>> Pathum_branch
     }
     
 }
@@ -117,10 +99,6 @@ function pageOnLoadFunction(){
     let p;
     let h1;
 
-<<<<<<< HEAD
-    for(let i=1; i <= localStorage.length;i++){
-        console.log("Item: "+i+"is"+ localStorage[i]);
-=======
     for(let i=1; i < localStorage.length;i++){
         if(localStorage.key !== 0){
             
@@ -128,7 +106,6 @@ function pageOnLoadFunction(){
             div.id = i;
             //div.innerText = JSON.parse(localStorage.getItem(i)).time;
             div.className = 'divTag';
->>>>>>> Pathum_branch
 
             p = document.createElement('p');
             let objNote = JSON.parse(localStorage.getItem(i))
@@ -174,8 +151,6 @@ function clearLocalStorage(){
     localStorage.clear();
 }
 
-<<<<<<< HEAD
-=======
 //Display saved note element direct after saving wihtout loading it from the localStorage
 function displaySavedNoteElement(obj){
     div = document.createElement('div');
@@ -195,4 +170,3 @@ function stringCompare(str1,str2){
 
 
 /* var user = JSON.parse(localStorage.getItem('user')); */
->>>>>>> Pathum_branch
