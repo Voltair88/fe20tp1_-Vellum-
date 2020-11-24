@@ -1,7 +1,7 @@
 tinymce.init({
     selector: '#mytextarea',
     plugins: 'lists',
-    toolbar: 'SaveButton|undo redo | styleselect | bold italic|PrintDoc | DeleteButton | numlist bullist | alignleft aligncenter alignright alignjustify | outdent indent',
+    toolbar: 'SaveButton|undo redo | styleselect fontselect fontsizeselect | bold italic|PrintDoc | DeleteButton | numlist bullist | alignleft aligncenter alignright alignjustify | outdent indent',
 
     height: 800,
     
