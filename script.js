@@ -50,23 +50,11 @@ let edit = false; // to check whether it is an edit or new note when saving
 let clickedDiv;
 let favToggle = document.getElementById("favToggle");
 
-let star = document.createElement('img');
-    star.setAttribute('class', 'star');
-    star.setAttribute('src', './images/star.png');
-    star.setAttribute('alt', 'favorite button unlit');
-
-let favstar = document.createElement('img');
-    favstar.setAttribute('class', 'favstar');
-    favstar.setAttribute('src', './images/favstar.png');
-    star.setAttribute('alt', 'favorite button lit');
-
 
 document.addEventListener("DOMContentLoaded", function() {
     pageOnLoadFunction();
   });
   
-
-
 
 function fetchLocalStorageLastKey(){
     //check browser support
@@ -161,18 +149,15 @@ function pageOnLoadFunction(){
             p.innerHTML = objNote.subject; 
 
             div.appendChild(p);
-            div.appendChild(star);
+            let newStar = createStar();
+            div.appendChild(newStar);
             console.log(div);
         
             div.addEventListener("click", function(){onClickDiv(event,this)},true);
 
             leftCanvas.appendChild(div);
-        }
-        
-        
+        }   
     }
-
-
 }
 
 function onClickDiv(event){
@@ -204,7 +189,8 @@ function displaySavedNoteElement(obj){
     p.innerHTML = obj.subject;   //.subject;
 
     div.appendChild(p);
-    //div.appendChild(star);
+    let newStar = createStar();
+    div.appendChild(newStar);
     div.addEventListener("click", function(){onClickDiv(event,this)},true);
 
     leftCanvas.appendChild(div);
@@ -231,29 +217,49 @@ function updateRecord(){
     edit = false;
 }
 
-star.addEventListener('click', function(e){
-    e.target.parentElement.classList.add('favorite')
-    e.target.parentElement.appendChild(favstar);
+//Funktion som skapar en stjärna till en anteckning
+function createStar() {
+    let newStar = document.createElement('img');
+    newStar.setAttribute('class', 'star');
+    newStar.setAttribute('src', './images/star.png');
+    newStar.setAttribute('alt', 'favorite button unlit');
+
+    newStar .addEventListener('click', function(e){
+        e.target.parentElement.classList.add('favorite')
+        e.target.parentElement.appendChild(createFavStar());
+        
+        let favObj = JSON.parse(localStorage.getItem(e.target.parentElement.getAttribute('id')));
+        favObj.favorite = true;
+        
+        localStorage.setItem(e.target.parentElement.getAttribute('id'), JSON.stringify(favObj));
+        e.target.parentElement.removeChild(e.target.parentElement.childNodes[1]);
     
-    let favObj = JSON.parse(localStorage.getItem(e.target.parentElement.getAttribute('id')));
-    favObj.favorite = true;
+    })
+
+    return newStar;
+}
+
+//Funktion som skapar en favoritstjärna till en anteckning
+function createFavStar() {
+    let favStar = document.createElement('img');
+    favStar.setAttribute('class', 'favstar');
+    favStar.setAttribute('src', './images/favstar.png');
+    favStar.setAttribute('alt', 'favorite button lit');
+
+    favStar.addEventListener('click', function(e){
+        e.target.parentElement.classList.remove('favorite')
+        e.target.parentElement.appendChild(createStar());
     
-    localStorage.setItem(e.target.parentElement.getAttribute('id'), JSON.stringify(favObj));
-    e.target.parentElement.removeChild(e.target.parentElement.childNodes[1]);
-
-})
-
-favstar.addEventListener('click', function(e){
-    e.target.parentElement.classList.remove('favorite')
-    e.target.parentElement.appendChild(star);
-
-    let unFavObj = JSON.parse(localStorage.getItem(e.target.parentElement.getAttribute('id')));
-    unFavObj.favorite = false;
+        let unFavObj = JSON.parse(localStorage.getItem(e.target.parentElement.getAttribute('id')));
+        unFavObj.favorite = false;
+        
+        localStorage.setItem(e.target.parentElement.getAttribute('id'), JSON.stringify(unFavObj));
+        e.target.parentElement.removeChild(e.target.parentElement.childNodes[1]);
     
-    localStorage.setItem(e.target.parentElement.getAttribute('id'), JSON.stringify(unFavObj));
-    e.target.parentElement.removeChild(e.target.parentElement.childNodes[1]);
+    })
 
-})
+    return favStar;
+}
 
 favToggle.addEventListener('change', function(e){
     let leftCanvasChildren = leftCanvas.children;
