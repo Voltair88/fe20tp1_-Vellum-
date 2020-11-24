@@ -184,3 +184,7 @@ transform: scale(1,1);
 .star:hover, .favstar:hover {
     cursor: pointer;
 }
+
+.hidden {
+    display: none;
+}

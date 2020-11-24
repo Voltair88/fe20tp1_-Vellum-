@@ -30,16 +30,16 @@ tinymce.init({
             onAction: function () {
                 clearLocalStorage();
             }
-          });
-
-      }
-          
-
+        });
         
-////////////////////
-
+    }
     
-  });
+    
+    
+    ////////////////////
+    
+    
+});
 
 let mytextArea = document.getElementById("mytextarea");
 let myForm = document.getElementById("myForm");
@@ -48,12 +48,23 @@ let leftCanvas = document.getElementById("leftCanvas");
 let subjectEl = document.getElementById("subjectTextfieldId");
 let edit = false; // to check whether it is an edit or new note when saving 
 let clickedDiv;
+let favToggle = document.getElementById("favToggle");
+
+let star = document.createElement('img');
+    star.setAttribute('class', 'star');
+    star.setAttribute('src', './images/star.png');
+    star.setAttribute('alt', 'favorite button unlit');
+
+let favstar = document.createElement('img');
+    favstar.setAttribute('class', 'favstar');
+    favstar.setAttribute('src', './images/favstar.png');
+    star.setAttribute('alt', 'favorite button lit');
 
 
 document.addEventListener("DOMContentLoaded", function() {
     pageOnLoadFunction();
   });
-
+  
 
 
 
@@ -128,15 +139,7 @@ function saveNote(edit){
 
 }
 
-let star = document.createElement('img');
-    star.setAttribute('class', 'star');
-    star.setAttribute('src', './images/star.png');
-    star.setAttribute('alt', 'favorite button unlit');
 
-let favstar = document.createElement('img');
-    favstar.setAttribute('class', 'favstar');
-    favstar.setAttribute('src', './images/favstar.png');
-    star.setAttribute('alt', 'favorite button lit');
 
 //Read localStorage and display in left panel
 function pageOnLoadFunction(){
@@ -159,7 +162,7 @@ function pageOnLoadFunction(){
 
             div.appendChild(p);
             div.appendChild(star);
-
+            console.log(div);
         
             div.addEventListener("click", function(){onClickDiv(event,this)},true);
 
@@ -193,19 +196,15 @@ function clearLocalStorage(){
 
 //Display saved note element direct after saving wihtout loading it from the localStorage
 function displaySavedNoteElement(obj){
+    console.log(star);
     div = document.createElement('div');
     div.className = 'divTag';
     div.id = localStorage.length-1;  // Key 0 is to "check user har varit" , to remove that id use -1
     p = document.createElement('p');
-    p.innerHTML = obj.subject;   //.subject
-
-    star = document.createElement('img');
-    star.setAttribute("class", "star");
-    star.setAttribute("src", "./images/star.png");
-    star.setAttribute("alt", "favorite button unlit");
+    p.innerHTML = obj.subject;   //.subject;
 
     div.appendChild(p);
-    div.appendChild(star);
+    //div.appendChild(star);
     div.addEventListener("click", function(){onClickDiv(event,this)},true);
 
     leftCanvas.appendChild(div);
@@ -232,7 +231,8 @@ function updateRecord(){
     edit = false;
 }
 
-star.addEventListener("click", function(e){
+star.addEventListener('click', function(e){
+    e.target.parentElement.classList.add('favorite')
     e.target.parentElement.appendChild(favstar);
     
     let favObj = JSON.parse(localStorage.getItem(e.target.parentElement.getAttribute('id')));
@@ -243,7 +243,8 @@ star.addEventListener("click", function(e){
 
 })
 
-favstar.addEventListener("click", function(e){
+favstar.addEventListener('click', function(e){
+    e.target.parentElement.classList.remove('favorite')
     e.target.parentElement.appendChild(star);
 
     let unFavObj = JSON.parse(localStorage.getItem(e.target.parentElement.getAttribute('id')));
@@ -254,6 +255,21 @@ favstar.addEventListener("click", function(e){
 
 })
 
+favToggle.addEventListener('change', function(e){
+    let leftCanvasChildren = leftCanvas.children;
 
+    for (let i = 0; i < leftCanvasChildren.length; i++) {
+        let leftCanvasChild = leftCanvasChildren[i];
 
+        if(this.checked) {
+            if(!leftCanvasChild.classList.contains('favorite')) {
+                leftCanvasChild.classList.add('hidden')
+            }
+
+        } else {
+            leftCanvasChild.classList.remove('hidden')
+        }
+    }
+})
+    
 /* var user = JSON.parse(localStorage.getItem('user')); */
