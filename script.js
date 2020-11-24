@@ -74,7 +74,6 @@ function saveNote(edit){
     if(myContent != '' && subjectEl.value != ''){
         if(!edit){   //This block for new entries
             if(fetchLocalStorageLastKey()){
-                console.log("SAVE");
                 obj['id'] = localStorage.length;
                 obj['note'] = myContent;
                 obj['date'] = today;
