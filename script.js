@@ -76,17 +76,11 @@ function saveNote(edit) {
     let today = new Date();
     let myContent = tinymce.get("mytextarea").getContent();
     let obj = {};
-<<<<<<< HEAD
-    if(myContent != '' && subjectEl.value != ''){
-        if(!edit){   //This block for new entries
-            if(fetchLocalStorageLastKey()){
-=======
 
     if (myContent != '' && subjectEl.value != '') {
         if (!edit) {   //This block for new entries
             if (fetchLocalStorageLastKey()) {
 
->>>>>>> Pathum_branch
                 obj['id'] = localStorage.length;
                 obj['note'] = myContent;
                 obj['date'] = today;
@@ -197,7 +191,8 @@ function clearLocalStorage() {
     tinymce.activeEditor.windowManager.confirm("Do you want to delete all", function (s) {
         if (s){
             tinymce.activeEditor.windowManager.alert('Deleted all');
-            localStorage.clear();eload();
+            localStorage.clear();
+            location.reload();
             }
     });
 }
@@ -231,9 +226,5 @@ function updateRecord() {
 
     localStorage.setItem(clickedDiv.id, JSON.stringify(obj));
 
-<<<<<<< HEAD
-/* var user = JSON.parse(localStorage.getItem('user')); */
-=======
     return true;
 }
->>>>>>> Pathum_branch
