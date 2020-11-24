@@ -12,7 +12,7 @@ tinymce.init({
             icon: 'save',
             text: 'Save',
             onAction: function () {
-                saveNote();
+                saveNote(edit);
             }
           });
 
@@ -47,9 +47,8 @@ let currentKey;
 let leftCanvas = document.getElementById("leftCanvas");
 let subjectEl = document.getElementById("subjectTextfieldId");
 let edit = false; // to check whether it is an edit or new note when saving 
+let clickedDiv;
 
-document.getElementById("saveBtn").addEventListener("click", saveNote);
-document.getElementById("clearLocalStorage").addEventListener("click", clearLocalStorage);
 
 document.addEventListener("DOMContentLoaded", function() {
     pageOnLoadFunction();
@@ -67,12 +66,15 @@ function fetchLocalStorageLastKey(){
 
 }
 
-function saveNote(){
+function saveNote(edit){
+
     let today = new Date();
     let myContent = tinymce.get("mytextarea").getContent();
     let obj = {};
-    if(myContent!=''){
+    if(myContent != '' && subjectEl.value != ''){
+        if(!edit){   //This block for new entries
             if(fetchLocalStorageLastKey()){
+                console.log("SAVE");
                 obj['id'] = localStorage.length;
                 obj['note'] = myContent;
                 obj['date'] = today;
@@ -81,15 +83,50 @@ function saveNote(){
     
                 localStorage.setItem(currentKey, JSON.stringify(obj));
                 displaySavedNoteElement(obj);  //Display saved note in left panel
+                tinymce.activeEditor.windowManager.alert('Successfully saved');
+                tinymce.get("mytextarea").setContent("");
+                subjectEl.value = "";
+                
+            }else{ //This block is for edit 
+                
+            }
+        }else{
+
+            if(myContent.localeCompare(JSON.parse(localStorage.getItem(clickedDiv.id)).note) === 0){
+                tinymce.get("mytextarea").setContent("");
+                subjectEl.value = "";
+                tinymce.activeEditor.windowManager.alert('No changes to save');
+                  
+            }else{
+                //Textarea has changed, ask uset to create a new note
+
+                tinymce.activeEditor.windowManager.confirm("Do you want to save changes", function(s) {
+                    if (s)
+                        if(updateRecord()){
+                            tinymce.activeEditor.windowManager.alert('Successfully saved');
+                        }
+                        else{
+                            tinymce.activeEditor.windowManager.alert('Save error..!');
+                        }
+                    else{
+                        tinymce.get("mytextarea").setContent("");
+                        subjectEl.value = "";
+                    }
+                 });
+
+                /* saveNote(false); */
                 tinymce.get("mytextarea").setContent("");
                 subjectEl.value = "";
             }
-        
 
+        }
+        
     }else{
-        alert("Text area is empty, fill the text area before save!")
+        tinymce.activeEditor.windowManager.alert('Text area or/and subject is empty..! Save error..!');
     }
-    
+
+    edit = false;
+
 }
 
 //Read localStorage and display in left panel
@@ -127,22 +164,15 @@ function pageOnLoadFunction(){
 
 function onClickDiv(event){
 
-    let edit = true;
+    edit = true;
 
-    let clickedDiv = event.target.closest('div');
+    clickedDiv = event.target.closest('div');
     if (!clickedDiv) {
         return;
     }
-    /* var clickedID = clickedLI.getAttribute('data-id'); */
 
-    console.log("ID: "+clickedDiv.id);
-    console.log("Clicked DIV: : "+clickedDiv.tagName);
     //get Clicked Id's note doc from localStorage
     let objNote = JSON.parse(localStorage.getItem(clickedDiv.id));
-    console.log(JSON.parse(localStorage.getItem(clickedDiv.id)));
-
-    /* tinymce.get("mytextarea").setContent(event.target.innerHTML); */
-    console.log(objNote.note);
     tinymce.get("mytextarea").setContent(objNote.note);
     subjectEl.value = objNote.subject;
 }
@@ -164,8 +194,25 @@ function displaySavedNoteElement(obj){
     leftCanvas.appendChild(div);
 } 
 
-function stringCompare(str1,str2){
-    return  string1.localeCompare(string2);
+function updateRecord(){
+    try{
+        let obj = JSON.parse(localStorage.getItem(clickedDiv.id));
+    
+        obj['id'] = clickedDiv.id;
+        obj['note'] = myContent;
+        obj['date'] = today;
+        obj['favorite'] = true;
+        obj['subject'] = subjectEl.value;
+
+
+        localStorage.setItem(JSON.stringify(clickedDiv.id), JSON.stringify(obj));
+
+        return true;
+    }catch(err){
+        tinymce.activeEditor.windowManager.alert('Update error..!');
+    }
+    
+    edit = false;
 }
 
 
