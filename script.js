@@ -77,7 +77,7 @@ function saveNote(edit){
                 obj['id'] = localStorage.length;
                 obj['note'] = myContent;
                 obj['date'] = today;
-                obj['favorite'] = true;
+                obj['favorite'] = false;
                 obj['subject'] = subjectEl.value;
     
                 localStorage.setItem(currentKey, JSON.stringify(obj));
@@ -128,6 +128,16 @@ function saveNote(edit){
 
 }
 
+let star = document.createElement('img');
+    star.setAttribute('class', 'star');
+    star.setAttribute('src', './images/star.png');
+    star.setAttribute('alt', 'favorite button unlit');
+
+let favstar = document.createElement('img');
+    favstar.setAttribute('class', 'favstar');
+    favstar.setAttribute('src', './images/favstar.png');
+    star.setAttribute('alt', 'favorite button lit');
+
 //Read localStorage and display in left panel
 function pageOnLoadFunction(){
 
@@ -148,6 +158,7 @@ function pageOnLoadFunction(){
             p.innerHTML = objNote.subject; 
 
             div.appendChild(p);
+            div.appendChild(star);
 
         
             div.addEventListener("click", function(){onClickDiv(event,this)},true);
@@ -187,7 +198,14 @@ function displaySavedNoteElement(obj){
     div.id = localStorage.length-1;  // Key 0 is to "check user har varit" , to remove that id use -1
     p = document.createElement('p');
     p.innerHTML = obj.subject;   //.subject
+
+    star = document.createElement('img');
+    star.setAttribute("class", "star");
+    star.setAttribute("src", "./images/star.png");
+    star.setAttribute("alt", "favorite button unlit");
+
     div.appendChild(p);
+    div.appendChild(star);
     div.addEventListener("click", function(){onClickDiv(event,this)},true);
 
     leftCanvas.appendChild(div);
@@ -200,7 +218,7 @@ function updateRecord(){
         obj['id'] = clickedDiv.id;
         obj['note'] = myContent;
         obj['date'] = today;
-        obj['favorite'] = true;
+        obj['favorite'] = false;
         obj['subject'] = subjectEl.value;
 
 
@@ -213,6 +231,29 @@ function updateRecord(){
     
     edit = false;
 }
+
+star.addEventListener("click", function(e){
+    e.target.parentElement.appendChild(favstar);
+    
+    let favObj = JSON.parse(localStorage.getItem(e.target.parentElement.getAttribute('id')));
+    favObj.favorite = true;
+    
+    localStorage.setItem(e.target.parentElement.getAttribute('id'), JSON.stringify(favObj));
+    e.target.parentElement.removeChild(e.target.parentElement.childNodes[1]);
+
+})
+
+favstar.addEventListener("click", function(e){
+    e.target.parentElement.appendChild(star);
+
+    let unFavObj = JSON.parse(localStorage.getItem(e.target.parentElement.getAttribute('id')));
+    unFavObj.favorite = false;
+    
+    localStorage.setItem(e.target.parentElement.getAttribute('id'), JSON.stringify(unFavObj));
+    e.target.parentElement.removeChild(e.target.parentElement.childNodes[1]);
+
+})
+
 
 
 /* var user = JSON.parse(localStorage.getItem('user')); */
