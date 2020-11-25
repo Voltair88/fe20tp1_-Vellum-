@@ -8,9 +8,7 @@ tinymce.init({
     
 //////////////////Added custom save button and Print btn
     setup: function(mytextarea) {
-        ed.onInit.add(function(ed){
-            $('tr.mceFirst').css('z-index','1');
-        });
+    
         mytextarea.ui.registry.addButton('SaveButton', {
             icon: 'save',
             text: 'Save',
