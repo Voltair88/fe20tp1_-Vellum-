@@ -54,10 +54,6 @@ let favToggle = document.getElementById("favToggle");
 let globalTextContent;
 let globalSubject;
 
-//To update note
-let globalTextContent;
-let globalSubject;
-
 
 document.addEventListener("DOMContentLoaded", function () {
     pageOnLoadFunction();
