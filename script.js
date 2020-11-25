@@ -1,6 +1,6 @@
 tinymce.init({
     selector: '#mytextarea',
-    plugins: 'lists',
+    plugins: 'lists print',
     toolbar: 'SaveButton|undo redo | styleselect fontselect fontsizeselect | bold italic|PrintDoc | DeleteButton | numlist bullist | alignleft aligncenter alignright alignjustify | outdent indent',
 
     height: 800,
@@ -19,7 +19,7 @@ tinymce.init({
         mytextarea.ui.registry.addButton('PrintDoc', {
             icon: 'print',
             onAction: function () {
-                alert('Wait..Print function is not implemented yet!');
+                print();
             }
         });
 
@@ -286,3 +286,6 @@ favToggle.addEventListener('change', function(e){
     }
 })
     
+function print(){
+    tinymce.activeEditor.execCommand('mcePrint');
+}
