@@ -180,3 +180,12 @@ transform: scale(1,1);
 #subjectTextfieldId:focus{
     outline: none;
 }
+
+.pDate{
+    display: absolute;
+    text-align: right;
+    font-size: smaller;
+    color: rgb(110, 110, 110);
+    font-style: italic;
+    border-radius: 2px;
+}

@@ -83,7 +83,7 @@ function saveNote(edit) {
 
                 obj['id'] = localStorage.length;
                 obj['note'] = myContent;
-                obj['date'] = today;
+                obj['date'] = today.toLocaleDateString();
                 obj['favorite'] = true;
                 obj['subject'] = subjectEl.value;
 
@@ -158,8 +158,12 @@ function pageOnLoadFunction() {
             p = document.createElement('p');
             let objNote = JSON.parse(localStorage.getItem(i))
             p.innerHTML = objNote.subject;
-
             div.appendChild(p);
+
+            pDate = document.createElement('p');
+            pDate.innerHTML = objNote.date;   //.Date  .toLocaleDateString()
+            pDate.className = 'pDate';
+            div.appendChild(pDate);
 
             div.addEventListener("click", function () { onClickDiv(event, this) }, true);
 
@@ -205,6 +209,12 @@ function displaySavedNoteElement(obj) {
     p = document.createElement('p');
     p.innerHTML = obj.subject;   //.subject
     div.appendChild(p);
+
+    pDate = document.createElement('p');
+    pDate.innerHTML = obj.date;   //.Date
+    pDate.className = 'pDate';
+    div.appendChild(pDate);
+    
     div.addEventListener("click", function () { onClickDiv(event, this) }, true);
 
     leftCanvas.appendChild(div);
@@ -217,7 +227,7 @@ function updateRecord() {
 
     obj['id'] = clickedDiv.id;
     obj['note'] = globalTextContent;
-    obj['date'] = today;
+    obj['date'] = today.toLocaleDateString();
     obj['favorite'] = true;
     obj['subject'] = globalSubject;
 
