@@ -156,6 +156,11 @@ function pageOnLoadFunction() {
             p.innerHTML = objNote.subject;
             div.appendChild(p);
             let newStar = createStar();
+            if(objNote.favorite){
+                div.classList.add('favorite');
+                newStar.setAttribute('src', './images/favstar.png');
+                newStar.setAttribute('alt', 'favorite button lit');
+            };
             div.appendChild(newStar);
 
             pDate = document.createElement('p');
