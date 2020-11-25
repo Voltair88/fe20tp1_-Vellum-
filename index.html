@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A free and awesome online notebook" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
-    <script src="popup.js" defer></script>
-    <script
-      src="https://cdn.tiny.cloud/1/hu2ag6wnn68xelzcg8y07a7o2h49vbu4xkcpkbum7gqk6ztt/tinymce/5/tinymce.min.js"
-      referrerpolicy="origin"
-    ></script>
-    <title>Your online notebook</title>
-  </head>
 
-  <header>The Notebook</header>
-  <body>
-    <!---HÄR BÖRJAR POPUP RUTAN--->
-    <!--     <div class="button-bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A free and awesome online notebook" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+  <script src="popup.js" defer></script>
+  <script src="https://cdn.tiny.cloud/1/hu2ag6wnn68xelzcg8y07a7o2h49vbu4xkcpkbum7gqk6ztt/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
+  <title>Your online notebook</title>
+</head>
+
+<body>
+  <!---HÄR BÖRJAR POPUP RUTAN--->
+      <div class="button-bg">
         <div class="popup">
             <h2>Welcome to your free and online notebook!</h2>
 <p class="informationText"> This is how it works</p>
@@ -32,54 +30,35 @@
     <li>It is easy to save or delete a note, just press the buttons Save for saving a note, or Delete for deleting a note.</li>
 </ul>
 <button class="x-close" aria-label="close window">Got it, thanks!</button>
-</div></div> -->
+</div></div>
 
-    <!--HÄR BÖRJAR TEXT EDITORN-->
-    <div>
-        <header tabindex="0">Header</header>
-        <div id="nav-container">
-          <div class="bg"></div>
-          <div class="button" tabindex="0">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </div>
-          <div id="nav-content" tabindex="0">
-            <ul>
-                <section class="leftSide" id="leftCanvas"></section>
-            </ul>
-          </div>
-        </div>
-      
-        <main>
-            <section class="rightSide">
-                <input type="text" id="subjectTextfieldId" placeholder="Subject" />
-                <form id="myForm">
-                  <textarea
-                    id="mytextarea"
-                    name="mytextarea"
-                    rows="0"
-                    cols="80"
-                  ></textarea>
-                </form>
-              </section>
- 
-          </div>
-        </main>
+  <!--HÄR BÖRJAR MENYN -->
+  <div>
+    <header tabindex="0">Your online notebook</header>
+    <div id="nav-container">
+      <div class="bg"></div>
+      <div class="button" tabindex="0">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </div>
+      <div id="nav-content" tabindex="0">
+        <ul>
+          <section class="leftSide" id="leftCanvas"></section>
+        </ul>
+      </div>
+    </div>
+    <!--HÄR BÖRJAR TEXT EDITORN-->
+    <main>
+      <section class="rightSide">
+        <input type="text" id="subjectTextfieldId" placeholder="Subject" />
+        <form id="myForm">
+          <textarea id="mytextarea" name="mytextarea" rows="0" cols="80"></textarea>
+        </form>
+      </section>
+  </div>
+  </main>
+  </div>
+</body>
 
-
-
-
-
-
-
-    <section class="container">
-
-
-
-    </section>
-
-    <script></script>
-  </body>
 </html>

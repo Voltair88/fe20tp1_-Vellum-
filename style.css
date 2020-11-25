@@ -1,22 +1,42 @@
+@import url("https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600");
+
+
 * {
   margin: 0;
   padding: 0;
 }
+
+
+main {
+  display: flex;
+  height: 100%;
+}
+
+
 body {
   background-color: beige;
   /* min-height: 100vh;  */
 }
+
 header {
   font-family: sans-serif;
   font-size: 2em;
   text-align: center;
-  background-image: linear-gradient(
-    to bottom right,
-    rgb(240, 160, 160),
-    rgb(235, 235, 101)
-  );
+  background-image: linear-gradient(to bottom right,
+      rgb(240, 160, 160),
+      rgb(235, 235, 101));
   border-bottom: solid rgb(228, 151, 151);
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 70px;
+  background: #212121;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
 .container {
   display: flex;
   /* background-color: rgb(10, 115, 206); */
@@ -37,6 +57,7 @@ header {
   border-right: solid rgb(228, 151, 151);
   padding-top: 10px;
 }
+
 .rightSide {
   display: flex;
   flex: 5;
@@ -53,14 +74,15 @@ header {
     z-index: -1 !important;
 } */
 
-.tox-platform-touch{
-    position: fixed;
-    z-index: 1 !important;
+.tox-platform-touch {
+  position: fixed;
+  z-index: 1 !important;
 }
 
 section .rightSide {
   min-height: 80vh;
 }
+
 .mytextareaClass {
   min-height: 80vh;
 }
@@ -75,6 +97,7 @@ section .rightSide {
   padding: 3px;
   border-radius: 3px;
 }
+
 .divTag:hover {
   background-color: cornflowerblue;
 }
@@ -85,7 +108,10 @@ section .rightSide {
 
 /*** HÄR BÖRJAR CSS FÖR POPUP RUTAN ***/
 
-.button-bg /*popupen lägger sig över hela sidan*/ {
+.button-bg
+
+/*popupen lägger sig över hela sidan*/
+  {
   position: fixed;
   width: 100%;
   height: 100vh;
@@ -102,12 +128,18 @@ section .rightSide {
   z-index: 2;
 }
 
-.bg-active /*popup rutan blir synlig*/ {
+.bg-active
+
+/*popup rutan blir synlig*/
+  {
   visibility: visible;
   opacity: 1;
 }
 
-.popup /*Själva popup rutan*/ {
+.popup
+
+/*Själva popup rutan*/
+  {
   position: relative;
   background-color: white;
   min-width: 40%;
@@ -153,6 +185,7 @@ li {
   border: none;
   margin-bottom: 20px;
 }
+
 .x-close::before {
   content: "";
   position: absolute;
@@ -164,10 +197,12 @@ li {
   background-color: rgba(86, 160, 76, 0.616);
   transition: all 0.3s;
 }
+
 .x-close:hover::before {
   opacity: 0;
   transform: scale(0.5, 0.5);
 }
+
 .x-close::after {
   content: "";
   position: absolute;
@@ -181,12 +216,13 @@ li {
   border: 1px solid rgba(86, 160, 76, 0.795);
   transform: scale(1.2, 1.2);
 }
+
 .x-close:hover::after {
   opacity: 1;
   transform: scale(1, 1);
 }
 
-/* ************************************ */
+/* SUBJECT FIELD INPUT */
 #subjectTextfieldId {
   height: 40px;
   border-radius: 0px;
@@ -195,46 +231,13 @@ li {
   border: solid 1px rgba(128, 128, 128, 0.466);
   padding-left: 5px;
 }
+
 #subjectTextfieldId:focus {
   outline: none;
 }
 
-@media screen and (max-width: 992px) {
-  .rightSide {
-    flex: 5;
-  }
-  .leftSide {
-    font-size: 80%;
-  }
-}
-@media screen and (max-width: 376px) {
-  .leftSide {
-    font-size: 70%;
-  }
-}
 
-@import url("https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600");
-
-header {
-  display: flex;
-  position: fixed;
-  width: 100%;
-  height: 70px;
-  background: #212121;
-  color: #fff;
-  justify-content: center;
-  align-items: center;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-main {
-  display: flex;
-  height: 100%;
-}
-
-main > div {
-  margin: auto;
-}
+/* LEFT MENU */
 
 #nav-container {
   position: fixed;
@@ -243,6 +246,7 @@ main > div {
   pointer-events: none;
   z-index: 10;
 }
+
 #nav-container .bg {
   position: absolute;
   top: 70px;
@@ -254,10 +258,12 @@ main > div {
   transition: 0.3s;
   background: #000;
 }
+
 #nav-container:focus-within .bg {
   visibility: visible;
   opacity: 0.6;
 }
+
 #nav-container * {
   visibility: visible;
 }
@@ -280,6 +286,7 @@ main > div {
   touch-action: manipulation;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
 .icon-bar {
   display: block;
   width: 100%;
@@ -287,19 +294,23 @@ main > div {
   background: #aaa;
   transition: 0.3s;
 }
-.icon-bar + .icon-bar {
+
+.icon-bar+.icon-bar {
   margin-top: 5px;
 }
 
 #nav-container:focus-within .button {
   pointer-events: none;
 }
+
 #nav-container:focus-within .icon-bar:nth-of-type(1) {
   transform: translate3d(0, 8px, 0) rotate(45deg);
 }
+
 #nav-container:focus-within .icon-bar:nth-of-type(2) {
   opacity: 0;
 }
+
 #nav-container:focus-within .icon-bar:nth-of-type(3) {
   transform: translate3d(0, -8px, 0) rotate(-45deg);
 }
@@ -325,3 +336,23 @@ main > div {
 #nav-container:focus-within #nav-content {
   transform: none;
 }
+
+/* MEDIA QUERIES */
+
+
+@media screen and (max-width: 992px) {
+  .rightSide {
+    flex: 5;
+  }
+
+  .leftSide {
+    font-size: 80%;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .leftSide {
+    font-size: 70%;
+  }
+}
+ 
