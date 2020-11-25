@@ -163,7 +163,7 @@ function pageOnLoadFunction() {
             pDate.className = 'pDate';
             div.appendChild(pDate);
 
-            div.addEventListener("click", function () { onClickDiv(event, this) }, true);
+            div.addEventListener("click", function () { onClickDiv(event) });
 
             leftCanvas.appendChild(div);
         }
@@ -214,7 +214,7 @@ function displaySavedNoteElement(obj) {
     pDate.className = 'pDate';
     div.appendChild(pDate);
     
-    div.addEventListener("click", function () { onClickDiv(event, this) }, true);
+    div.addEventListener("click", function () { onClickDiv(event) });
 
     leftCanvas.appendChild(div);
 }
