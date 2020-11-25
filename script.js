@@ -1,7 +1,7 @@
 tinymce.init({
     selector: '#mytextarea',
     plugins: 'lists',
-    toolbar: 'SaveButton|undo redo | styleselect | bold italic|PrintDoc | DeleteButton | numlist bullist | alignleft aligncenter alignright alignjustify | outdent indent',
+    toolbar: 'SaveButton|undo redo | styleselect fontselect fontsizeselect | bold italic|PrintDoc | DeleteButton | numlist bullist | alignleft aligncenter alignright alignjustify | outdent indent',
 
     height: 800,
 
@@ -48,6 +48,7 @@ let leftCanvas = document.getElementById("leftCanvas");
 let subjectEl = document.getElementById("subjectTextfieldId");
 let edit = false; // to check whether it is an edit or new note when saving 
 let clickedDiv;
+let favToggle = document.getElementById("favToggle");
 
 //To update note
 let globalTextContent;
@@ -84,7 +85,7 @@ function saveNote(edit) {
                 obj['id'] = localStorage.length;
                 obj['note'] = myContent;
                 obj['date'] = today.toLocaleDateString();
-                obj['favorite'] = true;
+                obj['favorite'] = false;
                 obj['subject'] = subjectEl.value;
 
                 localStorage.setItem(currentKey, JSON.stringify(obj));
@@ -159,6 +160,8 @@ function pageOnLoadFunction() {
             let objNote = JSON.parse(localStorage.getItem(i))
             p.innerHTML = objNote.subject;
             div.appendChild(p);
+            let newStar = createStar();
+            div.appendChild(newStar);
 
             pDate = document.createElement('p');
             pDate.innerHTML = objNote.date;   //.Date  .toLocaleDateString()
@@ -172,8 +175,6 @@ function pageOnLoadFunction() {
 
 
     }
-
-
 }
 
 function onClickDiv(event) {
@@ -207,8 +208,11 @@ function displaySavedNoteElement(obj) {
     div.className = 'divTag';
     div.id = localStorage.length - 1;  // Key 0 is to "check user har varit" , to remove that id use -1
     p = document.createElement('p');
-    p.innerHTML = obj.subject;   //.subject
+    p.innerHTML = obj.subject;   //.subject;
+
     div.appendChild(p);
+    let newStar = createStar();
+    div.appendChild(newStar);
 
     pDate = document.createElement('p');
     pDate.innerHTML = obj.date;   //.Date
@@ -228,13 +232,65 @@ function updateRecord() {
     obj['id'] = clickedDiv.id;
     obj['note'] = globalTextContent;
     obj['date'] = today.toLocaleDateString();
-    obj['favorite'] = true;
+    obj['favorite'] = false;
     obj['subject'] = globalSubject;
 
     //Update the subject div in left panel
     clickedDiv.firstChild.innerText = globalSubject;
-
+    /* var user = JSON.parse(localStorage.getItem('user')); */
     localStorage.setItem(clickedDiv.id, JSON.stringify(obj));
-
+    
     return true;
 }
+
+//Funktion som skapar en stjärna till en anteckning
+function createStar() {
+    let newStar = document.createElement('img');
+    newStar.setAttribute('class', 'star');
+    newStar.setAttribute('src', './images/star.png');
+    newStar.setAttribute('alt', 'favorite button unlit');
+    
+    let favObj;
+
+    newStar.addEventListener('click', function(e){
+        let targetID = e.target.parentElement.getAttribute('id')
+        favObj = JSON.parse(localStorage.getItem(targetID));
+
+        if(e.target.parentElement.classList.contains("favorite")){
+            newStar.setAttribute('src', './images/star.png');
+            newStar.setAttribute('alt', 'favorite button unlit');
+            e.target.parentElement.classList.remove('favorite');
+            
+            favObj.favorite = false;
+        } else {
+            newStar.setAttribute('src', './images/favstar.png');
+            newStar.setAttribute('alt', 'favorite button lit');
+            e.target.parentElement.classList.add('favorite');
+
+            favObj.favorite = true;
+        }
+        
+    localStorage.setItem(e.target.parentElement.getAttribute('id'), JSON.stringify(favObj));
+    
+    })
+
+    return newStar;
+}
+
+favToggle.addEventListener('change', function(e){
+    let leftCanvasChildren = leftCanvas.children;
+
+    for (let i = 0; i < leftCanvasChildren.length; i++) {
+        let leftCanvasChild = leftCanvasChildren[i];
+
+        if(this.checked) {
+            if(!leftCanvasChild.classList.contains('favorite')) {
+                leftCanvasChild.classList.add('hidden')
+            }
+
+        } else {
+            leftCanvasChild.classList.remove('hidden')
+        }
+    }
+})
+    

@@ -181,6 +181,14 @@ transform: scale(1,1);
     outline: none;
 }
 
+.star:hover, .favstar:hover {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
 .pDate{
     display: absolute;
     text-align: right;
