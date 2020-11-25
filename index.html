@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A free and awesome online notebook">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A free and awesome online notebook" />
+    <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
     <script src="popup.js" defer></script>
-    <script src="https://cdn.tiny.cloud/1/fukg8jgkoohb5ig0d499pb29ipl3ldflg0xxyklcxpl35bni/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script
+      src="https://cdn.tiny.cloud/1/fukg8jgkoohb5ig0d499pb29ipl3ldflg0xxyklcxpl35bni/tinymce/5/tinymce.min.js"
+      referrerpolicy="origin"
+    ></script>
     <title>Your online notebook</title>
-</head>
+  </head>
 
-<header>The Notebook</header>
-<body>
-
-<!---HÄR BÖRJAR POPUP RUTAN--->
-<!--     <div class="button-bg">
+  <header>The Notebook</header>
+  <body>
+    <!---HÄR BÖRJAR POPUP RUTAN--->
+    <!--     <div class="button-bg">
         <div class="popup">
             <h2>Welcome to your free and online notebook!</h2>
 <p class="informationText"> This is how it works</p>
@@ -32,30 +34,53 @@
 <button class="x-close" aria-label="close window">Got it, thanks!</button>
 </div></div> -->
 
-<!--HÄR BÖRJAR TEXT EDITORN-->
+    <!--HÄR BÖRJAR TEXT EDITORN-->
+    <div class="page">
+        <header tabindex="0">Header</header>
+        <div id="nav-container">
+          <div class="bg"></div>
+          <div class="button" tabindex="0">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </div>
+          <div id="nav-content" tabindex="0">
+            <ul>
+                <section class="leftSide" id="leftCanvas"></section>
+            </ul>
+          </div>
+        </div>
+      
+        <main>
+          <div class="content">
+            <section class="rightSide">
+                <input type="text" id="subjectTextfieldId" placeholder="Subject" />
+                <form id="myForm">
+                  <textarea
+                    id="mytextarea"
+                    name="mytextarea"
+                    rows="0"
+                    cols="80"
+                  ></textarea>
+                </form>
+              </section>
+ 
+          </div>
+        </main>
+      </div>
+
+
+
+
+
+
+
     <section class="container">
 
-    
 
-        <section class="leftSide" id="leftCanvas">
 
-        </section>
-
-        <section class="rightSide">
-            <input type="text" id="subjectTextfieldId" placeholder="Subject">
-            <form id="myForm">
-              <textarea id="mytextarea" name="mytextarea" rows="0" cols="80"></textarea>
-            </form>
-
-        </section>
     </section>
 
-
-
-    <script>
-      
-    </script>
-    
- 
-</body>
+    <script></script>
+  </body>
 </html>

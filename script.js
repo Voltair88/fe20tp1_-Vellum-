@@ -4,10 +4,13 @@ tinymce.init({
     toolbar: 'SaveButton|undo redo | styleselect | bold italic|PrintDoc | DeleteButton | numlist bullist | alignleft aligncenter alignright alignjustify | outdent indent',
 
     height: 800,
+
     
 //////////////////Added custom save button and Print btn
     setup: function(mytextarea) {
-    
+        ed.onInit.add(function(ed){
+            $('tr.mceFirst').css('z-index','1');
+        });
         mytextarea.ui.registry.addButton('SaveButton', {
             icon: 'save',
             text: 'Save',
