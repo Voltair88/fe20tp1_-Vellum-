@@ -34,10 +34,7 @@ tinymce.init({
 
     }
 
-
-
     ////////////////////
-
 
 });
 
@@ -125,7 +122,6 @@ function saveNote(edit) {
                     }
                 });
 
-                /* saveNote(false); */
                 tinymce.get("mytextarea").setContent("");
                 subjectEl.value = "";
             }
@@ -146,7 +142,6 @@ function pageOnLoadFunction() {
 
     let div;
     let p;
-    let h1;
 
     for (let i = 1; i < localStorage.length; i++) {
         if (localStorage.key !== 0) {
@@ -229,15 +224,12 @@ function updateRecord() {
     let today = new Date();
     let obj = JSON.parse(localStorage.getItem(clickedDiv.id));
 
-    obj['id'] = clickedDiv.id;
     obj['note'] = globalTextContent;
     obj['date'] = today.toLocaleDateString();
-    obj['favorite'] = false;
     obj['subject'] = globalSubject;
 
     //Update the subject div in left panel
     clickedDiv.firstChild.innerText = globalSubject;
-    /* var user = JSON.parse(localStorage.getItem('user')); */
     localStorage.setItem(clickedDiv.id, JSON.stringify(obj));
     
     return true;
