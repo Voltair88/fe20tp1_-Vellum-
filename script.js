@@ -1,12 +1,20 @@
 tinymce.init({
     selector: '#mytextarea',
     plugins: 'lists print',
-    toolbar: 'SaveButton|undo redo | styleselect fontselect | bold italic|PrintDoc | DeleteButton | numlist bullist | alignleft aligncenter alignright alignjustify | outdent indent',
+    toolbar: 'New|SaveButton|undo redo | styleselect fontselect | bold italic|PrintDoc | DeleteButton | numlist bullist | alignleft aligncenter alignright alignjustify | outdent indent',
 
     height: 800,
 
     //////////////////Added custom save button and Print btn
     setup: function (mytextarea) {
+
+        mytextarea.ui.registry.addButton('New', {
+            icon: 'new-document',
+            /* text: 'Save', */
+            onAction: function () {
+                newNote(edit);
+            }
+        });
 
         mytextarea.ui.registry.addButton('SaveButton', {
             icon: 'save',
@@ -293,4 +301,11 @@ favToggle.addEventListener('change', function(e){
     
 function print(){
     tinymce.activeEditor.execCommand('mcePrint');
+}
+
+function newNote(){
+    edit = false;
+
+    tinymce.get("mytextarea").setContent("");
+    subjectEl.value = "";
 }
