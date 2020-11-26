@@ -3,8 +3,6 @@ tinymce.init({
     plugins: "lists",
     toolbar: "SaveButton|undo redo | styleselect | bold italic|PrintDoc | DeleteButton | numlist bullist | alignleft aligncenter alignright alignjustify | outdent indent",
 
-    height: 800,
-
     //////////////////Added custom save button and Print btn
     setup: function (mytextarea) {
         mytextarea.ui.registry.addButton("SaveButton", {
