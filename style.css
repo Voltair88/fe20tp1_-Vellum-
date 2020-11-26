@@ -53,7 +53,7 @@ header {
   /* align-self: stretch; */
   min-height: 80vh;
   box-shadow: 0 4px 8px 0 rgba(15, 15, 15, 0.2);
-  margin: 0px 2px 0px 5px;
+  margin: 50px 2px 0px 5px;
   border-right: solid rgb(228, 151, 151);
   padding-top: 10px;
 }
@@ -64,8 +64,8 @@ header {
   flex-direction: column;
   /* background-color: rgb(75, 75, 75); */
   /* box-shadow:  0 4px 8px 0 rgba(15, 15, 15, 0.2);  */
-  border-radius: 5px;
-  margin: 100px 5% 5% 10%;
+/*   border-radius: 5px;
+  margin: 100px 5% 5% 10%; */
   align-items: stretch;
 }
 
@@ -80,6 +80,11 @@ section .rightSide {
 
 .mytextareaClass {
   min-height: 80vh;
+}
+
+.tox-tinymce {
+ border: none!important ;
+ width: 100%;
 }
 
 /* //Dynamic div tags */
@@ -244,10 +249,10 @@ li {
 
 #nav-container .bg {
   position: absolute;
-  top: 70px;
+/*   top: 70px; */
   left: 0;
   width: 100%;
-  height: calc(100% - 70px);
+  height: calc(100%);
   visibility: hidden;
   opacity: 0;
   transition: 0.3s;
@@ -264,6 +269,7 @@ li {
 }
 
 .button {
+  float: left;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -350,4 +356,36 @@ li {
     font-size: 70%;
   }
 }
- 
+
+/* ************************************ */
+#subjectTextfieldId{
+    background-color: rgba(233, 226, 122, 0.322);
+    height: 40px;
+    border-radius: 0px;
+    margin-bottom: 10px;
+    font-size: large;
+    border: solid 1px rgba(128, 128, 128, 0.466);
+    padding-left: 5px;
+}
+#subjectTextfieldId:focus{
+    outline: none;
+}
+
+.star:hover, .favstar:hover {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.pDate{
+    display: absolute;
+    text-align: right;
+    font-size: smaller;
+    color: rgb(110, 110, 110);
+    font-style: italic;
+    border-radius: 2px;
+}
+
+
