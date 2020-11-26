@@ -66,13 +66,8 @@ header {
   /* box-shadow:  0 4px 8px 0 rgba(15, 15, 15, 0.2);  */
   border-radius: 5px;
   margin: 100px 5% 5% 10%;
+  align-items: stretch;
 }
-
-
-/* .tox-tinymce{
-    position: fixed;
-    z-index: -1 !important;
-} */
 
 .tox-platform-touch {
   position: fixed;
