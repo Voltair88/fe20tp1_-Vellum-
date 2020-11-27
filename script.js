@@ -1,9 +1,11 @@
 tinymce.init({
     selector: '#mytextarea',
+    placeholder: 'Write something...',
     plugins: 'lists print',
     toolbar: 'New|SaveButton|undo redo | styleselect fontselect | bold italic|PrintDoc | DeleteButton | numlist bullist | alignleft aligncenter alignright alignjustify | outdent indent',
 
     height: 800,
+    content_style: "body { margin: 96px; }",
 
     //////////////////Added custom save button and Print btn
     setup: function (mytextarea) {
@@ -23,17 +25,17 @@ tinymce.init({
             }
         });
 
-        mytextarea.ui.registry.addButton('PrintDoc', {
-            icon: 'print',
+        mytextarea.ui.registry.addButton("PrintDoc", {
+            icon: "print",
             onAction: function () {
                 print();
             }
         });
 
         //Clear local storage
-        mytextarea.ui.registry.addButton('DeleteButton', {
-            icon: 'remove',
-            text: 'Delete all',
+        mytextarea.ui.registry.addButton("DeleteButton", {
+            icon: "remove",
+            text: "Delete all",
             onAction: function () {
                 clearLocalStorage();
             }
@@ -50,7 +52,7 @@ let myForm = document.getElementById("myForm");
 let currentKey;
 let leftCanvas = document.getElementById("leftCanvas");
 let subjectEl = document.getElementById("subjectTextfieldId");
-let edit = false; // to check whether it is an edit or new note when saving 
+let edit = false; // to check whether it is an edit or new note when saving
 let clickedDiv;
 let favToggle = document.getElementById("favToggle");
 let deleteIcon;
@@ -73,7 +75,6 @@ function fetchLocalStorageLastKey() {
         currentKey = localStorage.length;
         return true;
     }
-
 }
 
 function saveNote(edit) {
@@ -94,8 +95,8 @@ function saveNote(edit) {
                 obj['subject'] = subjectEl.value;
 
                 localStorage.setItem(currentKey, JSON.stringify(obj));
-                displaySavedNoteElement(obj);  //Display saved note in left panel
-                tinymce.activeEditor.windowManager.alert('Successfully saved');
+                displaySavedNoteElement(obj); //Display saved note in left panel
+                tinymce.activeEditor.windowManager.alert("Successfully saved");
                 tinymce.get("mytextarea").setContent("");
                 subjectEl.value = "";
 
@@ -133,7 +134,6 @@ function saveNote(edit) {
                 tinymce.get("mytextarea").setContent("");
                 subjectEl.value = "";
             }
-
         }
 
     } else {
@@ -141,13 +141,11 @@ function saveNote(edit) {
     }
 
     edit = false;
-
 }
 
 
 //Read localStorage and display in left panel
 function pageOnLoadFunction() {
-
     let div;
     let p;
 
@@ -157,7 +155,7 @@ function pageOnLoadFunction() {
             div = document.createElement('div');
             div.id = i;
             //div.innerText = JSON.parse(localStorage.getItem(i)).time;
-            div.className = 'divTag';
+            div.className = "divTag";
 
             p = document.createElement('p');
             let objNote = JSON.parse(localStorage.getItem(i))
@@ -193,10 +191,9 @@ function pageOnLoadFunction() {
 }
 
 function onClickDiv(event) {
-
     edit = true;
 
-    clickedDiv = event.target.closest('div');
+    clickedDiv = event.target.closest("div");
     if (!clickedDiv) {
         return;
     }
@@ -295,7 +292,7 @@ favToggle.addEventListener('change', function(e){
     for (let i = 0; i < leftCanvasChildren.length; i++) {
         let leftCanvasChild = leftCanvasChildren[i];
 
-        if(this.checked) {
+        if(this.value === 'showFav') {
             if(!leftCanvasChild.classList.contains('favorite')) {
                 leftCanvasChild.classList.add('hidden')
             }
