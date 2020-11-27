@@ -16,7 +16,6 @@
 </head>
 
 <body>
-  <header tabindex="0">Your online notebook</header>
   <!---HÄR BÖRJAR POPUP RUTAN--->
       <div class="button-bg">
         <div class="popup">
@@ -36,8 +35,10 @@
 </div></div>
 
   <!--HÄR BÖRJAR HEADERN & MENYN -->
-  <header tabindex="0">Your online notebook</header>
-  <nav role="navigation">
+<!--   <header tabindex="0">
+    <p>Your online notebook</p>
+  </header> -->
+  <nav role="navigation" class="nav">
     <div id="menuToggle">
       <input type="checkbox" class="toggleCheckbox"/>
       
@@ -47,7 +48,12 @@
       <span></span>
       
       <ul id="menu">
-        <section class="leftSide" id="leftCanvas"></section>
+        <section class="leftSide custom-select" id="leftCanvas">
+          <select id="favToggle" name="favToggle" class="favorite">
+            <option value="showAll">Show all notes</option>
+            <option value="showFav">Show only favorites</option>
+          </select>
+        </section>
       </ul>
     </div>
   </nav>

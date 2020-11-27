@@ -1,7 +1,9 @@
 tinymce.init({
     selector: '#mytextarea',
+    placeholder: 'Write something...',
     plugins: 'lists print',
     toolbar: 'SaveButton|undo redo | styleselect fontselect fontsizeselect | bold italic|PrintDoc | DeleteButton | numlist bullist | alignleft aligncenter alignright alignjustify | outdent indent',
+    content_style: "body { margin: 96px; }",
 
     //////////////////Added custom save button and Print btn
     setup: function (mytextarea) {
@@ -273,7 +275,7 @@ favToggle.addEventListener('change', function(e){
     for (let i = 0; i < leftCanvasChildren.length; i++) {
         let leftCanvasChild = leftCanvasChildren[i];
 
-        if(this.checked) {
+        if(this.value === 'showFav') {
             if(!leftCanvasChild.classList.contains('favorite')) {
                 leftCanvasChild.classList.add('hidden')
             }
