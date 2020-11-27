@@ -61,13 +61,25 @@ let deleteIcon;
 let globalTextContent;
 let globalSubject;
 
+// JS FÖR HUR TITELNS PLACEHOLDER FUNGERAR I DOKUMENTET
+var titleText = "Write your title here.."; 
+//default text after load 
+subjectEl.value = titleText; 
+//on focus behaviour 
+subjectEl.onfocus = function() { 
+if (this.value == titleText){
+//clear text field 
+this.value = ''; } } 
+//on blur behaviour
+subjectEl.onblur = function() { 
+if (this.value == "") {
+//restore default text 
+this.value = titleText; } };
+
 
 document.addEventListener("DOMContentLoaded", function () {
     pageOnLoadFunction();
 });
-
-
-
 
 function fetchLocalStorageLastKey() {
     //check browser support
@@ -78,7 +90,6 @@ function fetchLocalStorageLastKey() {
 }
 
 function saveNote(edit) {
-
 
     let today = new Date();
     let myContent = tinymce.get("mytextarea").getContent();
