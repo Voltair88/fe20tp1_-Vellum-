@@ -198,4 +198,12 @@ transform: scale(1,1);
     border-radius: 2px;
 }
 
-
+.deleteIcon{
+    color:  #696a6b;
+    /* top: 0;
+    right: 0; */
+    position: absolute;
+}
+.deleteIcon:hover{
+    color: #2f3542;
+}

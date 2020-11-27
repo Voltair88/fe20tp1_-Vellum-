@@ -10,9 +10,8 @@ tinymce.init({
 
         mytextarea.ui.registry.addButton('New', {
             icon: 'new-document',
-            /* text: 'Save', */
             onAction: function () {
-                newNote(edit);
+                newNote();
             }
         });
 
@@ -54,6 +53,7 @@ let subjectEl = document.getElementById("subjectTextfieldId");
 let edit = false; // to check whether it is an edit or new note when saving 
 let clickedDiv;
 let favToggle = document.getElementById("favToggle");
+let deleteIcon;
 
 //To update note
 let globalTextContent;
@@ -170,6 +170,13 @@ function pageOnLoadFunction() {
                 newStar.setAttribute('alt', 'favorite button lit');
             };
             div.appendChild(newStar);
+
+
+            /* deleteIcon = document.createElement("i");
+            deleteIcon.className = "deleteIcon fa fa-minus-circle";    //  
+            deleteIcon.addEventListener("click", function(){deleteNote(event)});
+            div.appendChild(deleteIcon); */
+
 
             pDate = document.createElement('p');
             pDate.innerHTML = objNote.date;   //.Date  .toLocaleDateString()
@@ -308,4 +315,13 @@ function newNote(){
 
     tinymce.get("mytextarea").setContent("");
     subjectEl.value = "";
+}
+
+function deleteNote(){
+    /* console.log(clickedDiv.id); */
+    /* if(localStorage.removeItem(clickedDiv.id)){
+        tinymce.activeEditor.windowManager.alert('Successfully delete');
+    }else{
+        tinymce.activeEditor.windowManager.alert('Delete error..!');
+    } */
 }
