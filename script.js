@@ -2,7 +2,7 @@ tinymce.init({
     selector: '#mytextarea',
     placeholder: 'Write something...',
     plugins: 'lists print',
-    toolbar: 'SaveButton|undo redo | styleselect fontselect fontsizeselect | bold italic|PrintDoc | DeleteButton | numlist bullist | alignleft aligncenter alignright alignjustify | outdent indent',
+    toolbar: 'SaveButton|undo redo | styleselect fontselect | bold italic|PrintDoc | DeleteButton | numlist bullist | alignleft aligncenter alignright alignjustify | outdent indent',
     content_style: "body { margin: 96px; }",
 
     //////////////////Added custom save button and Print btn
