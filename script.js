@@ -41,9 +41,20 @@ tinymce.init({
             }
         });
 
+        /////////////////////TEST
+        mytextarea.ui.registry.addButton('iframe', {
+            text: "Open Advanced URL Dialog",
+            icon: 'frame',
+            onAction: () => {
+                _api = editor.windowManager.openUrl(_urlDialogConfig);
+                }
+            });
+            /////////////////////TEST
+
     }
 
     ////////////////////
+    
 
 });
 
@@ -116,10 +127,13 @@ function saveNote(edit) {
                 globalSubject = document.getElementById("subjectTextfieldId").value;
                 globalTextContent = tinyMCE.activeEditor.getContent();     //Set textarea content and subject as global, otherwise below line of code reset those values
 
+ 
                 tinymce.activeEditor.windowManager.confirm("Do you want to save changes", function (s) {
                     if (s){
                         if (updateRecord()) {
+                            displayMessage();
                             tinymce.activeEditor.windowManager.alert('Successfully saved');
+
                         }
                         else {
                             tinymce.activeEditor.windowManager.alert('Save error..!');
@@ -321,4 +335,115 @@ function deleteNote(){
     }else{
         tinymce.activeEditor.windowManager.alert('Delete error..!');
     } */
+}
+
+////Dialog TEST
+
+/* var _urlDialogConfig = {
+    title: 'Simple URL Dialog Demo',
+    url: 'index.html',
+    buttons: [
+        {
+            type: 'custom',
+            name: 'action',
+            text: 'Submit',
+            primary: true,
+        },
+        {
+            type: 'cancel',
+            name: 'cancel',
+            text: 'Close Dialog'
+        }
+    ],
+    onAction: function (instance, trigger) {
+        // do something
+        editor.windowManager.alert('onAction is running');
+
+        // close the dialog
+        instance.close();
+    },
+    width: 600,
+    height: 300
+};
+
+
+
+win = mytextArea.windowManager.open({
+    title: "Special character",
+    spacing: 10,
+    padding: 10,
+    items: [
+        charMapPanel,
+        {
+            type: 'label',
+            name: 'preview',
+            text: ' ',
+            style: 'font-size: 40px; text-align: center',
+            border: 1,
+            minWidth: 100,
+            minHeight: 80
+        },
+        {
+            type: 'label',
+            name: 'previewTitle',
+            text: ' ',
+            style: 'text-align: center',
+            border: 1,
+            minWidth: 140,
+            minHeight: 80
+        }
+    ],
+    buttons: [
+        {text: "Close", onclick: function() {
+            win.close();
+        }}
+    ]
+}); */
+
+//////////////////////
+function displayMessage(){
+    tinymce.activeEditor.windowManager.open({
+        title: 'Dialog Title', // The dialog's title - displayed in the dialog header
+        body: {
+          type: 'panel', // The root body type - a Panel or TabPanel
+          items: [ // A list of panel components
+            {
+              type: 'htmlpanel', // A HTML panel component
+              html: 'Panel content goes here.'
+            }
+          ]
+        },
+        buttons: [
+            /* {text: "Close", onclick: function() {
+                win.close();
+            }}, */
+
+            {
+                type: 'custom',
+                name: 'action',
+                text: 'Save changes',
+                primary: true,
+                onAction: function() {
+                    tinymce.activeEditor.windowManager.alert("Save changes to current note");
+                    console.log("TTTTT")
+                }
+            },
+            {
+                type: 'custom',
+                name: 'action',
+                text: 'Create a new note',
+                primary: true,
+                onAction: function() {
+                    tinymce.activeEditor.windowManager.alert("Create a new note");
+                    console.log("TTTTT")
+                }
+            },
+            {
+                type: 'cancel',
+                name: 'cancel',
+                text: 'Close Dialog'
+            }
+
+        ]
+      });
 }
