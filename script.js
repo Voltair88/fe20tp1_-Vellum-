@@ -2,16 +2,18 @@ tinymce.init({
     selector: '#mytextarea',
     placeholder: 'Write something...',
     plugins: 'lists print',
-    toolbar: 'New|SaveButton|undo redo | styleselect fontselect | bold italic|PrintDoc | DeleteButton | numlist bullist | alignleft aligncenter alignright alignjustify | outdent indent',
+    menubar: 'custom',
+    toolbar: 'New|SaveButton | PrintDoc | DeleteButton | bold italic | numlist bullist',
 
-    height: 800,
-    content_style: "body { margin: 96px; }",
+    content_style: "body { margin: 14%; }",
 
     //////////////////Added custom save button and Print btn
     setup: function (mytextarea) {
+        
 
         mytextarea.ui.registry.addButton('New', {
             icon: 'new-document',
+            text: 'New',
             onAction: function () {
                 newNote();
             }
@@ -72,13 +74,33 @@ let deleteIcon;
 let globalTextContent;
 let globalSubject;
 
+//HUR TITELNS PLACEHOLDER FUNGERAR I DOKUMENTET
+function dynamicTitle(){
+    var titleText = "Title.."; 
+    //default text after load 
+    subjectEl.value = titleText;
 
+    //on focus behaviour 
+    subjectEl.onfocus = function() { 
+        if (this.value == titleText){
+            console.log("2");
+        //clear text field 
+            this.value = ''; }
+        } 
+    //on blur behaviour
+    subjectEl.onblur = function() { 
+        if (this.value == "") {
+            console.log("3");
+        //restore default text 
+            this.value = titleText; }
+        };
+};
+
+//Sidan laddas
 document.addEventListener("DOMContentLoaded", function () {
     pageOnLoadFunction();
+    dynamicTitle();
 });
-
-
-
 
 function fetchLocalStorageLastKey() {
     //check browser support
@@ -89,7 +111,6 @@ function fetchLocalStorageLastKey() {
 }
 
 function saveNote(edit) {
-
 
     let today = new Date();
     let myContent = tinymce.get("mytextarea").getContent();
@@ -109,7 +130,8 @@ function saveNote(edit) {
                 displaySavedNoteElement(obj); //Display saved note in left panel
                 tinymce.activeEditor.windowManager.alert("Successfully saved");
                 tinymce.get("mytextarea").setContent("");
-                subjectEl.value = "";
+                
+                dynamicTitle();
 
             } else { 
                 tinymce.activeEditor.windowManager.alert('Object not found.!');
@@ -151,7 +173,7 @@ function saveNote(edit) {
         }
 
     } else {
-        tinymce.activeEditor.windowManager.alert('Text area or/and subject is empty..! Save error..!');
+        tinymce.activeEditor.windowManager.alert('Text area or/and title is empty..! Save error..!');
     }
 
     edit = false;
@@ -324,8 +346,9 @@ function print(){
 function newNote(){
     edit = false;
 
-    tinymce.get("mytextarea").setContent("");
-    subjectEl.value = "";
+   tinymce.get("mytextarea").setContent("");
+
+    dynamicTitle();
 }
 
 function deleteNote(){
