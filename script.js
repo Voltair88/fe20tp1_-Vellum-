@@ -43,15 +43,6 @@ tinymce.init({
             }
         });
 
-        /////////////////////TEST
-        mytextarea.ui.registry.addButton('iframe', {
-            text: "Open Advanced URL Dialog",
-            icon: 'frame',
-            onAction: () => {
-                _api = editor.windowManager.openUrl(_urlDialogConfig);
-                }
-            });
-            /////////////////////TEST
 
     }
 
@@ -116,6 +107,9 @@ function saveNote(edit) {
     let myContent = tinymce.get("mytextarea").getContent();
     let obj = {};
 
+    console.log("Mycontent: "+myContent);
+    console.log("Subject El: "+subjectEl.value);
+
     if (myContent != '' && subjectEl.value != '') {
         if (!edit) {   //This block for new entries
             if (fetchLocalStorageLastKey()) {
@@ -149,11 +143,12 @@ function saveNote(edit) {
                 globalSubject = document.getElementById("subjectTextfieldId").value;
                 globalTextContent = tinyMCE.activeEditor.getContent();     //Set textarea content and subject as global, otherwise below line of code reset those values
 
+                askToEditOrNew();  //Display a popup message to user to choose "Save changes" or "Create new note"
  
-                tinymce.activeEditor.windowManager.confirm("Do you want to save changes", function (s) {
+                /* tinymce.activeEditor.windowManager.confirm("Do you want to save changes", function (s) {
                     if (s){
                         if (updateRecord()) {
-                            displayMessage();
+                            //displayMessage();
                             tinymce.activeEditor.windowManager.alert('Successfully saved');
 
                         }
@@ -165,10 +160,10 @@ function saveNote(edit) {
                         tinymce.get("mytextarea").setContent("");
                         subjectEl.value = "";
                     }
-                });
+                }); */
 
-                tinymce.get("mytextarea").setContent("");
-                subjectEl.value = "";
+                /* tinymce.get("mytextarea").setContent("");
+                subjectEl.value = ""; */
             }
         }
 
@@ -424,7 +419,7 @@ win = mytextArea.windowManager.open({
 }); */
 
 //////////////////////
-function displayMessage(){
+function askToEditOrNew(){
     tinymce.activeEditor.windowManager.open({
         title: 'Dialog Title', // The dialog's title - displayed in the dialog header
         body: {
@@ -443,23 +438,15 @@ function displayMessage(){
 
             {
                 type: 'custom',
-                name: 'action',
+                name: 'updateBtn',
                 text: 'Save changes',
                 primary: true,
-                onAction: function() {
-                    tinymce.activeEditor.windowManager.alert("Save changes to current note");
-                    console.log("TTTTT")
-                }
             },
             {
                 type: 'custom',
-                name: 'action',
+                name: 'createNewBtn',
                 text: 'Create a new note',
                 primary: true,
-                onAction: function() {
-                    tinymce.activeEditor.windowManager.alert("Create a new note");
-                    console.log("TTTTT")
-                }
             },
             {
                 type: 'cancel',
@@ -467,6 +454,25 @@ function displayMessage(){
                 text: 'Close Dialog'
             }
 
-        ]
+        ],
+
+        onAction: function (instance, trigger) {
+
+            if(trigger.name === 'updateBtn'){
+                if(updateRecord()){
+                    tinymce.activeEditor.windowManager.alert('Successfully saved changes');
+                }else{
+                    tinymce.activeEditor.windowManager.alert('Save error..!');
+                }
+            }else if(trigger.name === 'createNewBtn'){
+                saveNote(false);
+            }
+
+            // close the dialog
+            instance.close();
+        }
+
+
+
       });
 }
