@@ -2,13 +2,14 @@ tinymce.init({
     selector: '#mytextarea',
     placeholder: 'Write something...',
     plugins: 'lists print',
-    toolbar: 'New|SaveButton | styleselect fontselect | bold italic|PrintDoc | DeleteButton | numlist bullist | alignleft aligncenter alignright alignjustify | outdent indent',
+    menubar: 'custom',
+    toolbar: 'New|SaveButton | PrintDoc | DeleteButton | bold italic | numlist bullist',
 
-    height: 800,
-    content_style: "body { margin: 96px; }",
+    content_style: "body { margin: 14%; }",
 
     //////////////////Added custom save button and Print btn
     setup: function (mytextarea) {
+        
 
         mytextarea.ui.registry.addButton('New', {
             icon: 'new-document',
@@ -64,19 +65,24 @@ let globalSubject;
 
 //HUR TITELNS PLACEHOLDER FUNGERAR I DOKUMENTET
 function dynamicTitle(){
-    var titleText = "Write your title here.."; 
+    var titleText = "Title.."; 
     //default text after load 
-    subjectEl.value = titleText; 
+    subjectEl.value = titleText;
+
     //on focus behaviour 
     subjectEl.onfocus = function() { 
-    if (this.value == titleText){
-    //clear text field 
-    this.value = ''; } } 
+        if (this.value == titleText){
+            console.log("2");
+        //clear text field 
+            this.value = ''; }
+        } 
     //on blur behaviour
     subjectEl.onblur = function() { 
-    if (this.value == "") {
-    //restore default text 
-    this.value = titleText; } };
+        if (this.value == "") {
+            console.log("3");
+        //restore default text 
+            this.value = titleText; }
+        };
 };
 
 //Sidan laddas
