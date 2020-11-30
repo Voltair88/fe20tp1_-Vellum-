@@ -46,8 +46,6 @@ tinymce.init({
 
     }
 
-    ////////////////////
-    
 
 });
 
@@ -107,8 +105,6 @@ function saveNote(edit) {
     let myContent = tinymce.get("mytextarea").getContent();
     let obj = {};
 
-    console.log("Mycontent: "+myContent);
-    console.log("Subject El: "+subjectEl.value);
 
     if (myContent != '' && subjectEl.value != '') {
         if (!edit) {   //This block for new entries
@@ -123,9 +119,9 @@ function saveNote(edit) {
                 localStorage.setItem(currentKey, JSON.stringify(obj));
                 displaySavedNoteElement(obj); //Display saved note in left panel
                 tinymce.activeEditor.windowManager.alert("Successfully saved");
-                tinymce.get("mytextarea").setContent("");
-                
-                dynamicTitle();
+                /* tinymce.get("mytextarea").setContent("");
+                dynamicTitle(); */
+                clearInputFields();  // Clear the textarea and title
 
             } else { 
                 tinymce.activeEditor.windowManager.alert('Object not found.!');
@@ -134,8 +130,9 @@ function saveNote(edit) {
 
             if (myContent.localeCompare(JSON.parse(localStorage.getItem(clickedDiv.id)).note) === 0
                 && subjectEl.value.localeCompare(JSON.parse(localStorage.getItem(clickedDiv.id)).subject) === 0 ) {
-                tinymce.get("mytextarea").setContent("");
-                subjectEl.value = "";
+                /* tinymce.get("mytextarea").setContent("");
+                subjectEl.value = ""; */
+                clearInputFields();  // Clear the textarea and title
                 tinymce.activeEditor.windowManager.alert('No changes to save');
 
             } else {
@@ -340,10 +337,7 @@ function print(){
 
 function newNote(){
     edit = false;
-
-   tinymce.get("mytextarea").setContent("");
-
-    dynamicTitle();
+    clearInputFields();  // Clear the textarea and title
 }
 
 function deleteNote(){
@@ -355,86 +349,19 @@ function deleteNote(){
     } */
 }
 
-////Dialog TEST
-
-/* var _urlDialogConfig = {
-    title: 'Simple URL Dialog Demo',
-    url: 'index.html',
-    buttons: [
-        {
-            type: 'custom',
-            name: 'action',
-            text: 'Submit',
-            primary: true,
-        },
-        {
-            type: 'cancel',
-            name: 'cancel',
-            text: 'Close Dialog'
-        }
-    ],
-    onAction: function (instance, trigger) {
-        // do something
-        editor.windowManager.alert('onAction is running');
-
-        // close the dialog
-        instance.close();
-    },
-    width: 600,
-    height: 300
-};
-
-
-
-win = mytextArea.windowManager.open({
-    title: "Special character",
-    spacing: 10,
-    padding: 10,
-    items: [
-        charMapPanel,
-        {
-            type: 'label',
-            name: 'preview',
-            text: ' ',
-            style: 'font-size: 40px; text-align: center',
-            border: 1,
-            minWidth: 100,
-            minHeight: 80
-        },
-        {
-            type: 'label',
-            name: 'previewTitle',
-            text: ' ',
-            style: 'text-align: center',
-            border: 1,
-            minWidth: 140,
-            minHeight: 80
-        }
-    ],
-    buttons: [
-        {text: "Close", onclick: function() {
-            win.close();
-        }}
-    ]
-}); */
-
-//////////////////////
 function askToEditOrNew(){
     tinymce.activeEditor.windowManager.open({
-        title: 'Dialog Title', // The dialog's title - displayed in the dialog header
+        title: 'Save changes or Create new', // The dialog's title - displayed in the dialog header
         body: {
           type: 'panel', // The root body type - a Panel or TabPanel
           items: [ // A list of panel components
             {
               type: 'htmlpanel', // A HTML panel component
-              html: 'Panel content goes here.'
+              html: 'Do you want to save changes to the current note or create a new note.'
             }
           ]
         },
         buttons: [
-            /* {text: "Close", onclick: function() {
-                win.close();
-            }}, */
 
             {
                 type: 'custom',
@@ -461,6 +388,8 @@ function askToEditOrNew(){
             if(trigger.name === 'updateBtn'){
                 if(updateRecord()){
                     tinymce.activeEditor.windowManager.alert('Successfully saved changes');
+                    clearInputFields();
+                    
                 }else{
                     tinymce.activeEditor.windowManager.alert('Save error..!');
                 }
@@ -475,4 +404,9 @@ function askToEditOrNew(){
 
 
       });
+}
+
+function clearInputFields(){
+    tinymce.get("mytextarea").setContent("");
+    dynamicTitle();
 }
