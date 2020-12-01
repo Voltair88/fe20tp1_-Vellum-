@@ -71,7 +71,7 @@ header {
 
 /*** HÄR BÖRJAR CSS FÖR POPUP RUTAN ***/
 
-.button-bg 
+.background-popup 
 /*popupen lägger sig över hela sidan*/
 {
   position: fixed;
@@ -90,7 +90,7 @@ header {
   z-index: 2;
 }
 
-.bg-active
+.background-active
 /*popup rutan blir synlig*/
 {
   visibility: visible;
