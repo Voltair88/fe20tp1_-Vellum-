@@ -7,6 +7,16 @@ tinymce.init({
 
     content_style: "body { margin: 14%; }",
 
+    
+
+
+    //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
+    init_instance_callback : function(mytextarea) {
+        var freeTiny = document.querySelector('.tox .tox-notification--in');
+       freeTiny.style.display = 'none';
+       
+      },
+
     //////////////////Added custom save button and Print btn
     setup: function (mytextarea) {
         
@@ -34,15 +44,14 @@ tinymce.init({
             }
         });
 
-        //Clear local storage
+        //delete note button
         mytextarea.ui.registry.addButton("DeleteButton", {
             icon: "remove",
-            text: "Delete all",
+            name: 'deleteBtn',
             onAction: function () {
-                clearLocalStorage();
+                deleteNote();
             }
         });
-
 
     }
 
@@ -57,7 +66,6 @@ let subjectEl = document.getElementById("subjectTextfieldId");
 let edit = false; // to check whether it is an edit or new note when saving
 let clickedDiv;
 let favToggle = document.getElementById("favToggle");
-let deleteIcon;
 
 //To update note
 let globalTextContent;
@@ -106,7 +114,7 @@ function saveNote(edit) {
     let obj = {};
 
 
-    if (myContent != '' && subjectEl.value != '') {
+    if (myContent != '' && subjectEl.value != '' && subjectEl.value != 'Title..') {
         if (!edit) {   //This block for new entries
             if (fetchLocalStorageLastKey()) {
 
@@ -115,12 +123,11 @@ function saveNote(edit) {
                 obj['date'] = today.toLocaleDateString();
                 obj['favorite'] = false;
                 obj['subject'] = subjectEl.value;
+                obj['delete'] = false;
 
                 localStorage.setItem(currentKey, JSON.stringify(obj));
                 displaySavedNoteElement(obj); //Display saved note in left panel
                 tinymce.activeEditor.windowManager.alert("Successfully saved");
-                /* tinymce.get("mytextarea").setContent("");
-                dynamicTitle(); */
                 clearInputFields();  // Clear the textarea and title
 
             } else { 
@@ -130,8 +137,6 @@ function saveNote(edit) {
 
             if (myContent.localeCompare(JSON.parse(localStorage.getItem(clickedDiv.id)).note) === 0
                 && subjectEl.value.localeCompare(JSON.parse(localStorage.getItem(clickedDiv.id)).subject) === 0 ) {
-                /* tinymce.get("mytextarea").setContent("");
-                subjectEl.value = ""; */
                 clearInputFields();  // Clear the textarea and title
                 tinymce.activeEditor.windowManager.alert('No changes to save');
 
@@ -141,26 +146,7 @@ function saveNote(edit) {
                 globalTextContent = tinyMCE.activeEditor.getContent();     //Set textarea content and subject as global, otherwise below line of code reset those values
 
                 askToEditOrNew();  //Display a popup message to user to choose "Save changes" or "Create new note"
- 
-                /* tinymce.activeEditor.windowManager.confirm("Do you want to save changes", function (s) {
-                    if (s){
-                        if (updateRecord()) {
-                            //displayMessage();
-                            tinymce.activeEditor.windowManager.alert('Successfully saved');
 
-                        }
-                        else {
-                            tinymce.activeEditor.windowManager.alert('Save error..!');
-                        }
-                        }
-                    else {
-                        tinymce.get("mytextarea").setContent("");
-                        subjectEl.value = "";
-                    }
-                }); */
-
-                /* tinymce.get("mytextarea").setContent("");
-                subjectEl.value = ""; */
             }
         }
 
@@ -174,44 +160,43 @@ function saveNote(edit) {
 
 //Read localStorage and display in left panel
 function pageOnLoadFunction() {
+
     let div;
     let p;
 
     for (let i = 1; i < localStorage.length; i++) {
         if (localStorage.key !== 0) {
+            let objNote = JSON.parse(localStorage.getItem(i));
+            if(objNote.delete === false){
+                div = document.createElement('div');
+                div.id = i;
+                div.className = "divTag";
 
-            div = document.createElement('div');
-            div.id = i;
-            //div.innerText = JSON.parse(localStorage.getItem(i)).time;
-            div.className = "divTag";
-
-            p = document.createElement('p');
-            let objNote = JSON.parse(localStorage.getItem(i))
-            p.innerHTML = objNote.subject;
-            div.appendChild(p);
-            let newStar = createStar();
-            if(objNote.favorite){
-                div.classList.add('favorite');
-                newStar.setAttribute('src', './images/favstar.png');
-                newStar.setAttribute('alt', 'favorite button lit');
-            };
-            div.appendChild(newStar);
-
-
-            /* deleteIcon = document.createElement("i");
-            deleteIcon.className = "deleteIcon fa fa-minus-circle";    //  
-            deleteIcon.addEventListener("click", function(){deleteNote(event)});
-            div.appendChild(deleteIcon); */
+                p = document.createElement('p');
+                
+                p.innerHTML = objNote.subject;
+                div.appendChild(p);
+                let newStar = createStar();
+                if(objNote.favorite){
+                    div.classList.add('favorite');
+                    newStar.setAttribute('src', './images/favstar.png');
+                    newStar.setAttribute('alt', 'favorite button lit');
+                };
+                div.appendChild(newStar);
 
 
-            pDate = document.createElement('p');
-            pDate.innerHTML = objNote.date;   //.Date  .toLocaleDateString()
-            pDate.className = 'pDate';
-            div.appendChild(pDate);
+                pDate = document.createElement('p');
+                pDate.innerHTML = objNote.date;   //.Date  .toLocaleDateString()
+                pDate.className = 'pDate';
+                div.appendChild(pDate);
 
-            div.addEventListener("click", function () { onClickDiv(event) });
+                div.addEventListener("click", function () { onClickDiv(event) });
 
-            leftCanvas.appendChild(div);
+                leftCanvas.appendChild(div);
+            }else{
+                console.log("Deleted object");
+            }
+            
         }
 
 
@@ -232,14 +217,25 @@ function onClickDiv(event) {
     subjectEl.value = objNote.subject;
 }
 
-function clearLocalStorage() {
-    tinymce.activeEditor.windowManager.confirm("Do you want to delete all", function (s) {
+function deleteNote() {
+    tinymce.activeEditor.windowManager.confirm("Do you want to delete the note", function (s) {
         if (s){
-            tinymce.activeEditor.windowManager.alert('Deleted all');
-            localStorage.clear();
-            location.reload();
+            let obj = JSON.parse(localStorage.getItem(clickedDiv.id));
+            if(obj){
+                obj['delete'] = true;
+
+                localStorage.setItem(clickedDiv.id, JSON.stringify(obj));
+                tinymce.activeEditor.windowManager.alert('Successfully deleted');
+                location.reload();
+
+            }else{
+                tinymce.activeEditor.windowManager.alert('Object not found');
             }
+
+        }
     });
+
+
 }
 
 //Display saved note element direct after saving wihtout loading it from the localStorage
@@ -340,14 +336,6 @@ function newNote(){
     clearInputFields();  // Clear the textarea and title
 }
 
-function deleteNote(){
-    /* console.log(clickedDiv.id); */
-    /* if(localStorage.removeItem(clickedDiv.id)){
-        tinymce.activeEditor.windowManager.alert('Successfully delete');
-    }else{
-        tinymce.activeEditor.windowManager.alert('Delete error..!');
-    } */
-}
 
 function askToEditOrNew(){
     tinymce.activeEditor.windowManager.open({

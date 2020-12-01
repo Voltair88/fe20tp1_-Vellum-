@@ -397,3 +397,7 @@ nav {
 .deleteIcon:hover{
     color: #2f3542;
 }
+
+.tox-statusbar{
+    display: none !important;
+}
