@@ -1,6 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:400,600");
-
-
 * {
   margin: 0;
   padding: 0;
@@ -11,10 +9,8 @@ main {
   height: 100%;
 }
 
-
 body {
   background-color: white;
-  /* min-height: 100vh;  */
 }
 
 header {
@@ -46,15 +42,12 @@ header {
   flex: 1;
   flex-direction: column;
   height: fit-content;
-  /* align-self: stretch; */
-
 }
 
 .rightSide {
   display: flex;
   flex: 5;
   flex-direction: column;
-  /* background-color: rgb(75, 75, 75); */
   align-items: stretch;
   width: 100%;
   max-width: 816px;
@@ -63,10 +56,8 @@ header {
 
 /* //Dynamic div tags */
 .divTag {
-  /* width: 90%; */
   background-color: rgb(255, 255, 255);
   display: inline-block;
-  /* border: 1px solid black; */
   width: 250px;
   margin: 10px auto;
   padding: 3px;
@@ -77,10 +68,10 @@ header {
 .divTag:hover {
   background-color: rgb(204, 234, 255);
 }
+
 /*** HÄR BÖRJAR CSS FÖR POPUP RUTAN ***/
 
-.button-bg
-
+.button-bg 
 /*popupen lägger sig över hela sidan*/
 {
   position: fixed;
@@ -100,7 +91,6 @@ header {
 }
 
 .bg-active
-
 /*popup rutan blir synlig*/
 {
   visibility: visible;
@@ -108,12 +98,11 @@ header {
 }
 
 .popup
-
 /*Själva popup rutan*/
 {
   position: relative;
   background-color: white;
-  min-width: 40%;
+  min-width: 50%;
   min-height: 50%;
   display: flex;
   align-items: center;
@@ -133,6 +122,14 @@ h2 {
   margin: 10px;
 }
 
+ul{
+  margin: 20px;
+}
+
+ul li {
+  margin: 10px;
+}
+
 #menu {
   list-style: square inside none;
   margin: 10px;
@@ -141,6 +138,7 @@ h2 {
 
 /*** "GOT IT, THANKS" KNAPPEN I POPUPEN ***/
 .x-close {
+  font-size: 14px;
   color: black;
   transition: all 0.5s;
   position: relative;
@@ -212,7 +210,6 @@ h2 {
 }
 
 /*Här börjar menyn*/
-
 nav {
   position: fixed;
   top: 0;
@@ -241,11 +238,9 @@ nav {
   position: absolute;
   top: -7px;
   left: -5px;
-  
   cursor: pointer;
-  
-  opacity: 0; /* hide this */
-  z-index: 2; /* and place it over the hamburger */
+  opacity: 0; 
+  z-index: 2; 
   
   -webkit-touch-callout: none;
 }
@@ -281,43 +276,28 @@ nav {
   transform-origin: 0% 100%;
 }
 
-/* 
-* Transform all the slices of hamburger
-* into a crossmark.
-*/
 #menuToggle input:checked ~ span
 {
   opacity: 1;
   transform: rotate(45deg) translate(-2px, -1px);
 }
 
-/*
-* But let's hide the middle one.
-*/
 #menuToggle input:checked ~ span:nth-last-child(3)
 {
   opacity: 0;
   transform: rotate(0deg) scale(0.2, 0.2);
 }
 
-/*
-* Ohyeah and the last one should go the other direction
-*/
 #menuToggle input:checked ~ span:nth-last-child(2)
 {
   transform: rotate(-45deg) translate(0, -1px);
 }
 
-/*
-* Make this absolute positioned
-* at the top left of the screen
-*/
 #menu
 {
   height: 100vh;
   margin: -100px 0 0 -25px;
   width: 300px;
-  /* padding: 50px; */
   padding-top: 125px;
   background: #DEE0E2;
   list-style-type: none;
@@ -333,9 +313,6 @@ nav {
    font-size: 22px;
   }
   
-  /*
-  * And let's slide it in from the left
-  */
   #menuToggle input:checked ~ div
   {
     transform: none;
@@ -390,8 +367,6 @@ nav {
 
 .deleteIcon{
     color:  #696a6b;
-    /* top: 0;
-    right: 0; */
     position: absolute;
 }
 .deleteIcon:hover{
