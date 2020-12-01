@@ -3,16 +3,16 @@ document.addEventListener("DOMContentLoaded", function() {
     pageOnLoad();
   });
 
-let popUp = document.querySelector('.button-bg'); 
+let popUp = document.querySelector('.background-popup'); 
 
 function pageOnLoad(){
     if (localStorage.length === 0){
     
-        popUp.classList.add('bg-active');
-        localStorage.setItem(0,"varit");
+        popUp.classList.add('background-active');
+        localStorage.setItem(0,"beenHere");
     }
     else {
-        popUp.classList.add('button-bg');
+        popUp.classList.add('background-popup');
 
     }
 }
@@ -21,6 +21,6 @@ function pageOnLoad(){
 var xButton = document.querySelector('.x-close'); 
 
 xButton.addEventListener('click', function() {
-    popUp.classList.remove('bg-active');
+    popUp.classList.remove('background-active');
 });
 
