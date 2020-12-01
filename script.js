@@ -218,22 +218,28 @@ function onClickDiv(event) {
 }
 
 function deleteNote() {
-    tinymce.activeEditor.windowManager.confirm("Do you want to delete the note", function (s) {
-        if (s){
-            let obj = JSON.parse(localStorage.getItem(clickedDiv.id));
-            if(obj){
-                obj['delete'] = true;
 
-                localStorage.setItem(clickedDiv.id, JSON.stringify(obj));
-                tinymce.activeEditor.windowManager.alert('Successfully deleted');
-                location.reload();
-
-            }else{
-                tinymce.activeEditor.windowManager.alert('Object not found');
+    if(clickedDiv != undefined){
+        tinymce.activeEditor.windowManager.confirm("Do you want to delete the note", function (s) {
+            if (s){
+                let obj = JSON.parse(localStorage.getItem(clickedDiv.id));
+                if(obj){
+                    obj['delete'] = true;
+    
+                    localStorage.setItem(clickedDiv.id, JSON.stringify(obj));
+                    tinymce.activeEditor.windowManager.alert('Successfully deleted');
+                    location.reload();
+    
+                }else{
+                    tinymce.activeEditor.windowManager.alert('Object not found');
+                }
+    
             }
-
-        }
-    });
+        });
+    }else{
+        tinymce.activeEditor.windowManager.alert('Please select a note to delete');
+    }
+    
 
 
 }
