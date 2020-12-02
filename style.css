@@ -41,7 +41,7 @@ header {
   display: flex;
   flex: 1;
   flex-direction: column;
-  height: fit-content;
+  height: 80%;
 }
 
 .rightSide {
@@ -220,6 +220,7 @@ nav {
 {
   display: block;
   position: absolute;
+  border-top: 10px;
   top: 25px;
   left: 25px;
   z-index: 3;
@@ -295,6 +296,7 @@ nav {
 
 #menu
 {
+  overflow-y: scroll;
   height: 100vh;
   margin: -100px 0 0 -25px;
   width: 300px;
