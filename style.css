@@ -295,9 +295,10 @@ nav {
 
 #menu
 {
-  height: 100vh;
-  margin: -100px 0 0 -25px;
+  height: 90vh;
+  margin: -52px 0 0 -25px;
   width: 300px;
+  overflow: scroll;
   padding-top: 125px;
   background: #DEE0E2;
   list-style-type: none;
