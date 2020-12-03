@@ -296,7 +296,6 @@ nav {
 
 #menu
 {
-  overflow-y: scroll;
   height: 100vh;
   margin: -100px 0 0 -25px;
   width: 300px;
@@ -318,6 +317,10 @@ nav {
   #menuToggle input:checked ~ div
   {
     transform: none;
+  }
+
+  #leftCanvas {
+      overflow-y: scroll;
   }
   /*HÄR SLUTAR MENYN*/
 
@@ -378,3 +381,4 @@ nav {
 .tox-statusbar{
     display: none !important;
 }
+
