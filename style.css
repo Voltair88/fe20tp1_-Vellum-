@@ -378,3 +378,23 @@ nav {
 .tox-statusbar{
     display: none !important;
 }
+#mytextarea img{
+  /* position: absolute;
+  top: 10px;
+  left: 20px; */
+  width: 30px;
+  height: 30px;
+  color: rgba(126, 126, 125, 0.219);
+  background-color: lawngreen;
+}
+/* .tools:hover{
+  color: rgb(32, 32, 32);
+} */
+
+.tox-editor-header{
+  display: none;
+}
+
+.myclass{
+  background-color: lawngreen !important;
+}

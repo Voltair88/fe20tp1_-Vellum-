@@ -3,7 +3,10 @@ tinymce.init({
     placeholder: 'Write something...',
     plugins: 'lists print',
     menubar: 'custom',
-    toolbar: 'New|SaveButton | PrintDoc | DeleteButton | bold italic | numlist bullist',
+    toolbar: 'New |SaveButton | PrintDoc | DeleteButton | bold italic | numlist bullist ',
+    /* toolbar_location: 'bottom', */
+    /* contextmenu: 'link image imagetools table spellchecker lists print', */
+    /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
 
     content_style: "body { margin: 14%; }",
 
@@ -20,6 +23,97 @@ tinymce.init({
     //////////////////Added custom save button and Print btn
     setup: function (mytextarea) {
         
+        //*************context menu items */
+       /*  mytextarea.ui.registry.addMenuItem('customItem1', {
+            text: 'Menu Item 1',
+            context: 'tools',
+            onAction: function () {
+                alert('Menu item 1 clicked');
+            }
+        });
+
+        mytextarea.ui.registry.addMenuItem('customItem2', {
+            text: 'Menu Item 2',
+            context: 'tools',
+            menu: [ {
+                text: "Sub-menu item 1",
+                onAction: function () {
+                    alert('Sub-menu item 1');
+                }
+            }, {
+                text: "Sub-menu item 2",
+                onAction: function () {
+                    alert('Sub-menu item 2');
+                }
+            }]
+        });
+        
+
+        mytextarea.ui.registry.addNestedMenuItem('nesteditem', {
+            text: 'My nested menu item',
+            getSubmenuItems: function () {
+              return [
+                {
+                  type: 'menuitem',
+                  icon: 'new-document',
+                  text: 'My submenu item',
+                  onAction: function () {
+                    mytextarea.insertContent('<p>Here\'s some content inserted from a submenu item!</p>');
+                  }
+                }
+              ];
+            }
+          }); */
+
+
+          /* mytextarea.ui.registry.addContextToolbar('textalignment', {
+            /* predicate: function (node) {
+                return mytextarea.dom.getParent(node, '.myclass') !== null;
+            }, 
+            items: 'alignleft aligncenter alignright styleselect New',
+            position: 'selection',
+            scope: 'node'
+          }); */
+      
+          /* mytextarea.ui.registry.addToggleMenuItem('toggleitem', {
+            text: 'My toggle menu item',
+            onAction: function () {
+              toggleState = !toggleState;
+              mytextarea.insertContent('<p class="toggle-item">Here\'s some content inserted from a toggle menu!</p>');
+            },
+            onSetup: function (api) {
+              api.setActive(toggleState);
+              return function () {};
+            }
+          }); */
+         
+
+
+
+
+          mytextarea.ui.registry.addContextToolbar('imagealignment', {
+            predicate: function (node) {
+                return node.nodeName.toLowerCase() === 'img'
+            },
+            items: 'alignleft aligncenter alignright styleselect',
+            position: 'node',
+            scope: 'node'
+          });
+
+          mytextarea.ui.registry.addContextToolbar('textselection', {
+            predicate: function (node) {
+              return !mytextarea.selection.isCollapsed();
+            },
+            items: 'bold italic | print',
+            position: 'selection',
+            scope: 'node'
+          });
+
+
+
+
+
+        /////**************Menu Items */
 
         mytextarea.ui.registry.addButton('New', {
             icon: 'new-document',
@@ -53,6 +147,23 @@ tinymce.init({
             }
         });
 
+
+
+
+        /////////////////////////Menu when clicked dots*******
+
+
+          /* mytextarea.ui.registry.addContextToolbar('textalignment', {
+            predicate: function (node) {
+                return mytextarea.dom.getParent(node, '.myclass') !== null;
+            },
+            items: 'alignleft aligncenter alignright styleselect New',
+            position: 'node',
+            scope: 'node'
+          }); */
+          
+        /////////////////////////END Menu when clicked dots*******
+
     }
 
 
@@ -66,6 +177,8 @@ let subjectEl = document.getElementById("subjectTextfieldId");
 let edit = false; // to check whether it is an edit or new note when saving
 let clickedDiv;
 let favToggle = document.getElementById("favToggle");
+
+/* document.getElementById("toolsIcon").addEventListener("click", tools); */
 
 //To update note
 let globalTextContent;
@@ -404,3 +517,7 @@ function clearInputFields(){
     tinymce.get("mytextarea").setContent("");
     dynamicTitle();
 }
+
+/* function tools(){
+    alert("Tools");
+} */
