@@ -1,11 +1,14 @@
 tinymce.init({
     selector: '#mytextarea',
     placeholder: 'Write something...',
-    plugins: 'lists print',
-    menubar: 'custom',
-    toolbar: 'New |SaveButton | PrintDoc | DeleteButton | bold italic | numlist bullist ',
+    /* plugins:'image lists print', */
+    plugins: 'lists print quickbars',
+    menubar: false,
+    toolbar: false,
+    quickbars_selection_toolbar: ' formatselect | bold italic underline',
+    quickbars_insert_toolbar: 'quickimage',
     /* toolbar_location: 'bottom', */
-    /* contextmenu: 'link image imagetools table spellchecker lists print', */
+    /* contextmenu: 'link image print', */
     /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
 
     content_style: "body { margin: 14%; }",
@@ -24,14 +27,27 @@ tinymce.init({
     setup: function (mytextarea) {
         
         //*************context menu items */
-       /*  mytextarea.ui.registry.addMenuItem('customItem1', {
+
+
+
+        mytextarea.ui.registry.addContextToolbar('imageselection', {
+            predicate: function(node) {
+              return node.nodeName === 'P';
+            },
+            items: 'quicklink',
+            position: 'node',
+            quickbars_selection_toolbar: 'bold italic | formatselect |  blockquote | print'
+          });
+
+        /* mytextarea.ui.registry.addMenuItem('customItem1', {
             text: 'Menu Item 1',
             context: 'tools',
+            items: 'image',
             onAction: function () {
                 alert('Menu item 1 clicked');
             }
-        });
-
+        }); */
+/* 
         mytextarea.ui.registry.addMenuItem('customItem2', {
             text: 'Menu Item 2',
             context: 'tools',
@@ -91,20 +107,20 @@ tinymce.init({
 
 
 
-          mytextarea.ui.registry.addContextToolbar('imagealignment', {
+          /* mytextarea.ui.registry.addContextToolbar('imagealignment', {
             predicate: function (node) {
                 return node.nodeName.toLowerCase() === 'img'
             },
-            items: 'alignleft aligncenter alignright styleselect',
+            items: 'alignleft aligncenter alignright print',
             position: 'node',
             scope: 'node'
-          });
+          }); */
 
           mytextarea.ui.registry.addContextToolbar('textselection', {
             predicate: function (node) {
               return !mytextarea.selection.isCollapsed();
             },
-            items: 'bold italic | print',
+            items: 'formatselect | bold italic underline | numlist bullist | image',
             position: 'selection',
             scope: 'node'
           });

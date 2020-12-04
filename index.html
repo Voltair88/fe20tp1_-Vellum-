@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" moznomarginboxes mozdisallowselectionprint>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Quire - A quick, easy and free online notebook">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" media="screen">
+    <link rel="stylesheet" href="print.css" media="print">
     <script src="script.js" defer></script>
     <script src="popup.js" defer></script>
     <script src="https://cdn.tiny.cloud/1/fukg8jgkoohb5ig0d499pb29ipl3ldflg0xxyklcxpl35bni/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -55,15 +56,12 @@
     <!--HÄR BÖRJAR TEXT EDITORN-->
     <main>
       <!-- <i class="tools fa fa-th" id="toolsIcon"></i> -->
-      <div class="rightSide">
+      <section class="rightSide">
         <input type="text" id="subjectTextfieldId" />
         <form id="myForm">
-          <!-- <i class="tools fa fa-th" id="toolsIcon"></i> -->
-          <textarea id="mytextarea" name="mytextarea" cols="80">
-            <img class="myclass" title="TinyMCE Logo" src="images/favicon.ico" alt="" />
-          </textarea>
+          <textarea id="mytextarea" name="mytextarea" cols="80"></textarea>
         </form>
-      </div>
+      </section>
   
   </main>
 </body>
