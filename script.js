@@ -131,7 +131,7 @@ tinymce.init({
 
         /////**************Menu Items */
 
-        mytextarea.ui.registry.addButton('New', {
+        /* mytextarea.ui.registry.addButton('New', {
             icon: 'new-document',
             text: 'New',
             onAction: function () {
@@ -162,7 +162,7 @@ tinymce.init({
                 deleteNote();
             }
         });
-
+ */
 
 
 
@@ -193,6 +193,8 @@ let subjectEl = document.getElementById("subjectTextfieldId");
 let edit = false; // to check whether it is an edit or new note when saving
 let clickedDiv;
 let favToggle = document.getElementById("favToggle");
+
+
 
 /* document.getElementById("toolsIcon").addEventListener("click", tools); */
 
@@ -226,7 +228,18 @@ function dynamicTitle(){
 document.addEventListener("DOMContentLoaded", function () {
     pageOnLoadFunction();
     dynamicTitle();
+    initialize();
 });
+
+
+function initialize(){
+    //Toolbar eventlisteners
+    document.querySelector(".newNote").addEventListener("click",newNote);
+    document.querySelector(".saveNote").addEventListener("click", function(){
+        saveNote(edit);
+    }); 
+    document.querySelector(".deleteNote").addEventListener("click",deleteNote);
+}
 
 function fetchLocalStorageLastKey() {
     //check browser support
@@ -241,7 +254,6 @@ function saveNote(edit) {
     let today = new Date();
     let myContent = tinymce.get("mytextarea").getContent();
     let obj = {};
-
 
     if (myContent != '' && subjectEl.value != '' && subjectEl.value != 'Title..') {
         if (!edit) {   //This block for new entries
@@ -266,8 +278,9 @@ function saveNote(edit) {
 
             if (myContent.localeCompare(JSON.parse(localStorage.getItem(clickedDiv.id)).note) === 0
                 && subjectEl.value.localeCompare(JSON.parse(localStorage.getItem(clickedDiv.id)).subject) === 0 ) {
-                clearInputFields();  // Clear the textarea and title
+                newNote();  // If no changes, set new note
                 tinymce.activeEditor.windowManager.alert('No changes to save');
+                
 
             } else {
                 //Textarea has changed, ask uset to create a new note
@@ -284,6 +297,8 @@ function saveNote(edit) {
     }
 
     edit = false;
+
+
 }
 
 
@@ -347,7 +362,6 @@ function onClickDiv(event) {
 }
 
 function deleteNote() {
-
     if(clickedDiv != undefined){
         tinymce.activeEditor.windowManager.confirm("Do you want to delete the note", function (s) {
             if (s){
