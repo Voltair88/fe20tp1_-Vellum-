@@ -231,7 +231,7 @@ nav {
   width: 30px;
 }
 
-#menuToggle input
+#menuToggle #checkbox
 {
   display: block;
   width: 33px;
@@ -240,7 +240,7 @@ nav {
   top: -7px;
   left: -5px;
   cursor: pointer;
-  opacity: 0; 
+  opacity: 0;
   z-index: 2; 
   
   -webkit-touch-callout: none;
@@ -463,4 +463,16 @@ nav {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #4d4e4d; 
+}
+
+/* Search bar */
+#menu #searchBar{
+  width: 245px;
+  display: inline-block;
+  margin-left: 22px;
+  color: #c24545;
+  padding: 2px;
+  border: 0.5px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }

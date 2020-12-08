@@ -239,6 +239,8 @@ function initialize(){
         saveNote(edit);
     }); 
     document.querySelector(".deleteNote").addEventListener("click",deleteNote);
+
+    document.getElementById("searchBar").addEventListener("input",searchNote);
 }
 
 function fetchLocalStorageLastKey() {
