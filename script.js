@@ -5,10 +5,9 @@ tinymce.init({
     plugins: 'lists print quickbars image',
     menubar: false,
     toolbar: false,
-    quickbars_selection_toolbar: ' formatselect | bold italic underline',
-    quickbars_insert_toolbar: 'quickimage',
+    quickbars_selection_toolbar: ' formatselect | bold italic underline | numlist bullist',
+    quickbars_insert_toolbar: 'quickimage | numlist bullist',
     /* toolbar_location: 'bottom', */
-    contextmenu: 'link image print',
     /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
 
     content_style: 'body {width: 85%; max-width: 700px; margin-left: auto; margin-right: auto; margin-top: 3%;}',
