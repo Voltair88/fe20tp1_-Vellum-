@@ -41,16 +41,14 @@
       <span></span>
       <span></span>
       <span></span>
- 
-
-      <div id="menu"> 
+      
+      <div id="menu">
+        <input type="text" id="searchBar" placeholder="Search">
+        <select id="favToggle" name="favToggle" class="favorite">
+          <option value="showAll">Show all notes</option>
+          <option value="showFav">Show only favorites</option>
+        </select>
         <div class="leftSide custom-select" id="leftCanvas">
-          
-          <input type="text" id="searchBar" placeholder="Search">
-          <select id="favToggle" name="favToggle" class="favorite">
-            <option value="showAll">Show all notes</option>
-            <option value="showFav">Show only favorites</option>
-          </select>
         </div>
       </div>
     </div>
@@ -69,10 +67,10 @@
 
 
       <div class="toolbar">
-        <a href="#"><i class="newNote fa fa-file-o "></i></a> 
-        <a href="#"><i class="saveNote fa fa-floppy-o"></i></a> 
-        <a href="#"><i class="deleteNote fa fa-trash-o"></i></a> 
-        <a href="#"><i class="templates fa fa-font"></i></a> 
+        <a href="#" class="newNote"><i class="fa fa-file-o "></i></a> 
+        <a href="#" class="saveNote"><i class="fa fa-floppy-o"></i></a> 
+        <a href="#" class="deleteNote"><i class="fa fa-trash-o"></i></a> 
+        <a href="#" class="templates"><i class="fa fa-font"></i></a> 
         <div class="template-menu">
           <a href="#">Link 1</a>
           <a href="#">Link 2</a>

@@ -50,8 +50,7 @@ header {
   flex-direction: column;
   align-items: stretch;
   width: 100%;
-  max-width: 816px;
-  margin: 0 auto;
+  margin-left: 47px;
 }
 
 /* //Dynamic div tags */
@@ -195,18 +194,14 @@ ul li {
   border: none;
   margin: 10px 0;
   padding-left: 11px;
+  width: 50%;
+  align-self: center;
+  text-align: center;
 }
 
 #subjectTextfieldId:focus {
   outline: none;
   background-color: #DEE0E2;
-}
-
-@media screen and (max-width: 980px) {
-  #subjectTextfieldId {
-    width: 50%;
-    align-self: center;
-  }
 }
 
 /*Här börjar menyn*/
@@ -345,7 +340,6 @@ nav {
   .tox-tinymce {
     border: none!important;
     height: calc(100vh - 70px)!important;
-    box-shadow:  0 4px 8px 0 rgba(15, 15, 15, 0.2)!important;
   }
   
   /* ************************************ */ 
