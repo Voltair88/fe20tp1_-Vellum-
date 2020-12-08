@@ -196,6 +196,7 @@ ul li {
   padding-left: 11px;
   width: 50%;
   align-self: center;
+  text-align: center;
 }
 
 #subjectTextfieldId:focus {
