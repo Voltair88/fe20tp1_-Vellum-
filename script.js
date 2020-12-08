@@ -2,13 +2,13 @@ tinymce.init({
     selector: '#mytextarea',
     placeholder: 'Write something...',
     /* plugins:'image lists print', */
-    plugins: 'lists print quickbars',
+    plugins: 'lists print quickbars image',
     menubar: false,
     toolbar: false,
     quickbars_selection_toolbar: ' formatselect | bold italic underline',
     quickbars_insert_toolbar: 'quickimage',
     /* toolbar_location: 'bottom', */
-    /* contextmenu: 'link image print', */
+    contextmenu: 'link image print',
     /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
 
     content_style: "body { margin: 14%; }",
