@@ -1,12 +1,15 @@
+
 tinymce.init({
     selector: '#mytextarea',
     placeholder: 'Write something...',
     /* plugins:'image lists print', */
-    plugins: 'lists print quickbars image',
+    plugins: 'lists quickbars image',
     menubar: false,
     toolbar: false,
     quickbars_selection_toolbar: ' formatselect | bold italic underline | numlist bullist',
     quickbars_insert_toolbar: 'quickimage | numlist bullist',
+    branding: false,
+    statusbar: false,
     /* toolbar_location: 'bottom', */
     /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
 
@@ -475,9 +478,9 @@ favToggle.addEventListener('change', function(e){
     }
 })
     
-function print(){
+/* function print(){
     tinymce.activeEditor.execCommand('mcePrint');
-}
+} */
 
 function newNote(){
     edit = false;
@@ -550,3 +553,6 @@ function clearInputFields(){
 /* function tools(){
     alert("Tools");
 } */
+
+/* 
+}) */
