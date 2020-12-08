@@ -11,7 +11,7 @@ tinymce.init({
     contextmenu: 'link image print',
     /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
 
-    content_style: "body { margin: 14%; }",
+    content_style: 'body {width: 85%; max-width: 700px; margin-left: auto; margin-right: auto; margin-top: 3%;}',
 
     
 
@@ -211,14 +211,12 @@ function dynamicTitle(){
     //on focus behaviour 
     subjectEl.onfocus = function() { 
         if (this.value == titleText){
-            console.log("2");
         //clear text field 
             this.value = ''; }
         } 
     //on blur behaviour
     subjectEl.onblur = function() { 
         if (this.value == "") {
-            console.log("3");
         //restore default text 
             this.value = titleText; }
         };
