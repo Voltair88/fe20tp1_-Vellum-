@@ -1,7 +1,7 @@
+
 tinymce.init({
     selector: '#mytextarea',
     placeholder: 'Write something...',
-    /* plugins:'image lists print', */
     plugins: 'lists print quickbars image',
     menubar: false,
     toolbar: false,
@@ -19,168 +19,7 @@ tinymce.init({
         var freeTiny = document.querySelector('.tox .tox-notification--in');
        freeTiny.style.display = 'none';
        
-      },
-
-    //////////////////Added custom save button and Print btn
-    setup: function (mytextarea) {
-        
-        //*************context menu items */
-
-
-
-        /* mytextarea.ui.registry.addContextToolbar('imageselection', {
-            predicate: function(node) {
-              return node.nodeName === 'P';
-            },
-            items: 'quicklink',
-            position: 'node',
-            quickbars_selection_toolbar: 'bold italic | formatselect |  blockquote | print'
-          }); */
-
-        /* mytextarea.ui.registry.addMenuItem('customItem1', {
-            text: 'Menu Item 1',
-            context: 'tools',
-            items: 'image',
-            onAction: function () {
-                alert('Menu item 1 clicked');
-            }
-        }); */
-/* 
-        mytextarea.ui.registry.addMenuItem('customItem2', {
-            text: 'Menu Item 2',
-            context: 'tools',
-            menu: [ {
-                text: "Sub-menu item 1",
-                onAction: function () {
-                    alert('Sub-menu item 1');
-                }
-            }, {
-                text: "Sub-menu item 2",
-                onAction: function () {
-                    alert('Sub-menu item 2');
-                }
-            }]
-        });
-        
-
-        mytextarea.ui.registry.addNestedMenuItem('nesteditem', {
-            text: 'My nested menu item',
-            getSubmenuItems: function () {
-              return [
-                {
-                  type: 'menuitem',
-                  icon: 'new-document',
-                  text: 'My submenu item',
-                  onAction: function () {
-                    mytextarea.insertContent('<p>Here\'s some content inserted from a submenu item!</p>');
-                  }
-                }
-              ];
-            }
-          }); */
-
-
-          /* mytextarea.ui.registry.addContextToolbar('textalignment', {
-            /* predicate: function (node) {
-                return mytextarea.dom.getParent(node, '.myclass') !== null;
-            }, 
-            items: 'alignleft aligncenter alignright styleselect New',
-            position: 'selection',
-            scope: 'node'
-          }); */
-      
-          /* mytextarea.ui.registry.addToggleMenuItem('toggleitem', {
-            text: 'My toggle menu item',
-            onAction: function () {
-              toggleState = !toggleState;
-              mytextarea.insertContent('<p class="toggle-item">Here\'s some content inserted from a toggle menu!</p>');
-            },
-            onSetup: function (api) {
-              api.setActive(toggleState);
-              return function () {};
-            }
-          }); */
-         
-
-
-
-
-          /* mytextarea.ui.registry.addContextToolbar('imagealignment', {
-            predicate: function (node) {
-                return node.nodeName.toLowerCase() === 'img'
-            },
-            items: 'alignleft aligncenter alignright print',
-            position: 'node',
-            scope: 'node'
-          }); */
-
-          /* mytextarea.ui.registry.addContextToolbar('textselection', {
-            predicate: function (node) {
-              return !mytextarea.selection.isCollapsed();
-            },
-            items: 'formatselect | bold italic underline | numlist bullist | image',
-            position: 'selection',
-            scope: 'node'
-          }); */
-
-
-
-
-
-        /////**************Menu Items */
-
-        /* mytextarea.ui.registry.addButton('New', {
-            icon: 'new-document',
-            text: 'New',
-            onAction: function () {
-                newNote();
-            }
-        });
-
-        mytextarea.ui.registry.addButton('SaveButton', {
-            icon: 'save',
-            text: 'Save',
-            onAction: function () {
-                saveNote(edit);
-            }
-        });
-
-        mytextarea.ui.registry.addButton("PrintDoc", {
-            icon: "print",
-            onAction: function () {
-                print();
-            }
-        });
-
-        //delete note button
-        mytextarea.ui.registry.addButton("DeleteButton", {
-            icon: "remove",
-            name: 'deleteBtn',
-            onAction: function () {
-                deleteNote();
-            }
-        });
- */
-
-
-
-        /////////////////////////Menu when clicked dots*******
-
-
-          /* mytextarea.ui.registry.addContextToolbar('textalignment', {
-            predicate: function (node) {
-                return mytextarea.dom.getParent(node, '.myclass') !== null;
-            },
-            items: 'alignleft aligncenter alignright styleselect New',
-            position: 'node',
-            scope: 'node'
-          }); */
-          
-        /////////////////////////END Menu when clicked dots*******
-
-    }
-
-
+      }
 });
 
 let mytextArea = document.getElementById("mytextarea");
@@ -207,12 +46,14 @@ function dynamicTitle(){
     //on focus behaviour 
     subjectEl.onfocus = function() { 
         if (this.value == titleText){
+            
         //clear text field 
             this.value = ''; }
         } 
     //on blur behaviour
     subjectEl.onblur = function() { 
         if (this.value == "") {
+            
         //restore default text 
             this.value = titleText; }
         };
@@ -233,6 +74,11 @@ function initialize(){
         saveNote(edit);
     }); 
     document.querySelector(".deleteNote").addEventListener("click",deleteNote);
+
+    document.getElementById("searchBar").addEventListener("input",function (evt){
+        searchNote(evt);
+    }); 
+
 }
 
 function fetchLocalStorageLastKey() {
@@ -470,9 +316,9 @@ favToggle.addEventListener('change', function(e){
     }
 })
     
-function print(){
+/* function print(){
     tinymce.activeEditor.execCommand('mcePrint');
-}
+} */
 
 function newNote(){
     edit = false;
@@ -542,6 +388,28 @@ function clearInputFields(){
     dynamicTitle();
 }
 
-/* function tools(){
-    alert("Tools");
-} */
+function searchNote(evt){
+    let searchStr = evt.target.value.toLowerCase();
+    const noteList = document.querySelectorAll(".divTag");
+    
+    if (searchStr.length >= 1) {
+        // anävndare har sökt något
+        if(noteList){
+            noteList.forEach(function(element){
+                if(element.firstElementChild.innerText.toLowerCase().includes(searchStr)){
+                    element.style.display = "inline-block";
+                }else{
+                    element.style.display = "none";
+                }
+
+            });
+        }
+        
+    } else {
+        // anv har tömt sökrutan
+        if(noteList){
+            noteList.forEach(element => element.style.display = "inline-block");
+        }
+    }
+}
+

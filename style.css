@@ -208,7 +208,7 @@ nav {
   width: 30px;
 }
 
-#menuToggle input
+#menuToggle #checkbox
 {
   display: block;
   width: 33px;
@@ -217,7 +217,7 @@ nav {
   top: -7px;
   left: -5px;
   cursor: pointer;
-  opacity: 0; 
+  opacity: 0;
   z-index: 2; 
   
   -webkit-touch-callout: none;
@@ -445,6 +445,13 @@ nav {
   background: #4d4e4d; 
 }
 
-.tox-edit-area {
-  font-style: Times!important;
+/* Search bar */
+#menu #searchBar{
+  width: 245px;
+  display: inline-block;
+  margin-left: 22px;
+  padding: 2px;
+  border: 0.5px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
