@@ -13,24 +13,6 @@ body {
   background-color: white;
 }
 
-header {
-  font-family: sans-serif;
-  font-size: 2em;
-  text-align: center;
-  border-bottom: solid rgb(228, 151, 151);
-  display: flex;
-  position: fixed;
-  top: 0;
-  z-index: 1;
-  width: 100%;
-  height: 100px;
-  background: #212121;
-  color: #fff;
-  justify-content: center;
-  align-items: center;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
 @media screen and (max-width: 565px) {
   header p {
     padding-left: 133px;
@@ -193,7 +175,7 @@ ul li {
   font-size: 30px;
   border: none;
   margin: 10px 0;
-  padding-left: 11px;
+  padding: 0 11px;
   width: 50%;
   align-self: center;
   text-align: center;
@@ -389,37 +371,41 @@ nav {
   color: rgb(32, 32, 32);
 }
 
-.toolbar a {
+.toolbar div {
   display: block;
   text-align: center;
   padding: 16px;
   color: rgba(104, 102, 102, 0.404);
 }
 
-.toolbar a:hover {
+.toolbar div:hover {
+  cursor: pointer;
   color: rgb(19, 19, 19)
 }
 
-.template-menu {
+#template-menu {
   display: none;
   position: absolute;
+  left: -145px;
+  top: 50px;
   background-color: #c24545;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
-.template-menu a {
+#template-menu a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 
-.template-menu a:hover {
-  background-color: #ddd;
+
+#template-menu a:hover {
+  background-color: black;
 }
 
-.templates:hover .template-menu {
+.templates:hover #template-menu {
   display: block;
   background-color: blue;
 }
@@ -457,4 +443,8 @@ nav {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #4d4e4d; 
+}
+
+.tox-edit-area {
+  font-style: Times!important;
 }

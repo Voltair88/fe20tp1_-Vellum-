@@ -5,13 +5,12 @@ tinymce.init({
     plugins: 'lists print quickbars image',
     menubar: false,
     toolbar: false,
-    quickbars_selection_toolbar: ' formatselect | bold italic underline | numlist bullist',
-    quickbars_insert_toolbar: 'quickimage | numlist bullist',
+    quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
+    quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
     /* toolbar_location: 'bottom', */
     /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
 
     content_style: 'body {width: 85%; max-width: 700px; margin-left: auto; margin-right: auto; margin-top: 3%;}',
-
     
 
 
@@ -29,14 +28,14 @@ tinymce.init({
 
 
 
-        mytextarea.ui.registry.addContextToolbar('imageselection', {
+        /* mytextarea.ui.registry.addContextToolbar('imageselection', {
             predicate: function(node) {
               return node.nodeName === 'P';
             },
             items: 'quicklink',
             position: 'node',
             quickbars_selection_toolbar: 'bold italic | formatselect |  blockquote | print'
-          });
+          }); */
 
         /* mytextarea.ui.registry.addMenuItem('customItem1', {
             text: 'Menu Item 1',
@@ -115,14 +114,14 @@ tinymce.init({
             scope: 'node'
           }); */
 
-          mytextarea.ui.registry.addContextToolbar('textselection', {
+          /* mytextarea.ui.registry.addContextToolbar('textselection', {
             predicate: function (node) {
               return !mytextarea.selection.isCollapsed();
             },
             items: 'formatselect | bold italic underline | numlist bullist | image',
             position: 'selection',
             scope: 'node'
-          });
+          }); */
 
 
 
@@ -192,8 +191,6 @@ let subjectEl = document.getElementById("subjectTextfieldId");
 let edit = false; // to check whether it is an edit or new note when saving
 let clickedDiv;
 let favToggle = document.getElementById("favToggle");
-
-
 
 /* document.getElementById("toolsIcon").addEventListener("click", tools); */
 
