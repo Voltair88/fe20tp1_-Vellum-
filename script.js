@@ -86,6 +86,8 @@ if (format === 2) {
     });
 }
 
+
+
 let mytextArea = document.getElementById("mytextarea");
 let myForm = document.getElementById("myForm");
 let currentKey;
