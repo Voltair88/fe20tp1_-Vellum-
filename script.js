@@ -7,6 +7,8 @@ tinymce.init({
     toolbar: false,
     quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
     quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
+    branding: false,
+    statusbar: false,
     /* toolbar_location: 'bottom', */
     /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
 
@@ -21,6 +23,8 @@ tinymce.init({
        
       }
 });
+
+
 
 let mytextArea = document.getElementById("mytextarea");
 let myForm = document.getElementById("myForm");
