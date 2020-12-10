@@ -195,7 +195,7 @@ function onClickDiv(event) {
     edit = true;
 
     clickedDiv = event.target.closest("div");
-    if (!clickedDiv) {
+    if (!clickedDiv || event.target.classList.contains("star")) {
         return;
     }
 
