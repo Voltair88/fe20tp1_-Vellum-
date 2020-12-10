@@ -7,84 +7,102 @@ templates.addEventListener("click", function(e) {
         format = 2;
     } else if (e.target.id === "formatOpt3") {
         format = 3;
-    } else {
-        return;
+    } else{
+        return
     }
+
+    removeOldInitANDsetNewInit(format);
 })
 
-if (format === 2) {
-    tinymce.init({
-        selector: '#mytextarea',
-        placeholder: 'Write something...',
-        plugins: 'lists print quickbars image',
-        menubar: false,
-        toolbar: false,
-        quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
-        quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
-        /* toolbar_location: 'bottom', */
-        /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
 
-        content_style: 'body {width: 85%; max-width: 700px; margin-left: auto; margin-right: auto; margin-top: 3%;}',
-        content_css: 'format2.css',
-        
-
-
-        //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
-        init_instance_callback : function(mytextarea) {
-            var freeTiny = document.querySelector('.tox .tox-notification--in');
-        freeTiny.style.display = 'none';
-        
-        }
-    });
-} else if (format === 3) {
-    tinymce.init({
-        selector: '#mytextarea',
-        placeholder: 'Write something...',
-        plugins: 'lists print quickbars image',
-        menubar: false,
-        toolbar: false,
-        quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
-        quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
-        /* toolbar_location: 'bottom', */
-        /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
-
-        content_style: 'body {width: 85%; max-width: 700px; margin-left: auto; margin-right: auto; margin-top: 3%;}',
-        content_css: 'format3.css',
-
-
-
-        //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
-        init_instance_callback: function (mytextarea) {
-            var freeTiny = document.querySelector('.tox .tox-notification--in');
-            freeTiny.style.display = 'none';
-
-        }
-    });
-} else {
-    tinymce.init({
-        selector: '#mytextarea',
-        placeholder: 'Write something...',
-        plugins: 'lists print quickbars image',
-        menubar: false,
-        toolbar: false,
-        quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
-        quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
-        /* toolbar_location: 'bottom', */
-        /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
-
-        content_style: 'body {width: 85%; max-width: 700px; margin-left: auto; margin-right: auto; margin-top: 3%;}',
-        content_css: 'format1.css',
-
-
-
-        //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
-        init_instance_callback: function (mytextarea) {
-            var freeTiny = document.querySelector('.tox .tox-notification--in');
-            freeTiny.style.display = 'none';
-
-        }
-    });
+function removeOldInitANDsetNewInit(format){
+    tinymce.remove();
+    tinymce.execCommand('mceRemoveControl', true, 'mytextarea');
+    callTinyMceInit(format);
 }
+
+function callTinyMceInit(format){
+
+    if (format === 2) {
+
+        tinymce.init({
+            selector: '#mytextarea',
+            placeholder: 'Write something...',
+            plugins: 'lists print quickbars image',
+            menubar: false,
+            toolbar: false,
+            quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
+            quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
+            /* toolbar_location: 'bottom', */
+            /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
+    
+            content_style: 'body {width: 85%; max-width: 700px; margin-left: auto; margin-right: auto; margin-top: 3%;}',
+            content_css: 'format2.css',
+            
+    
+    
+            //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
+            init_instance_callback : function(mytextarea) {
+                var freeTiny = document.querySelector('.tox .tox-notification--in');
+            freeTiny.style.display = 'none';
+            
+            }
+        });
+    }
+    if (format === 3) {
+        
+        tinymce.init({
+            selector: '#mytextarea',
+            placeholder: 'Write something...',
+            plugins: 'lists print quickbars image',
+            menubar: false,
+            toolbar: false,
+            quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
+            quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
+            /* toolbar_location: 'bottom', */
+            /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
+    
+            content_style: 'body {width: 85%; max-width: 700px; margin-left: auto; margin-right: auto; margin-top: 3%;}',
+            content_css: 'format3.css',
+    
+    
+    
+            //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
+            init_instance_callback: function (mytextarea) {
+                var freeTiny = document.querySelector('.tox .tox-notification--in');
+                freeTiny.style.display = 'none';
+    
+            }
+        });
+    } else {
+        tinymce.init({
+            selector: '#mytextarea',
+            placeholder: 'Write something...',
+            plugins: 'lists print quickbars image',
+            menubar: false,
+            toolbar: false,
+            quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
+            quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
+            /* toolbar_location: 'bottom', */
+            /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
+    
+            content_style: 'body {width: 85%; max-width: 700px; margin-left: auto; margin-right: auto; margin-top: 3%;}',
+            content_css: 'format1.css',
+    
+    
+    
+            //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
+            init_instance_callback: function (mytextarea) {
+                var freeTiny = document.querySelector('.tox .tox-notification--in');
+                freeTiny.style.display = 'none';
+    
+            }
+        });
+    }
+
+}
+
+
 
 
 
@@ -175,6 +193,8 @@ function saveNote(edit) {
                 obj['favorite'] = false;
                 obj['subject'] = subjectEl.value;
                 obj['delete'] = false;
+                obj['format'] = 1;
+                
 
                 localStorage.setItem(currentKey, JSON.stringify(obj));
                 displaySavedNoteElement(obj); //Display saved note in left panel
@@ -214,6 +234,7 @@ function saveNote(edit) {
 
 //Read localStorage and display in left panel
 function pageOnLoadFunction() {
+    callTinyMceInit(1);
 
     let div;
     let p;
@@ -260,6 +281,12 @@ function pageOnLoadFunction() {
 function onClickDiv(event) {
     edit = true;
 
+    //Remove the current init of textarea tinymce
+    tinymce.remove();
+    tinymce.execCommand('mceRemoveControl', true, 'mytextarea');
+
+    
+
     clickedDiv = event.target.closest("div");
     if (!clickedDiv || event.target.classList.contains("star")) {
         return;
@@ -267,8 +294,16 @@ function onClickDiv(event) {
 
     //get Clicked Id's note doc from localStorage
     let objNote = JSON.parse(localStorage.getItem(clickedDiv.id));
-    tinymce.get("mytextarea").setContent(objNote.note);
-    subjectEl.value = objNote.subject;
+    if(objNote){
+        callTinyMceInit(objNote.format);
+        tinymce.get("mytextarea").setContent(objNote.note);
+        subjectEl.value = objNote.subject;
+    }
+
+    
+
+    
+    
 }
 
 function deleteNote() {
@@ -327,6 +362,7 @@ function updateRecord() {
     obj['note'] = globalTextContent;
     obj['date'] = today.toLocaleDateString();
     obj['subject'] = globalSubject;
+    obj['format'] = format;
 
     //Update the subject div in left panel
     clickedDiv.firstChild.innerText = globalSubject;
