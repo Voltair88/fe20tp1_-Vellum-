@@ -96,6 +96,7 @@ let subjectEl = document.getElementById("subjectTextfieldId");
 let edit = false; // to check whether it is an edit or new note when saving
 let clickedDiv;
 let favToggle = document.getElementById("favToggle");
+let searchStr = '';
 
 /* document.getElementById("toolsIcon").addEventListener("click", tools); */
 
@@ -142,8 +143,11 @@ function initialize(){
     document.querySelector(".deleteNote").addEventListener("click",deleteNote);
 
     document.getElementById("searchBar").addEventListener("input",function (evt){
-        searchNote(evt);
+        searchStr = evt.target.value.toLowerCase();
+        searchNote(searchStr);
     }); 
+
+    favToggle.addEventListener('change', showHideFavorite);
 
 }
 
@@ -244,7 +248,7 @@ function pageOnLoadFunction() {
 
                 leftCanvas.appendChild(div);
             }else{
-                console.log("Deleted object");
+                //console.log("Deleted object");
             }
             
         }
@@ -365,26 +369,28 @@ function createStar() {
     return newStar;
 }
 
-favToggle.addEventListener('change', function(e){
+function showHideFavorite(){
+    let dropdownValue = document.getElementById("favToggle").value;
     let leftCanvasChildren = leftCanvas.children;
 
     for (let i = 0; i < leftCanvasChildren.length; i++) {
         let leftCanvasChild = leftCanvasChildren[i];
 
-        if(this.value === 'showFav') {
+        if(dropdownValue && dropdownValue === 'showFav') {  //Check dropdown value is not undefiend and ..
             if(!leftCanvasChild.classList.contains('favorite')) {
                 leftCanvasChild.classList.add('hidden')
             }
 
         } else {
-            leftCanvasChild.classList.remove('hidden')
+            if(searchStr == ''){
+                leftCanvasChild.classList.remove('hidden')
+            }else{
+                searchNote(document.getElementById("searchBar").value);
+            }
+            
         }
     }
-})
-    
-/* function print(){
-    tinymce.activeEditor.execCommand('mcePrint');
-} */
+}
 
 function newNote(){
     edit = false;
@@ -454,8 +460,7 @@ function clearInputFields(){
     dynamicTitle();
 }
 
-function searchNote(evt){
-    let searchStr = evt.target.value.toLowerCase();
+function searchNote(searchStr){
     const noteList = document.querySelectorAll(".divTag");
     
     if (searchStr.length >= 1) {
@@ -463,18 +468,19 @@ function searchNote(evt){
         if(noteList){
             noteList.forEach(function(element){
                 if(element.firstElementChild.innerText.toLowerCase().includes(searchStr)){
-                    element.style.display = "inline-block";
+                    element.classList.remove('hidden');
                 }else{
-                    element.style.display = "none";
+                    element.classList.add('hidden');
                 }
 
             });
         }
         
     } else {
-        // anv har tömt sökrutan
+        // användaren har tömt sökrutan
         if(noteList){
-            noteList.forEach(element => element.style.display = "inline-block");
+            noteList.forEach(element => element.classList.remove('hidden'));
+            showHideFavorite(); //Call the showHideFav func to render the list according to dropdown value
         }
     }
 }
