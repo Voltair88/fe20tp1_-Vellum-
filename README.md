@@ -19,3 +19,19 @@
 
 ## How to use online notebook
 
+### Create and save a note
+
+### Update a note
+When user is changed the note content, subject or note template, online notebook system display a dialog that asking the user to choose update the current note or choose to create a new note with changes. 
+
+![Update message](/images/askToupdateMsg.JPG)
+
+### Delete a note
+
+### Change templates
+
+### Mark as favorite note
+
+### Set tags for notes
+
+### Search a note
