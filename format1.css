@@ -1,5 +1,16 @@
-body {
-    font-family: 'Times New Roman', Times, serif;
-    color: darkturquoise;
-    font-size: medium;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+.mce-content-body {
+    width: 85%;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3%;
+    min-width: 226px;
+    line-height: 1.75;
+}
+
+.mce-content-body, #subjectTextfieldId {
+    font-family: "Roboto", sans-serif;
+    color: black;   
 }

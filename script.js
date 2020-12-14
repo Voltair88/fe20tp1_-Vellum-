@@ -3,10 +3,13 @@ templates = document.querySelector("#template-menu")
 templates.addEventListener("click", function(e) {
     if (e.target.id === "formatOpt1") {
         format = 1;
+        document.querySelector(".formatcss").setAttribute("href", "format1.css")
     } else if (e.target.id === "formatOpt2") {
         format = 2;
+        document.querySelector(".formatcss").setAttribute("href", "format2.css")
     } else if (e.target.id === "formatOpt3") {
         format = 3;
+        document.querySelector(".formatcss").setAttribute("href", "format3.css")
     } else{
         return
     }
@@ -23,34 +26,6 @@ function removeOldInitANDsetNewInit(format){
 
 function callTinyMceInit(format){
 
-    if (format === 0) {
-
-        tinymce.init({
-            selector: '#mytextarea',
-            placeholder: 'Write something...',
-            plugins: 'lists print quickbars image',
-            menubar: false,
-            toolbar: false,
-            quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
-            quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
-            /* toolbar_location: 'bottom', */
-            /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
-    
-            content_style: 'body {width: 85%; max-width: 700px; margin-left: auto; margin-right: auto; margin-top: 3%;}',
-            content_css: 'format0.css',
-            
-    
-    
-            //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
-            init_instance_callback : function(mytextarea) {
-            var freeTiny = document.querySelector('.tox .tox-notification--in');
-                if(freeTiny){
-                    freeTiny.style.display = 'none';
-                }
-            }
-        });
-    }
-    
     if (format === 1) {
 
         tinymce.init({
@@ -64,7 +39,6 @@ function callTinyMceInit(format){
             /* toolbar_location: 'bottom', */
             /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
     
-            content_style: 'body {width: 85%; max-width: 700px; margin-left: auto; margin-right: auto; margin-top: 3%;}',
             content_css: 'format1.css',
             
     
@@ -91,7 +65,6 @@ function callTinyMceInit(format){
             /* toolbar_location: 'bottom', */
             /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
     
-            content_style: 'body {width: 85%; max-width: 700px; margin-left: auto; margin-right: auto; margin-top: 3%;}',
             content_css: 'format2.css',
             
     
@@ -119,7 +92,6 @@ function callTinyMceInit(format){
             /* toolbar_location: 'bottom', */
             /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
     
-            content_style: 'body {width: 85%; max-width: 700px; margin-left: auto; margin-right: auto; margin-top: 3%;}',
             content_css: 'format3.css',
     
     
@@ -133,34 +105,7 @@ function callTinyMceInit(format){
     
             }
         });
-    } else {
-        tinymce.init({
-            selector: '#mytextarea',
-            placeholder: 'Write something...',
-            plugins: 'lists print quickbars image',
-            menubar: false,
-            toolbar: false,
-            quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
-            quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
-            /* toolbar_location: 'bottom', */
-            /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
-    
-            content_style: 'body {width: 85%; max-width: 700px; margin-left: auto; margin-right: auto; margin-top: 3%;}',
-            content_css: 'format0.css',
-    
-    
-    
-            //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
-            init_instance_callback: function (mytextarea) {
-                var freeTiny = document.querySelector('.tox .tox-notification--in');
-                if(freeTiny){
-                    freeTiny.style.display = 'none';
-                }
-    
-            }
-        });
     }
-
 }
 
 
@@ -256,7 +201,7 @@ function saveNote(edit) {
                 obj['favorite'] = false;
                 obj['subject'] = subjectEl.value;
                 obj['delete'] = false;
-                obj['format'] = 0;  //Default format
+                obj['format'] = 1;  //Default format
                 obj['tagColor'] = '#c7c5c5';  //Default color
                 
 
@@ -300,7 +245,7 @@ function saveNote(edit) {
 //Read localStorage and display in left panel
 function pageOnLoadFunction() {
 
-    callTinyMceInit(0);
+    callTinyMceInit(1);
 
     let div;
     let p;
@@ -577,7 +522,7 @@ function askToEditOrNew(){
 }
 
 function clearInputFields(){
-    removeOldInitANDsetNewInit(0);
+    removeOldInitANDsetNewInit(1);
     tinymce.get("mytextarea").setContent("");
     dynamicTitle();
 }
