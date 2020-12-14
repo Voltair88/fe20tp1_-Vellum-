@@ -1,4 +1,4 @@
-![Texteditor logo](/images/favicon.ico) # **Quire - Your online notebook**
+![Texteditor logo](/images/favicon.ico)  **Quire - Your online notebook**
 
 ## **Teamprojekt 1**   fe20tp1_-Vellum-
 
@@ -16,3 +16,6 @@
 
 ## Release 1
 - http://vellum.surge.sh/
+
+## How to use online notebook
+

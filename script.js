@@ -18,10 +18,12 @@ templates.addEventListener("click", function(e) {
 })
 
 
-function removeOldInitANDsetNewInit(format){
+function removeOldInitANDsetNewInit(formatNum){
     tinymce.remove();
     tinymce.execCommand('mceRemoveControl', true, 'mytextarea');
-    callTinyMceInit(format);
+    callTinyMceInit(formatNum);
+
+    console.log(formatNum);
 }
 
 function callTinyMceInit(format){
@@ -187,7 +189,7 @@ function saveNote(edit) {
                 obj['favorite'] = false;
                 obj['subject'] = subjectEl.value;
                 obj['delete'] = false;
-                obj['format'] = 1;  //Default format
+                obj['format'] = format;  
                 obj['tagColor'] = '#c7c5c5';  //Default color
                 
 
