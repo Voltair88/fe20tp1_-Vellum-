@@ -36,13 +36,8 @@ function callTinyMceInit(format){
             toolbar: false,
             quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
             quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
-            /* toolbar_location: 'bottom', */
-            /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
-    
             content_css: 'format1.css',
             
-    
-    
             //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
             init_instance_callback : function(mytextarea) {
             var freeTiny = document.querySelector('.tox .tox-notification--in');
@@ -62,12 +57,8 @@ function callTinyMceInit(format){
             toolbar: false,
             quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
             quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
-            /* toolbar_location: 'bottom', */
-            /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
-    
             content_css: 'format2.css',
             
-    
     
             //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
             init_instance_callback : function(mytextarea) {
@@ -88,12 +79,8 @@ function callTinyMceInit(format){
             menubar: false,
             toolbar: false,
             quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
-            quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
-            /* toolbar_location: 'bottom', */
-            /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
-    
+            quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',   
             content_css: 'format3.css',
-    
     
     
             //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
@@ -122,7 +109,6 @@ let clickedDiv;
 let favToggle = document.getElementById("favToggle");
 let searchStr = '';
 
-/* document.getElementById("toolsIcon").addEventListener("click", tools); */
 
 //To update note
 let globalTextContent;
@@ -286,7 +272,6 @@ function pageOnLoadFunction() {
                 div.appendChild(pDate);
 
                 div.addEventListener("click", onClickDiv);
-                div.addEventListener("contextmenu", mouseRightClick);
 
                 leftCanvas.appendChild(div);
             }else{
@@ -552,14 +537,8 @@ function searchNote(searchStr){
     }
 }
 
-function mouseRightClick(){
-    //alert("Righ")
-
-    return false; //Return false to prevent default right click contextmenu popup
-}
 
 function colorPickerChanged(event){
-    //clickedDiv.style.backgroundColor = event.target.value;
 
     let obj = JSON.parse(localStorage.getItem(clickedDiv.id));
     if(obj){
@@ -569,5 +548,6 @@ function colorPickerChanged(event){
 }
 
 function filterByColorTag(event){
-    alert(event.target.value)
+    //alert(event.target.value)
+    //This function to be continued and to be released with Release 2
 }
