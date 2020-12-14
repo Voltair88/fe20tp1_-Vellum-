@@ -391,7 +391,6 @@ function onClickDiv(event) {
     if(objNote){
         callTinyMceInit(objNote.format);
         document.querySelector(".formatcss").setAttribute("href", `format${objNote.format}.css`);
-        console.log(document.querySelector(".formatcss").setAttribute("href", `format${objNote.format}.css`))
         tinymce.get("mytextarea").setContent(objNote.note);
         subjectEl.value = objNote.subject;
     }
