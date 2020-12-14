@@ -193,8 +193,8 @@ function saveNote(edit) {
 
                 localStorage.setItem(currentKey, JSON.stringify(obj));
                 displaySavedNoteElement(obj); //Display saved note in left panel
-                tinymce.activeEditor.windowManager.alert("Successfully saved");
                 clearInputFields();  // Clear the textarea and title
+                tinymce.activeEditor.windowManager.alert("Successfully saved");
 
             } else { 
                 tinymce.activeEditor.windowManager.alert('Object not found.!');
@@ -487,23 +487,23 @@ function askToEditOrNew(){
 
             if(trigger.name === 'updateBtn'){
                 if(updateRecord()){
-                    tinymce.activeEditor.windowManager.alert('Successfully saved changes');
                     clearInputFields();
-                    
+                    tinymce.activeEditor.windowManager.alert('Successfully saved changes');
                 }else{
                     tinymce.activeEditor.windowManager.alert('Save error..!');
                 }
             }else if(trigger.name === 'createNewBtn'){
                 saveNote(false);
+                clearInputFields();
             }
 
             // close the dialog
             instance.close();
         }
 
-
-
       });
+
+    edit = false;
 }
 
 function clearInputFields(){
