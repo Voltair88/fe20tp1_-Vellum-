@@ -23,6 +23,61 @@ function removeOldInitANDsetNewInit(format){
 
 function callTinyMceInit(format){
 
+    if (format === 0) {
+
+        tinymce.init({
+            selector: '#mytextarea',
+            placeholder: 'Write something...',
+            plugins: 'lists print quickbars image',
+            menubar: false,
+            toolbar: false,
+            quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
+            quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
+            /* toolbar_location: 'bottom', */
+            /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
+    
+            content_style: 'body {width: 85%; max-width: 700px; margin-left: auto; margin-right: auto; margin-top: 3%;}',
+            content_css: 'format0.css',
+            
+    
+    
+            //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
+            init_instance_callback : function(mytextarea) {
+            var freeTiny = document.querySelector('.tox .tox-notification--in');
+                if(freeTiny){
+                    freeTiny.style.display = 'none';
+                }
+            }
+        });
+    }
+    
+    if (format === 1) {
+
+        tinymce.init({
+            selector: '#mytextarea',
+            placeholder: 'Write something...',
+            plugins: 'lists print quickbars image',
+            menubar: false,
+            toolbar: false,
+            quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
+            quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
+            /* toolbar_location: 'bottom', */
+            /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
+    
+            content_style: 'body {width: 85%; max-width: 700px; margin-left: auto; margin-right: auto; margin-top: 3%;}',
+            content_css: 'format1.css',
+            
+    
+    
+            //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
+            init_instance_callback : function(mytextarea) {
+            var freeTiny = document.querySelector('.tox .tox-notification--in');
+                if(freeTiny){
+                    freeTiny.style.display = 'none';
+                }
+            }
+        });
+    }
     if (format === 2) {
 
         tinymce.init({
@@ -44,8 +99,10 @@ function callTinyMceInit(format){
             //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
             init_instance_callback : function(mytextarea) {
                 var freeTiny = document.querySelector('.tox .tox-notification--in');
-            freeTiny.style.display = 'none';
-            
+                if(freeTiny){
+                    freeTiny.style.display = 'none';
+                }
+
             }
         });
     }
@@ -70,7 +127,9 @@ function callTinyMceInit(format){
             //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
             init_instance_callback: function (mytextarea) {
                 var freeTiny = document.querySelector('.tox .tox-notification--in');
-                freeTiny.style.display = 'none';
+                if(freeTiny){
+                    freeTiny.style.display = 'none';
+                }
     
             }
         });
@@ -87,14 +146,16 @@ function callTinyMceInit(format){
             /* contextmenu: 'print | bold italic customItem1 numlist customItem2 | nesteditem wordcount quickbars ', */
     
             content_style: 'body {width: 85%; max-width: 700px; margin-left: auto; margin-right: auto; margin-top: 3%;}',
-            content_css: 'format1.css',
+            content_css: 'format0.css',
     
     
     
             //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
             init_instance_callback: function (mytextarea) {
                 var freeTiny = document.querySelector('.tox .tox-notification--in');
-                freeTiny.style.display = 'none';
+                if(freeTiny){
+                    freeTiny.style.display = 'none';
+                }
     
             }
         });
@@ -167,6 +228,8 @@ function initialize(){
 
     favToggle.addEventListener('change', showHideFavorite);
 
+    document.getElementById("color").addEventListener("change",filterByColorTag);
+
 }
 
 function fetchLocalStorageLastKey() {
@@ -193,7 +256,8 @@ function saveNote(edit) {
                 obj['favorite'] = false;
                 obj['subject'] = subjectEl.value;
                 obj['delete'] = false;
-                obj['format'] = 1;
+                obj['format'] = 0;  //Default format
+                obj['tagColor'] = '#c7c5c5';  //Default color
                 
 
                 localStorage.setItem(currentKey, JSON.stringify(obj));
@@ -207,7 +271,8 @@ function saveNote(edit) {
         } else { //This block is for edit 
 
             if (myContent.localeCompare(JSON.parse(localStorage.getItem(clickedDiv.id)).note) === 0
-                && subjectEl.value.localeCompare(JSON.parse(localStorage.getItem(clickedDiv.id)).subject) === 0 ) {
+                && subjectEl.value.localeCompare(JSON.parse(localStorage.getItem(clickedDiv.id)).subject) === 0 
+                && format === (JSON.parse(localStorage.getItem(clickedDiv.id)).format)) {
                 newNote();  // If no changes, set new note
                 tinymce.activeEditor.windowManager.alert('No changes to save');
                 
@@ -234,7 +299,8 @@ function saveNote(edit) {
 
 //Read localStorage and display in left panel
 function pageOnLoadFunction() {
-    callTinyMceInit(1);
+
+    callTinyMceInit(0);
 
     let div;
     let p;
@@ -248,9 +314,18 @@ function pageOnLoadFunction() {
                 div.className = "divTag";
 
                 p = document.createElement('p');
-                
                 p.innerHTML = objNote.subject;
                 div.appendChild(p);
+
+                colorTag = document.createElement('input');
+                colorTag.setAttribute("type", "color"); 
+                colorTag.setAttribute("list", "presetColors"); 
+                colorTag.className = "colorPicker";
+                colorTag.value = objNote.tagColor;  
+                colorTag.addEventListener("change", colorPickerChanged);
+                div.appendChild(colorTag);
+
+                
                 let newStar = createStar();
                 if(objNote.favorite){
                     div.classList.add('favorite');
@@ -265,7 +340,8 @@ function pageOnLoadFunction() {
                 pDate.className = 'pDate';
                 div.appendChild(pDate);
 
-                div.addEventListener("click", function () { onClickDiv(event) });
+                div.addEventListener("click", onClickDiv);
+                div.addEventListener("contextmenu", mouseRightClick);
 
                 leftCanvas.appendChild(div);
             }else{
@@ -281,15 +357,17 @@ function pageOnLoadFunction() {
 function onClickDiv(event) {
     edit = true;
 
-    //Remove the current init of textarea tinymce
-    tinymce.remove();
-    tinymce.execCommand('mceRemoveControl', true, 'mytextarea');
+    
 
     
 
     clickedDiv = event.target.closest("div");
-    if (!clickedDiv || event.target.classList.contains("star")) {
+    if (!clickedDiv || event.target.classList.contains("star") || event.target.classList.contains("colorPicker")) {
         return;
+    }else{
+        //Remove the current init of textarea tinymce
+        tinymce.remove();
+        tinymce.execCommand('mceRemoveControl', true, 'mytextarea');
     }
 
     //get Clicked Id's note doc from localStorage
@@ -299,10 +377,7 @@ function onClickDiv(event) {
         tinymce.get("mytextarea").setContent(objNote.note);
         subjectEl.value = objNote.subject;
     }
-
-    
-
-    
+ 
     
 }
 
@@ -339,8 +414,16 @@ function displaySavedNoteElement(obj) {
     div.id = localStorage.length - 1;  // Key 0 is to "check user har varit" , to remove that id use -1
     p = document.createElement('p');
     p.innerHTML = obj.subject;   //.subject;
-
     div.appendChild(p);
+
+    colorTag = document.createElement('input');
+    colorTag.setAttribute("type", "color"); 
+    colorTag.setAttribute("list", "presetColors"); 
+    colorTag.className = "colorPicker";
+    colorTag.value = obj.tagColor;  
+    colorTag.addEventListener("change", colorPickerChanged);
+    div.appendChild(colorTag);
+
     let newStar = createStar();
     div.appendChild(newStar);
 
@@ -349,7 +432,7 @@ function displaySavedNoteElement(obj) {
     pDate.className = 'pDate';
     div.appendChild(pDate);
     
-    div.addEventListener("click", function () { onClickDiv(event) });
+    div.addEventListener("click", onClickDiv);
 
     leftCanvas.appendChild(div);
 }
@@ -358,16 +441,17 @@ function updateRecord() {
 
     let today = new Date();
     let obj = JSON.parse(localStorage.getItem(clickedDiv.id));
+    if(obj){
+        obj['note'] = globalTextContent;
+        obj['date'] = today.toLocaleDateString();
+        obj['subject'] = globalSubject;
+        obj['format'] = format;
 
-    obj['note'] = globalTextContent;
-    obj['date'] = today.toLocaleDateString();
-    obj['subject'] = globalSubject;
-    obj['format'] = format;
+        //Update the subject div in left panel
+        clickedDiv.firstChild.innerText = globalSubject;
+        localStorage.setItem(clickedDiv.id, JSON.stringify(obj));
+    }
 
-    //Update the subject div in left panel
-    clickedDiv.firstChild.innerText = globalSubject;
-    localStorage.setItem(clickedDiv.id, JSON.stringify(obj));
-    
     return true;
 }
 
@@ -399,15 +483,16 @@ function createStar() {
         }
         
     localStorage.setItem(e.target.parentElement.getAttribute('id'), JSON.stringify(favObj));
-    
     })
 
     return newStar;
 }
 
 function showHideFavorite(){
+
     let dropdownValue = document.getElementById("favToggle").value;
     let leftCanvasChildren = leftCanvas.children;
+
 
     for (let i = 0; i < leftCanvasChildren.length; i++) {
         let leftCanvasChild = leftCanvasChildren[i];
@@ -492,6 +577,7 @@ function askToEditOrNew(){
 }
 
 function clearInputFields(){
+    removeOldInitANDsetNewInit(0);
     tinymce.get("mytextarea").setContent("");
     dynamicTitle();
 }
@@ -519,4 +605,24 @@ function searchNote(searchStr){
             showHideFavorite(); //Call the showHideFav func to render the list according to dropdown value
         }
     }
+}
+
+function mouseRightClick(){
+    //alert("Righ")
+
+    return false; //Return false to prevent default right click contextmenu popup
+}
+
+function colorPickerChanged(event){
+    //clickedDiv.style.backgroundColor = event.target.value;
+
+    let obj = JSON.parse(localStorage.getItem(clickedDiv.id));
+    if(obj){
+        obj['tagColor'] = event.target.value;
+        localStorage.setItem(clickedDiv.id, JSON.stringify(obj));
+    }
+}
+
+function filterByColorTag(event){
+    alert(event.target.value)
 }
