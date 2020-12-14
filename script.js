@@ -1,4 +1,4 @@
-let format = 1;
+let format;
 templates = document.querySelector("#template-menu")
 templates.addEventListener("click", function(e) {
     if (e.target.id === "formatOpt1") {
@@ -27,8 +27,84 @@ function removeOldInitANDsetNewInit(formatNum){
 }
 
 function callTinyMceInit(format){
+    console.log("Format: "+format);
 
-    if (format === 1) {
+    switch(format){
+        case 1:
+            tinymce.init({
+                selector: '#mytextarea',
+                placeholder: 'Write something...',
+                plugins: 'lists print quickbars image',
+                menubar: false,
+                toolbar: false,
+                quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
+                quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
+                content_css: 'format1.css',
+                plugins: "paste",
+                paste_as_text: true,
+                
+                //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
+                init_instance_callback : function(mytextarea) {
+                var freeTiny = document.querySelector('.tox .tox-notification--in');
+                    if(freeTiny){
+                        freeTiny.style.display = 'none';
+                    }
+                }
+            });
+            break;
+
+        case 2:
+            tinymce.init({
+                selector: '#mytextarea',
+                placeholder: 'Write something...',
+                plugins: 'lists print quickbars image',
+                menubar: false,
+                toolbar: false,
+                quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
+                quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
+                content_css: 'format2.css',
+                plugins: "paste",
+                paste_as_text: true,
+                
+        
+                //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
+                init_instance_callback : function(mytextarea) {
+                    var freeTiny = document.querySelector('.tox .tox-notification--in');
+                    if(freeTiny){
+                        freeTiny.style.display = 'none';
+                    }
+    
+                }
+            });
+            break;
+
+        case 3:
+            tinymce.init({
+                selector: '#mytextarea',
+                placeholder: 'Write something...',
+                plugins: 'lists print quickbars image',
+                menubar: false,
+                toolbar: false,
+                quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
+                quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',   
+                content_css: 'format3.css',
+                plugins: "paste",
+                paste_as_text: true,
+        
+        
+                //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
+                init_instance_callback: function (mytextarea) {
+                    var freeTiny = document.querySelector('.tox .tox-notification--in');
+                    if(freeTiny){
+                        freeTiny.style.display = 'none';
+                    }
+        
+                }
+            });
+            break;
+    }
+
+    /* if (format === 1) {
 
         tinymce.init({
             selector: '#mytextarea',
@@ -48,6 +124,9 @@ function callTinyMceInit(format){
                 }
             }
         });
+    }
+    else{
+        console.log("Else 1 format: "+format+"Type of: "+typeof(format))
     }
     if (format === 2) {
 
@@ -72,6 +151,9 @@ function callTinyMceInit(format){
             }
         });
     }
+    else{
+        console.log("Else 2 format: "+format+"Type of: "+typeof(format))
+    }
     if (format === 3) {
         
         tinymce.init({
@@ -95,6 +177,10 @@ function callTinyMceInit(format){
             }
         });
     }
+    else{
+        console.log("Else 3 format: "+format+"Type of: "+typeof(format))
+    } */
+
 }
 
 
@@ -197,6 +283,7 @@ function saveNote(edit) {
                 displaySavedNoteElement(obj); //Display saved note in left panel
                 clearInputFields();  // Clear the textarea and title
                 tinymce.activeEditor.windowManager.alert("Successfully saved");
+                setDefaultFormatStyleSheet(); 
 
             } else { 
                 tinymce.activeEditor.windowManager.alert('Object not found.!');
@@ -290,10 +377,6 @@ function pageOnLoadFunction() {
 function onClickDiv(event) {
     edit = true;
 
-    
-
-    
-
     clickedDiv = event.target.closest("div");
     if (!clickedDiv || event.target.classList.contains("star") || event.target.classList.contains("colorPicker")) {
         return;
@@ -307,6 +390,8 @@ function onClickDiv(event) {
     let objNote = JSON.parse(localStorage.getItem(clickedDiv.id));
     if(objNote){
         callTinyMceInit(objNote.format);
+        document.querySelector(".formatcss").setAttribute("href", `format${objNote.format}.css`);
+        console.log(document.querySelector(".formatcss").setAttribute("href", `format${objNote.format}.css`))
         tinymce.get("mytextarea").setContent(objNote.note);
         subjectEl.value = objNote.subject;
     }
@@ -449,6 +534,7 @@ function showHideFavorite(){
 function newNote(){
     edit = false;
     clearInputFields();  // Clear the textarea and title
+    setDefaultFormatStyleSheet();
 }
 
 
@@ -492,6 +578,7 @@ function askToEditOrNew(){
                 if(updateRecord()){
                     clearInputFields();
                     tinymce.activeEditor.windowManager.alert('Successfully saved changes');
+                    setDefaultFormatStyleSheet();
                 }else{
                     tinymce.activeEditor.windowManager.alert('Save error..!');
                 }
@@ -553,4 +640,8 @@ function colorPickerChanged(event){
 function filterByColorTag(event){
     //alert(event.target.value)
     //This function to be continued and to be released with Release 2
+}
+
+function setDefaultFormatStyleSheet(){
+    document.querySelector(".formatcss").setAttribute("href", "format1.css");
 }
