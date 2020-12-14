@@ -239,47 +239,48 @@ function pageOnLoadFunction() {
     for (let i = 1; i < localStorage.length; i++) {
         if (localStorage.key !== 0) {
             let objNote = JSON.parse(localStorage.getItem(i));
-            if(objNote.delete === false){
-                div = document.createElement('div');
-                div.id = i;
-                div.className = "divTag";
-
-                p = document.createElement('p');
-                p.innerHTML = objNote.subject;
-                div.appendChild(p);
-
-                colorTag = document.createElement('input');
-                colorTag.setAttribute("type", "color"); 
-                colorTag.setAttribute("list", "presetColors"); 
-                colorTag.className = "colorPicker";
-                colorTag.value = objNote.tagColor;  
-                colorTag.addEventListener("change", colorPickerChanged);
-                div.appendChild(colorTag);
-
-                
-                let newStar = createStar();
-                if(objNote.favorite){
-                    div.classList.add('favorite');
-                    newStar.setAttribute('src', './images/favstar.png');
-                    newStar.setAttribute('alt', 'favorite button lit');
-                };
-                div.appendChild(newStar);
-
-
-                pDate = document.createElement('p');
-                pDate.innerHTML = objNote.date;   //.Date  .toLocaleDateString()
-                pDate.className = 'pDate';
-                div.appendChild(pDate);
-
-                div.addEventListener("click", onClickDiv);
-
-                leftCanvas.appendChild(div);
-            }else{
-                //console.log("Deleted object");
+            if(objNote){
+                if(objNote.delete === false){
+                    div = document.createElement('div');
+                    div.id = i;
+                    div.className = "divTag";
+    
+                    p = document.createElement('p');
+                    p.innerHTML = objNote.subject;
+                    div.appendChild(p);
+    
+                    colorTag = document.createElement('input');
+                    colorTag.setAttribute("type", "color"); 
+                    colorTag.setAttribute("list", "presetColors"); 
+                    colorTag.className = "colorPicker";
+                    colorTag.value = objNote.tagColor;  
+                    colorTag.addEventListener("change", colorPickerChanged);
+                    div.appendChild(colorTag);
+    
+                    
+                    let newStar = createStar();
+                    if(objNote.favorite){
+                        div.classList.add('favorite');
+                        newStar.setAttribute('src', './images/favstar.png');
+                        newStar.setAttribute('alt', 'favorite button lit');
+                    };
+                    div.appendChild(newStar);
+    
+    
+                    pDate = document.createElement('p');
+                    pDate.innerHTML = objNote.date;   //.Date  .toLocaleDateString()
+                    pDate.className = 'pDate';
+                    div.appendChild(pDate);
+    
+                    div.addEventListener("click", onClickDiv);
+    
+                    leftCanvas.appendChild(div);
+                }else{
+                    //console.log("Deleted object");
+                }
             }
             
         }
-
 
     }
 }
