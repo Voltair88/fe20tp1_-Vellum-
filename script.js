@@ -1,4 +1,4 @@
-let format = 1;
+let format;
 templates = document.querySelector("#template-menu")
 templates.addEventListener("click", function(e) {
     if (e.target.id === "formatOpt1") {
@@ -18,15 +18,93 @@ templates.addEventListener("click", function(e) {
 })
 
 
-function removeOldInitANDsetNewInit(format){
+function removeOldInitANDsetNewInit(formatNum){
     tinymce.remove();
     tinymce.execCommand('mceRemoveControl', true, 'mytextarea');
-    callTinyMceInit(format);
+    callTinyMceInit(formatNum);
+
+    console.log(formatNum);
 }
 
 function callTinyMceInit(format){
+    console.log("Format: "+format);
 
-    if (format === 1) {
+    switch(format){
+        case 1:
+            tinymce.init({
+                selector: '#mytextarea',
+                placeholder: 'Write something...',
+                plugins: 'lists print quickbars image',
+                menubar: false,
+                toolbar: false,
+                quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
+                quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
+                content_css: 'format1.css',
+                plugins: "paste",
+                paste_as_text: true,
+                
+                //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
+                init_instance_callback : function(mytextarea) {
+                var freeTiny = document.querySelector('.tox .tox-notification--in');
+                    if(freeTiny){
+                        freeTiny.style.display = 'none';
+                    }
+                }
+            });
+            break;
+
+        case 2:
+            tinymce.init({
+                selector: '#mytextarea',
+                placeholder: 'Write something...',
+                plugins: 'lists print quickbars image',
+                menubar: false,
+                toolbar: false,
+                quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
+                quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
+                content_css: 'format2.css',
+                plugins: "paste",
+                paste_as_text: true,
+                
+        
+                //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
+                init_instance_callback : function(mytextarea) {
+                    var freeTiny = document.querySelector('.tox .tox-notification--in');
+                    if(freeTiny){
+                        freeTiny.style.display = 'none';
+                    }
+    
+                }
+            });
+            break;
+
+        case 3:
+            tinymce.init({
+                selector: '#mytextarea',
+                placeholder: 'Write something...',
+                plugins: 'lists print quickbars image',
+                menubar: false,
+                toolbar: false,
+                quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
+                quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',   
+                content_css: 'format3.css',
+                plugins: "paste",
+                paste_as_text: true,
+        
+        
+                //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
+                init_instance_callback: function (mytextarea) {
+                    var freeTiny = document.querySelector('.tox .tox-notification--in');
+                    if(freeTiny){
+                        freeTiny.style.display = 'none';
+                    }
+        
+                }
+            });
+            break;
+    }
+
+    /* if (format === 1) {
 
         tinymce.init({
             selector: '#mytextarea',
@@ -46,6 +124,9 @@ function callTinyMceInit(format){
                 }
             }
         });
+    }
+    else{
+        console.log("Else 1 format: "+format+"Type of: "+typeof(format))
     }
     if (format === 2) {
 
@@ -70,6 +151,9 @@ function callTinyMceInit(format){
             }
         });
     }
+    else{
+        console.log("Else 2 format: "+format+"Type of: "+typeof(format))
+    }
     if (format === 3) {
         
         tinymce.init({
@@ -93,6 +177,10 @@ function callTinyMceInit(format){
             }
         });
     }
+    else{
+        console.log("Else 3 format: "+format+"Type of: "+typeof(format))
+    } */
+
 }
 
 
@@ -187,14 +275,15 @@ function saveNote(edit) {
                 obj['favorite'] = false;
                 obj['subject'] = subjectEl.value;
                 obj['delete'] = false;
-                obj['format'] = 1;  //Default format
+                obj['format'] = format;  
                 obj['tagColor'] = '#c7c5c5';  //Default color
                 
 
                 localStorage.setItem(currentKey, JSON.stringify(obj));
                 displaySavedNoteElement(obj); //Display saved note in left panel
-                tinymce.activeEditor.windowManager.alert("Successfully saved");
                 clearInputFields();  // Clear the textarea and title
+                tinymce.activeEditor.windowManager.alert("Successfully saved");
+                setDefaultFormatStyleSheet(); 
 
             } else { 
                 tinymce.activeEditor.windowManager.alert('Object not found.!');
@@ -288,10 +377,6 @@ function pageOnLoadFunction() {
 function onClickDiv(event) {
     edit = true;
 
-    
-
-    
-
     clickedDiv = event.target.closest("div");
     if (!clickedDiv || event.target.classList.contains("star") || event.target.classList.contains("colorPicker")) {
         return;
@@ -305,6 +390,7 @@ function onClickDiv(event) {
     let objNote = JSON.parse(localStorage.getItem(clickedDiv.id));
     if(objNote){
         callTinyMceInit(objNote.format);
+        document.querySelector(".formatcss").setAttribute("href", `format${objNote.format}.css`);
         tinymce.get("mytextarea").setContent(objNote.note);
         subjectEl.value = objNote.subject;
     }
@@ -430,12 +516,12 @@ function showHideFavorite(){
 
         if(dropdownValue && dropdownValue === 'showFav') {  //Check dropdown value is not undefiend and ..
             if(!leftCanvasChild.classList.contains('favorite')) {
-                leftCanvasChild.classList.add('hidden')
+                leftCanvasChild.classList.add('hiddenStar')
             }
 
         } else {
             if(searchStr == ''){
-                leftCanvasChild.classList.remove('hidden')
+                leftCanvasChild.classList.remove('hiddenStar')
             }else{
                 searchNote(document.getElementById("searchBar").value);
             }
@@ -447,6 +533,7 @@ function showHideFavorite(){
 function newNote(){
     edit = false;
     clearInputFields();  // Clear the textarea and title
+    setDefaultFormatStyleSheet();
 }
 
 
@@ -488,23 +575,24 @@ function askToEditOrNew(){
 
             if(trigger.name === 'updateBtn'){
                 if(updateRecord()){
-                    tinymce.activeEditor.windowManager.alert('Successfully saved changes');
                     clearInputFields();
-                    
+                    tinymce.activeEditor.windowManager.alert('Successfully saved changes');
+                    setDefaultFormatStyleSheet();
                 }else{
                     tinymce.activeEditor.windowManager.alert('Save error..!');
                 }
             }else if(trigger.name === 'createNewBtn'){
                 saveNote(false);
+                clearInputFields();
             }
 
             // close the dialog
             instance.close();
         }
 
-
-
       });
+
+    edit = false;
 }
 
 function clearInputFields(){
@@ -521,9 +609,9 @@ function searchNote(searchStr){
         if(noteList){
             noteList.forEach(function(element){
                 if(element.firstElementChild.innerText.toLowerCase().includes(searchStr)){
-                    element.classList.remove('hidden');
+                    element.classList.remove('hiddenSearch');
                 }else{
-                    element.classList.add('hidden');
+                    element.classList.add('hiddenSearch');
                 }
 
             });
@@ -532,7 +620,7 @@ function searchNote(searchStr){
     } else {
         // användaren har tömt sökrutan
         if(noteList){
-            noteList.forEach(element => element.classList.remove('hidden'));
+            noteList.forEach(element => element.classList.remove('hiddenSearch'));
             showHideFavorite(); //Call the showHideFav func to render the list according to dropdown value
         }
     }
@@ -549,6 +637,29 @@ function colorPickerChanged(event){
 }
 
 function filterByColorTag(event){
+    const noteList = document.querySelectorAll(".divTag");
+
+    if (event.target.value === "#c7c5c5") {
+        if (noteList) {
+            noteList.forEach(function (element) {
+                element.classList.remove('hiddenColor');
+            });
+        }
+    } else {
+        if (noteList) {
+            noteList.forEach(function (element) {
+                if (element.childNodes[1].value !== event.target.value && element.childNodes[1].value !== "#c7c5c5") {
+                    element.classList.add('hiddenColor');
+                } else {
+                    element.classList.remove('hiddenColor');
+                }
+            });
+        }
+    }
     //alert(event.target.value)
     //This function to be continued and to be released with Release 2
+}
+
+function setDefaultFormatStyleSheet(){
+    document.querySelector(".formatcss").setAttribute("href", "format1.css");
 }
