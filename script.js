@@ -125,83 +125,6 @@ function callTinyMceInit(format){
             });
     }
 
-    /* if (format === 1) {
-
-        tinymce.init({
-            selector: '#mytextarea',
-            placeholder: 'Write something...',
-            plugins: 'lists print quickbars image',
-            menubar: false,
-            toolbar: false,
-            quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
-            quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
-            content_css: 'format1.css',
-            
-            //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
-            init_instance_callback : function(mytextarea) {
-            var freeTiny = document.querySelector('.tox .tox-notification--in');
-                if(freeTiny){
-                    freeTiny.style.display = 'none';
-                }
-            }
-        });
-    }
-    else{
-        console.log("Else 1 format: "+format+"Type of: "+typeof(format))
-    }
-    if (format === 2) {
-
-        tinymce.init({
-            selector: '#mytextarea',
-            placeholder: 'Write something...',
-            plugins: 'lists print quickbars image',
-            menubar: false,
-            toolbar: false,
-            quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
-            quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
-            content_css: 'format2.css',
-            
-    
-            //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
-            init_instance_callback : function(mytextarea) {
-                var freeTiny = document.querySelector('.tox .tox-notification--in');
-                if(freeTiny){
-                    freeTiny.style.display = 'none';
-                }
-
-            }
-        });
-    }
-    else{
-        console.log("Else 2 format: "+format+"Type of: "+typeof(format))
-    }
-    if (format === 3) {
-        
-        tinymce.init({
-            selector: '#mytextarea',
-            placeholder: 'Write something...',
-            plugins: 'lists print quickbars image',
-            menubar: false,
-            toolbar: false,
-            quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
-            quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',   
-            content_css: 'format3.css',
-    
-    
-            //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
-            init_instance_callback: function (mytextarea) {
-                var freeTiny = document.querySelector('.tox .tox-notification--in');
-                if(freeTiny){
-                    freeTiny.style.display = 'none';
-                }
-    
-            }
-        });
-    }
-    else{
-        console.log("Else 3 format: "+format+"Type of: "+typeof(format))
-    } */
-
 }
 
 
@@ -677,8 +600,6 @@ function filterByColorTag(event){
             });
         }
     }
-    //alert(event.target.value)
-    //This function to be continued and to be released with Release 2
 }
 
 function setDefaultFormatStyleSheet(){
