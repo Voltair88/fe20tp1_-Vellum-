@@ -354,7 +354,15 @@ nav {
     cursor: pointer;
   }
   
-  .hidden {
+  .hiddenStar {
+    display: none;
+  }
+
+  .hiddenSearch {
+    display: none;
+  }
+
+  .hiddenColor {
     display: none;
   }
   

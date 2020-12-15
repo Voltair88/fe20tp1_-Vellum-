@@ -430,12 +430,12 @@ function showHideFavorite(){
 
         if(dropdownValue && dropdownValue === 'showFav') {  //Check dropdown value is not undefiend and ..
             if(!leftCanvasChild.classList.contains('favorite')) {
-                leftCanvasChild.classList.add('hidden')
+                leftCanvasChild.classList.add('hiddenStar')
             }
 
         } else {
             if(searchStr == ''){
-                leftCanvasChild.classList.remove('hidden')
+                leftCanvasChild.classList.remove('hiddenStar')
             }else{
                 searchNote(document.getElementById("searchBar").value);
             }
@@ -521,9 +521,9 @@ function searchNote(searchStr){
         if(noteList){
             noteList.forEach(function(element){
                 if(element.firstElementChild.innerText.toLowerCase().includes(searchStr)){
-                    element.classList.remove('hidden');
+                    element.classList.remove('hiddenSearch');
                 }else{
-                    element.classList.add('hidden');
+                    element.classList.add('hiddenSearch');
                 }
 
             });
@@ -532,7 +532,7 @@ function searchNote(searchStr){
     } else {
         // användaren har tömt sökrutan
         if(noteList){
-            noteList.forEach(element => element.classList.remove('hidden'));
+            noteList.forEach(element => element.classList.remove('hiddenSearch'));
             showHideFavorite(); //Call the showHideFav func to render the list according to dropdown value
         }
     }
@@ -549,6 +549,23 @@ function colorPickerChanged(event){
 }
 
 function filterByColorTag(event){
-    //alert(event.target.value)
-    //This function to be continued and to be released with Release 2
+    const noteList = document.querySelectorAll(".divTag");
+
+    if (event.target.value === "#c7c5c5") {
+        if (noteList) {
+            noteList.forEach(function (element) {
+                element.classList.remove('hiddenColor');
+            });
+        }
+    } else {
+        if (noteList) {
+            noteList.forEach(function (element) {
+                if (element.childNodes[1].value !== event.target.value && element.childNodes[1].value !== "#c7c5c5") {
+                    element.classList.add('hiddenColor');
+                } else {
+                    element.classList.remove('hiddenColor');
+                }
+            });
+        }
+    }
 }
