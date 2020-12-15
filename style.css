@@ -121,9 +121,10 @@ ul li {
 }
 
 #menu {
+  background-color: white;
   list-style: square inside none;
-  margin: 10px;
-  padding: 10px;
+  margin: 5px;
+  padding: 5px;
 }
 
 /*** "GOT IT, THANKS" KNAPPEN I POPUPEN ***/
@@ -245,6 +246,19 @@ nav {
 /*
 * hamburger
 */
+
+.logo {
+  font-family: "playfair display";
+  font-size: 50px;
+  position: relative;
+  top: -85px;
+  left: 100px;
+  height: 0;
+  box-sizing: border-box;
+  color: navy;
+}
+
+
 #menuToggle span
 {
   display: block;
@@ -432,7 +446,6 @@ nav {
   border-radius: 5px 0 0 5px;
 }
 #template-menu a {
-  color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;

@@ -102,6 +102,27 @@ function callTinyMceInit(format){
                 }
             });
             break;
+            §
+        default:
+            tinymce.init({
+                selector: '#mytextarea',
+                placeholder: 'Write something...',
+                plugins: 'lists print quickbars image',
+                menubar: false,
+                toolbar: false,
+                quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
+                quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
+                content_css: 'format1.css',
+                plugins: "paste",
+                paste_as_text: true,
+                //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
+                init_instance_callback : function(mytextarea) {
+                var freeTiny = document.querySelector('.tox .tox-notification--in');
+                    if(freeTiny){
+                        freeTiny.style.display = 'none';
+                    }
+                }
+            });
     }
 
     /* if (format === 1) {
