@@ -1,59 +1,98 @@
 <!DOCTYPE html>
 <html lang="en" moznomarginboxes mozdisallowselectionprint>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Quire - A quick, easy and free online notebook">
-    <link rel="stylesheet" href="style.css" media="screen">
-    <link class="formatcss" rel="stylesheet" href="format1.css" media="screen">
-    <link rel="stylesheet" href="print.css" media="print">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Quire - A quick, easy and free online notebook"
+    />
+    <link rel="stylesheet" href="style.css" media="screen" />
+    <link
+      class="formatcss"
+      rel="stylesheet"
+      href="format1.css"
+      media="screen"
+    />
+    <link rel="stylesheet" href="print.css" media="print" />
     <script src="script.js" defer></script>
     <script src="popup.js" defer></script>
-    <script src="https://cdn.tiny.cloud/1/fukg8jgkoohb5ig0d499pb29ipl3ldflg0xxyklcxpl35bni/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
-    <link rel="favicon icon" href="images/favicon.ico">
+    <script
+      src="https://cdn.tiny.cloud/1/fukg8jgkoohb5ig0d499pb29ipl3ldflg0xxyklcxpl35bni/tinymce/5/tinymce.min.js"
+      referrerpolicy="origin"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="favicon icon" href="images/favicon.ico" />
     <title>Quire - Your online notebook</title>
-</head>
-<body>
-  <!--HÄR BÖRJAR POPUP RUTAN-->
-<!--       <div class="background-popup">
-        <div class="popup">
-            <h2>Welcome to your free and online notebook!</h2>
-<p class="informationText"> This is how it works</p>
-<ul>
-    <li>You can create as many notes as you wish, and save all your notes so that you can access them at any time.</li>
-    <li>You can create headlines and text.</li>
-    <li>You can style your notes with different fonts, styles, lists, colors, etc.</li>
-    <li>You can mark specific notes as favorites so they're easily accessible.</li>
-    <li>All the notes will have a time stamp so you know when you wrote them.</li>
-    <li>Every note is saved in the browser and you'll find them in the menu.</li>
-    <li>The notes can be printable.</li>
-    <li>It is easy to save or delete a note, just press the buttons Save for saving a note, or Delete for deleting a note.</li>
-</ul>
-<button class="x-close" aria-label="close window">Got it, thanks!</button>
-</div></div>
- -->
-  <!--HÄR BÖRJAR MENYN -->
-  <nav class="nav">
-    <div id="menuToggle">
-      <input id="checkbox" type="checkbox" class="toggleCheckbox"/>
-      
-      <!--Hamburger-->
-      <span></span>
-      <span></span>
-      <span></span>
-      
-      <div id="menu">
-        <p class="logo">Quire</p>
-        <input type="text" id="searchBar" placeholder="Search">
+  </head>
 
-        <select id="favToggle" name="favToggle" class="favorite">
-          <option value="showAll">Show all notes</option>
-          <option value="showFav">Show only favorites</option>
-        
-        </select>
-     
-        <input type="color" name="color" id="color" list="presetColors" value="#c7c5c5">
+  <body>
+    <!--HÄR BÖRJAR POPUP RUTAN-->
+    <div class="background-popup">
+      <div class="popup">
+        <h2>Welcome to your free and online notebook!</h2>
+        <p class="informationText">This is how it works</p>
+        <ul>
+          <li>
+            You can create as many notes as you wish, and save all your notes so
+            that you can access them at any time.
+          </li>
+          <li>You can create headlines and text.</li>
+          <li>
+            You can style your notes with different fonts, styles, lists,
+            colors, etc.
+          </li>
+          <li>
+            You can mark specific notes as favorites so they're easily
+            accessible.
+          </li>
+          <li>
+            All the notes will have a time stamp so you know when you wrote
+            them.
+          </li>
+          <li>
+            Every note is saved in the browser and you'll find them in the menu.
+          </li>
+          <li>The notes can be printable.</li>
+          <li>
+            It is easy to save or delete a note, just press the buttons Save for
+            saving a note, or Delete for deleting a note.
+          </li>
+        </ul>
+        <button class="x-close" aria-label="close window">
+          Got it, thanks!
+        </button>
+      </div>
+    </div>
+    <!--HÄR BÖRJAR MENYN -->
+    <nav class="nav">
+      <div id="menuToggle">
+        <input id="checkbox" type="checkbox" class="toggleCheckbox" />
+
+        <!--Hamburger-->
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <div id="menu">
+          <p class="logo">Quire</p>
+          <input type="text" id="searchBar" placeholder="Search" />
+
+          <select id="favToggle" name="favToggle" class="favorite">
+            <option value="showAll">Show all notes</option>
+            <option value="showFav">Show only favorites</option>
+          </select>
+
+          <input
+            type="color"
+            name="color"
+            id="color"
+            list="presetColors"
+            value="#c7c5c5"
+          />
           <datalist id="presetColors">
             <option>#c7c5c5</option>
             <option>#ff0000</option>
@@ -61,15 +100,13 @@
             <option>#ffff00</option>
             <option>#00ff00</option>
           </datalist>
-        <div class="leftSide custom-select" id="leftCanvas">
+          <div class="leftSide custom-select" id="leftCanvas"></div>
         </div>
       </div>
-    </div>
-  </nav>
-  
+    </nav>
+
     <!--HÄR BÖRJAR TEXT EDITORN-->
     <main>
-      
       <section class="rightSide">
         <!-- <i class="toolsMenuIcon fa fa-th" id="toolsIcon"></i> -->
         <input type="text" id="subjectTextfieldId" />
@@ -78,21 +115,22 @@
         </form>
       </section>
 
-
       <div class="toolbar">
-        <div class="newNote"><i class="fa fa-file-o "></i></div> 
-        <div class="saveNote"><i class="fa fa-floppy-o"></i></div> 
+        <div class="newNote"><i class="fa fa-file-o"></i></div>
+        <div class="saveNote"><i class="fa fa-floppy-o"></i></div>
         <div class="deleteNote"><i class="fa fa-trash-o"></i></div>
-        <div href="#" class="printing" onclick="window.print()"><i class="fa fa-print"></i></div>
-        <div class="templates"><i class="fa fa-font"></i>
-            <div id="template-menu">
-              <a href="#" id="formatOpt1">Format 1</a>
-              <a href="#" id="formatOpt2">Format 2</a>
-              <a href="#" id="formatOpt3">Format 3</a>
-            </div>
-          </div> 
+        <div href="#" class="printing" onclick="window.print()">
+          <i class="fa fa-print"></i>
+        </div>
+        <div class="templates">
+          <i class="fa fa-font"></i>
+          <div id="template-menu">
+            <a href="#" id="formatOpt1">Format 1</a>
+            <a href="#" id="formatOpt2">Format 2</a>
+            <a href="#" id="formatOpt3">Format 3</a>
+          </div>
+        </div>
       </div>
-  
-  </main>
-</body>
+    </main>
+  </body>
 </html>
