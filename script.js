@@ -102,7 +102,7 @@ function callTinyMceInit(format){
                 }
             });
             break;
-            §
+            
         default:
             tinymce.init({
                 selector: '#mytextarea',
