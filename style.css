@@ -296,12 +296,16 @@ nav {
   margin: -100px 0 0 -25px;
   width: 300px;
   padding-top: 125px;
-  background: #DEE0E2;
   list-style-type: none;
   -webkit-font-smoothing: antialiased;  
   transform-origin: 0% 0%;
   transform: translate(-100%, 0);
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+  transition: 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  -ms-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  -o-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
 #menu li
@@ -384,17 +388,19 @@ nav {
 }
 
 /* Vertical toolbar */
-.toolsMenuIcon{
+
+
+/* .toolsMenuIcon{
   position: absolute;
   top: 70px;
   right: 10px;
   width: 300px;
   height: 30px;
   color: rgba(126, 126, 125, 0.219);
-}
-.toolsMenuIcon:hover{
+} */
+/* .toolsMenuIcon:hover{
   color: rgb(32, 32, 32);
-}
+} */
 
 .toolbar {
   position: relative;
@@ -405,12 +411,14 @@ nav {
   display: block;
   text-align: center;
   padding: 16px;
-  color: rgba(104, 102, 102, 0.404);
+  color: rgba(66, 66, 66, 0.8);
 }
 
 .toolbar div:hover {
   cursor: pointer;
-  color: rgb(19, 19, 19)
+  color: rgb(0, 0, 0);
+  background-color: rgb(66,66,66, 0.4);
+  border-radius: 5px 0 0 5px;
 }
 
 #template-menu {
