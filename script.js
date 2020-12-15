@@ -1,4 +1,4 @@
-let format;
+let format = 1;
 templates = document.querySelector("#template-menu")
 templates.addEventListener("click", function(e) {
     if (e.target.id === "formatOpt1") {
@@ -22,12 +22,9 @@ function removeOldInitANDsetNewInit(formatNum){
     tinymce.remove();
     tinymce.execCommand('mceRemoveControl', true, 'mytextarea');
     callTinyMceInit(formatNum);
-
-    console.log(formatNum);
 }
 
 function callTinyMceInit(format){
-    console.log("Format: "+format);
 
     switch(format){
         case 1:
@@ -604,4 +601,5 @@ function filterByColorTag(event){
 
 function setDefaultFormatStyleSheet(){
     document.querySelector(".formatcss").setAttribute("href", "format1.css");
+    format = 1;
 }
