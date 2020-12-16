@@ -197,6 +197,7 @@ ul li {
 #subjectTextfieldId:focus {
   outline: none;
   background-color: #DEE0E2;
+  z-index: 4;
   transition: all 0.5s, color, font-size 0s;
 }
 
