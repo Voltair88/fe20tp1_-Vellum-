@@ -4,12 +4,15 @@ templates.addEventListener("click", function(e) {
     if (e.target.id === "formatOpt1") {
         format = 1;
         document.querySelector(".formatcss").setAttribute("href", "format1.css")
+        document.querySelector(".printcss").setAttribute("href", "print1.css")
     } else if (e.target.id === "formatOpt2") {
         format = 2;
         document.querySelector(".formatcss").setAttribute("href", "format2.css")
+        document.querySelector(".printcss").setAttribute("href", "print2.css")
     } else if (e.target.id === "formatOpt3") {
         format = 3;
         document.querySelector(".formatcss").setAttribute("href", "format3.css")
+        document.querySelector(".printcss").setAttribute("href", "print3.css")
     } else{
         return
     }
