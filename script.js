@@ -4,12 +4,15 @@ templates.addEventListener("click", function(e) {
     if (e.target.id === "formatOpt1") {
         format = 1;
         document.querySelector(".formatcss").setAttribute("href", "format1.css")
+        document.querySelector(".printcss").setAttribute("href", "print1.css")
     } else if (e.target.id === "formatOpt2") {
         format = 2;
         document.querySelector(".formatcss").setAttribute("href", "format2.css")
+        document.querySelector(".printcss").setAttribute("href", "print2.css")
     } else if (e.target.id === "formatOpt3") {
         format = 3;
         document.querySelector(".formatcss").setAttribute("href", "format3.css")
+        document.querySelector(".printcss").setAttribute("href", "print3.css")
     } else{
         return
     }
@@ -31,13 +34,12 @@ function callTinyMceInit(format){
             tinymce.init({
                 selector: '#mytextarea',
                 placeholder: 'Write something...',
-                plugins: 'lists print quickbars image',
+                plugins: 'lists print quickbars image paste',
                 menubar: false,
                 toolbar: false,
                 quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
                 quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
                 content_css: 'format1.css',
-                plugins: "paste",
                 paste_as_text: true,
                 
                 //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
@@ -54,13 +56,12 @@ function callTinyMceInit(format){
             tinymce.init({
                 selector: '#mytextarea',
                 placeholder: 'Write something...',
-                plugins: 'lists print quickbars image',
+                plugins: 'lists print quickbars image paste',
                 menubar: false,
                 toolbar: false,
                 quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
                 quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
                 content_css: 'format2.css',
-                plugins: "paste",
                 paste_as_text: true,
                 
         
@@ -79,13 +80,12 @@ function callTinyMceInit(format){
             tinymce.init({
                 selector: '#mytextarea',
                 placeholder: 'Write something...',
-                plugins: 'lists print quickbars image',
+                plugins: 'lists print quickbars image paste',
                 menubar: false,
                 toolbar: false,
                 quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
                 quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',   
                 content_css: 'format3.css',
-                plugins: "paste",
                 paste_as_text: true,
         
         
@@ -104,13 +104,12 @@ function callTinyMceInit(format){
             tinymce.init({
                 selector: '#mytextarea',
                 placeholder: 'Write something...',
-                plugins: 'lists print quickbars image',
+                plugins: 'lists print quickbars image paste',
                 menubar: false,
                 toolbar: false,
                 quickbars_selection_toolbar: 'formatselect | bold italic underline | numlist bullist',
                 quickbars_insert_toolbar: 'formatselect | numlist bullist | quickimage',
                 content_css: 'format1.css',
-                plugins: "paste",
                 paste_as_text: true,
                 //To removed the warning notification "This domain is not registered with TinyMCE Cloud. Start...."
                 init_instance_callback : function(mytextarea) {
