@@ -1,9 +1,6 @@
 # :notebook: Quire - Your online notebook
 
 
-![Screenshot](/images/screenshot.png)
-
----
 ## **Teamprojekt 1**   fe20tp1_-Vellum-
 
 ## Our team members
@@ -23,6 +20,8 @@
 ---
 
 ## How to use online notebook
+
+![Screenshot](/images/screenshot.png)
 
 ### Create and save a note
 User can write a title and note content and then saved the note using save button that is on right side toolbar. 
