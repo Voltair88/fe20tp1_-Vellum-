@@ -40,8 +40,6 @@ There are few ways to search a note.
 
 ---
 
-## **Teamprojekt 1**   fe20tp1_-Vellum-
-
 ## Our team members
 
 - :trollface: [Mattias Gulec](https://github.com/Voltair88)
