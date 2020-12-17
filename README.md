@@ -4,7 +4,7 @@
 
 :family: Our team members
 
-- :trollface: [Mattias Gulec] (https://github.com/Voltair88)
+- :trollface: [Mattias Gulec](https://github.com/Voltair88)
 - :woman: Emma Lilja
 - :bowtie: Pathum Madushanka Weerathunga
 - :godmode: Filip Clavin 
