@@ -1,4 +1,4 @@
-# Quire - Your online notebook :notebook:
+# :notebook: Quire - Your online notebook
 
 
 ![Screenshot](/images/screenshot.png)
