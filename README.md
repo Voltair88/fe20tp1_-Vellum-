@@ -11,10 +11,10 @@
 - :man: Albin Ryberg 
 
 
-[## Trello link](https://trello.com/b/WsZWLdK0/quire)
+## [Trello link](https://trello.com/b/WsZWLdK0/quire)
 
 
-[## Release 1](http://vellum.surge.sh/)
+## [Release 1](http://vellum.surge.sh/)
 
 ## How to use online notebook
 
