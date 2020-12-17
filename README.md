@@ -43,6 +43,7 @@ User can easily mark as favorite by clicking the favorite star.
 
 ### Set tags for notes
 User can set color tags for notes using the color picker.
+
 ![Update message](/images/colorPicker.png)
 
 ### Search a note
