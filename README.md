@@ -2,13 +2,13 @@
 
 ## **Teamprojekt 1**   fe20tp1_-Vellum-
 
-## Our team members
+:family: Our team members
 
-- Mattias Gulec
-- Emma Lilja
-- Pathum Madushanka Weerathunga
-- Filip Clavin 
-- Albin Ryberg 
+- :trollface: Mattias Gulec 
+- :woman: Emma Lilja
+- :bowtie: Pathum Madushanka Weerathunga
+- :godmode: Filip Clavin 
+- :man: Albin Ryberg 
 
 
 ## Trello link
