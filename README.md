@@ -1,21 +1,27 @@
-![Texteditor logo](/images/favicon.ico)  **Quire - Your online notebook**
+# Quire - Your online notebook
 
+:notebook:
+
+![Screenshot](/images/screenshot.png)
+
+---
 ## **Teamprojekt 1**   fe20tp1_-Vellum-
 
 ## Our team members
 
-- Mattias Gulec
-- Emma Lilja
-- Pathum Madushanka Weerathunga
-- Filip Clavin 
-- Albin Ryberg 
+- :trollface: [Mattias Gulec](https://github.com/Voltair88)
+- :woman: [Emma Lilja](https://github.com/Nonis17)
+- :bowtie: [Pathum Madushanka Weerathunga](https://github.com/pathummw)
+- :godmode: [Filip Clavin](https://github.com/filipclavin)
+- :man: [Albin Ryberg](https://github.com/AlbinR)
 
 
-## Trello link
-- https://trello.com/b/WsZWLdK0/quire
+## [Scrum link](https://trello.com/b/WsZWLdK0/quire)
 
-## Release 1
-- http://vellum.surge.sh/
+
+## [Release 1](http://vellum.surge.sh/)
+
+---
 
 ## How to use online notebook
 
