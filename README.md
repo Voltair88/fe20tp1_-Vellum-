@@ -1,25 +1,10 @@
 # :notebook: Quire - Your online notebook
 
-
-## **Teamprojekt 1**   fe20tp1_-Vellum-
-
-## Our team members
-
-- :trollface: [Mattias Gulec](https://github.com/Voltair88)
-- :woman: [Emma Lilja](https://github.com/Nonis17)
-- :bowtie: [Pathum Madushanka Weerathunga](https://github.com/pathummw)
-- :godmode: [Filip Clavin](https://github.com/filipclavin)
-- :man: [Albin Ryberg](https://github.com/AlbinR)
-
-
-## [Scrum link](https://trello.com/b/WsZWLdK0/quire)
-
-
-## [Release 1](http://vellum.surge.sh/)
+Quire is an online note-taking application focused on simplicity and productivity. Users can create notes, use different formats and inline styles, save notes and print/download them.
 
 ---
 
-## How to use online notebook
+## How to use Quire
 
 ![Screenshot](/images/screenshot.png)
 
@@ -53,5 +38,20 @@ There are few ways to search a note.
 
 ![Update message](/images/search.png)
 
+---
+
+## **Teamprojekt 1**   fe20tp1_-Vellum-
+
+## Our team members
+
+- :trollface: [Mattias Gulec](https://github.com/Voltair88)
+- :woman: [Emma Lilja](https://github.com/Nonis17)
+- :bowtie: [Pathum Madushanka Weerathunga](https://github.com/pathummw)
+- :godmode: [Filip Clavin](https://github.com/filipclavin)
+- :man: [Albin Ryberg](https://github.com/AlbinR)
 
 
+## [Scrum link](https://trello.com/b/WsZWLdK0/quire)
+
+
+## [Release 1](http://vellum.surge.sh/)
