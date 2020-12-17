@@ -1,6 +1,6 @@
 # :notebook: Quire - Your online notebook
 
-Quire is an online note-taking application focused on simplicity and productivity. Users can create notes, use different formats and inline styles, save notes and print/download them.
+Quire is an online note-taking application focused on simplicity and productivity. Users can create notes, use different templates and inline styles, save notes and print/download them.
 
 This website is a school project created to test our skills in vanilla JavaScript as well as practicing the Scrum development methology.
 
