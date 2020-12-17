@@ -45,10 +45,10 @@ There are few ways to search a note.
 ## Our team members
 
 - :trollface: [Mattias Gulec](https://github.com/Voltair88)
-- :woman: [Emma Lilja](https://github.com/Nonis17)
+- :princess: [Emma Lilja](https://github.com/Nonis17)
 - :bowtie: [Pathum Madushanka Weerathunga](https://github.com/pathummw)
 - :godmode: [Filip Clavin](https://github.com/filipclavin)
-- :man: [Albin Ryberg](https://github.com/AlbinR)
+- :construction_worker: [Albin Ryberg](https://github.com/AlbinR)
 
 
 ## [Scrum link](https://trello.com/b/WsZWLdK0/quire)
