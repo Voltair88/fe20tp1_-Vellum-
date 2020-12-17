@@ -5,17 +5,16 @@
 :family: Our team members
 
 - :trollface: [Mattias Gulec](https://github.com/Voltair88)
-- :woman: Emma Lilja
-- :bowtie: Pathum Madushanka Weerathunga
-- :godmode: Filip Clavin 
+- :woman: [Emma Lilja](https://github.com/Nonis17)
+- :bowtie: [Pathum Madushanka Weerathunga](https://github.com/pathummw)
+- :godmode: [Filip Clavin](https://github.com/filipclavin)
 - :man: Albin Ryberg 
 
 
-## Trello link
-- https://trello.com/b/WsZWLdK0/quire
+[## Trello link](https://trello.com/b/WsZWLdK0/quire)
 
-## Release 1
-- http://vellum.surge.sh/
+
+[## Release 1](http://vellum.surge.sh/)
 
 ## How to use online notebook
 
